@@ -1,2 +1,2 @@
 # Paradise
-.NET Core 5.0
+.NET Core 5.0 Project
