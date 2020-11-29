@@ -14,6 +14,8 @@ using Services.ProductService;
 using Services.ImageService;
 using Services.CartService;
 using Services.RoomService;
+using Microsoft.AspNetCore.Identity;
+using System.Linq;
 
 namespace Web
 {
@@ -55,6 +57,18 @@ namespace Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var userManager = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            if (!userManager.Users.Any(x => x.UserName == "nikolayski@abv.bg"))
+            {
+                userManager.CreateAsync(new ApplicationUser
+                {
+                    UserName = "nikolayski@abv.bg",
+                    Email = "nikolayski@abv.bg",
+                    EmailConfirmed = true
+                }, "Dadada1122_").GetAwaiter().GetResult();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
