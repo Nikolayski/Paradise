@@ -48,11 +48,9 @@ namespace Web.Controllers
             return this.View(room);
         }
 
-
-        public IActionResult Check(string checkIn, string checkOut, string adults, string roomType)
+      public IActionResult Check(string checkIn, string checkOut, string adults, string roomType)
         {
-
-            DateTime checkInDate;
+           DateTime checkInDate;
             DateTime checkOutDate;
             bool CancheckInDate = DateTime.TryParseExact(checkIn, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out checkInDate);
             bool CancheckOutDate = DateTime.TryParseExact(checkOut, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out checkOutDate);
@@ -62,11 +60,8 @@ namespace Web.Controllers
 
                 return this.Redirect("/");
             }
-
-
             var wantedRooms = this.roomsService.CheckRooms(checkInDate, checkOutDate, adults, roomType);
-
-            return this.View(wantedRooms);
+           return this.View(wantedRooms);
 
         }
     }
