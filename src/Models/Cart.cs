@@ -13,9 +13,7 @@ namespace Models
         }
         public string Id { get; set; }
 
-
         public virtual ICollection<CartProduct> CartProducts { get; set; }
-
 
         public virtual ICollection<ApplicationUser> Users { get; set; }
 

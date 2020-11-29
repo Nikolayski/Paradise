@@ -3,6 +3,7 @@
     public class UserRoom
     {
         public int Id { get; set; }
+
         public string RoomId { get; set; }
         public virtual Room Room { get; set; }
 

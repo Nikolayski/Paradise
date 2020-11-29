@@ -25,9 +25,7 @@ namespace Data
         public DbSet<RoomImages> RoomImages { get; set; }
         public DbSet<CartProduct> CartProducts { get; set; }
 
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+           protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
