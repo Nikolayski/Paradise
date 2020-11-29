@@ -44,13 +44,11 @@
                                         </a>
                                         <p class="price">From: £@product.Price</p>
                                         <div>
-                                               <form method="post" action="/Cart/Add">
+                                               <form method="post" action="/Carts/Add">
                                                     <input type="hidden" name="productId" value="@product.Id" />
                                                     <button type="submit">Add to Cart</button>
                                                 </form>
-                                            @*<a class="view-link shutter" href="#">
-                                                <i class="fa fa-plus-circle"></i>Add To Cart
-                                            </a>*@
+                                           
                                         </div>
                                     </div>	<!-- End of /.products -->
                                 </li>

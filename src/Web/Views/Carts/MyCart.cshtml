@@ -33,13 +33,12 @@
                                     </a>
                                     <p class="price">£@product.Price</p>
                                     <div>
-                                        <form method="post" action="/Cart/Remove">
+
+                                        <form method="post" action="/Carts/Remove">
                                             <input type="hidden" name="productId" value="@product.Id" />
                                             <button type="submit">Remove</button>
                                         </form>
-                                        @*<a class="view-link shutter" href="#">
-                                    <i class="fa fa-plus-circle"></i>Add To Card
-                                </a>*@
+                                       
                                     </div>
                                 </div>	<!-- End of /.products -->
                             </li>

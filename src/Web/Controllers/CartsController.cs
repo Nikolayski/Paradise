@@ -59,7 +59,7 @@ namespace Web.Controllers
             ;
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             this.cartService.RemoveProduct(productId, userId);
-            return this.Redirect("/Cart/MyCart");
+            return this.Redirect("/Carts/MyCart");
         }
     }
 }

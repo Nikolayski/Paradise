@@ -42,7 +42,7 @@
                             <p class="price">$@this.Model.Price</p>
                             <p>@this.Model.Description</p>
                             @*<a class="view-link" href="#"><i class="fa fa-plus-circle"></i>Add To Cart</a>*@
-                            <form method="post" action="/Cart/AddFromDetails">
+                            <form method="post" action="/Carts/AddFromDetails">
                                 <input type="hidden" name="productId" value="@this.Model.Id" />
                                 <button type="submit">Add to Cart</button>
                             </form>

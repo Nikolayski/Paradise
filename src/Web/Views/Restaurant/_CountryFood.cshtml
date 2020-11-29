@@ -40,9 +40,11 @@
                                     </a>
                                     <p class="price">£@product.Price</p>
                                     <div>
-                                        <a class="view-link shutter" href="#">
-                                            <i class="fa fa-plus-circle"></i>Add To Card
-                                        </a>
+                                        <form method="post" action="/Carts/Add">
+                                            <input type="hidden" name="productId" value="@product.Id" />
+                                            <button type="submit">Add to Cart</button>
+                                        </form>
+
                                     </div>
                                 </div>	<!-- End of /.products -->
                             </li>
