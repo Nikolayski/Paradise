@@ -43,13 +43,16 @@
                                             <h4>@product.Name</h4>
                                         </a>
                                         <p class="price">From: £@product.Price</p>
-                                        <div>
-                                               <form method="post" action="/Carts/Add">
+                                        @if (this.User.Identity.IsAuthenticated)
+                                        {
+                                            <div>
+                                                <form method="post" action="/Carts/Add">
                                                     <input type="hidden" name="productId" value="@product.Id" />
                                                     <button type="submit">Add to Cart</button>
                                                 </form>
-                                           
-                                        </div>
+
+                                            </div>
+                                        }
                                     </div>	<!-- End of /.products -->
                                 </li>
                                              
