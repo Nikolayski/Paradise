@@ -59,11 +59,11 @@ namespace Services.ProductService
             return randomDishes;
         }
 
-        public IEnumerable<ProductsAllViewModel> GetFoodListByCategory(ProductCountry type)
+        public IPagedList<ProductsAllViewModel> GetFoodListByCategory(int pageNumber, int pageSize,ProductCountry type)
         {
             return this.db.Products.Where(x => x.Nationality == type)
                                   .ProjectTo<ProductsAllViewModel>(this.mapper.ConfigurationProvider)
-                                  .ToList();
+                                  .ToPagedList(pageNumber, pageSize);
         }
 
        public IEnumerable<ProductsAllViewModel> GetProductsByName(string name)

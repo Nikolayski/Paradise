@@ -15,7 +15,7 @@ namespace Services.ProductService
 
         IEnumerable<RandomProductsViewComponentViewModel> GetRandomProducts();
 
-        IEnumerable<ProductsAllViewModel> GetFoodListByCategory(ProductCountry category);
+        IPagedList<ProductsAllViewModel> GetFoodListByCategory(int pageNumber, int pageSize, ProductCountry category);
 
         IEnumerable<ProductsAllViewModel> GetProductsByName(string name);
 
