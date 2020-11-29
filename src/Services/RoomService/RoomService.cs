@@ -61,7 +61,7 @@ namespace Services.RoomService
                                 {
                                     Id = x.Id,
                                     Adults = x.Adults,
-                                    Description = x.Description,
+                                    Description = x.Description,                                                        //TODO: AM
                                     Image = x.Image,
                                     Price = x.Price,
                                     RoomCount = x.RoomCount,

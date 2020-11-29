@@ -1,0 +1,38 @@
+﻿using AutoMapper;
+using Models;
+using ViewModels.Index;
+using ViewModels.Products;
+using ViewModels.Rooms;
+
+namespace Mapping
+{
+  public  class ApplicationProfile : Profile
+    {
+        public ApplicationProfile()
+        {
+            //products
+
+            this.CreateMap<Product, ProductsAllViewModel>();
+            this.CreateMap<Product, SingleProductViewModel>();
+            this.CreateMap<Product, RandomProductsViewComponentViewModel>()
+                        .ForMember(vm => vm.Description,
+                                   map => map.MapFrom(p => p.Description.Substring(0, 50)));
+
+
+
+            //rooms
+
+            this.CreateMap<Room, RoomsAllViewModel>()
+                            .ForMember(vm => vm.RoomType,
+                                       map => map.MapFrom(r => r.RoomType.ToString()));
+
+            this.CreateMap<Room, RoomDetailsViewModel>();
+            this.CreateMap<Room, RoomCheckViewModel>();
+
+
+            //index images
+            this.CreateMap<Image, IndexImageViewModel>();
+
+        }
+    }
+}
