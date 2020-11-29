@@ -1,0 +1,18 @@
+﻿@model IEnumerable<RandomProductsViewComponentViewModel>
+
+@foreach (var product in this.Model)
+{
+    <div class="col-lg-6 col-xl-4 d-flex">
+        <div class="pricing-entry rounded d-flex ftco-animate">
+            <div class="img" style="background-image: url(@product.Image);"></div>
+            <div class="desc p-4">
+                <div class="d-md-flex text align-items-start">
+                    <h3><span>@product.Name</span></h3>
+                </div>
+                <div class="d-block">
+                    <p>@product.Description</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}

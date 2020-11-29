@@ -1,0 +1,220 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="hero">
+    <section class="home-slider owl-carousel">
+
+        <vc:index-images></vc:index-images>
+
+    </section>
+</div>
+      
+
+
+
+
+<section>
+ <div class="container  bg-info">
+        <div class="row no-gutters no-gutters">
+            <div class="col-md-12">
+                <form class="form-group" method="post" action="/Rooms/Check">
+                    <div class="row">
+                        <div class="form-control col-md-3">
+                            <input id="checkin_date" type="text" name="checkIn" class="checkin_date" placeholder="Check-in-date">
+                        </div>
+                        <div class="form-control col-md-3">
+                            <input id="checkout_date" type="text" name="checkOut" class="checkout_date" placeholder="Check-out-date">
+                        </div>
+
+                        <div class="form-control col-md-2">
+                            <label for="adults">Adults:</label>
+                            <select name="adults" id="adults">
+                                <option value="1">1 Adult</option>
+                                <option value="2">2 Adult</option>
+                                <option value="3">3 Adult</option>
+                                <option value="4">4 Adult</option>
+                            </select>
+                        </div>
+                        <div class="form-control col-md-3">
+                            <label for="roomType">Room</label>
+                            <select name="roomType" id="roomType">
+                                <option value="all">All</option>
+                                <option value="single">Single Room</option>
+                                <option value="double">Double Room</option>
+                                <option value="tripple">Tripple Room</option>
+                                <option value="family">Family Room</option>
+                                <option value="luxury">Luxury Room</option>
+                                <option value="superior">Superior Room</option>
+                            </select>
+                        </div>
+                        <div class="form-control col-md-1">
+                            <button type="submit" class="btn btn-info">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<partial name="_Services" />
+
+
+
+
+
+<section class="ftco-section ftco-wrap-about ftco-no-pt ftco-no-pb">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-7 order-md-last d-flex">
+                <div class="img img-1 mr-md-2 ftco-animate" style="background-image: url(https://www.travelmallnews.com/wp-content/uploads/2020/05/Virtual-Meetings-in-Hawaii-Four-Seasons-e1589413437317.jpg);"></div>
+                <div class="img img-2 ml-md-2 ftco-animate" style="background-image: url(https://www.namestaj.rs/images/tekstovi/actualites_main_picture/hotel-four-seasons-maui-havaji%2006.jpg);"></div>
+            </div>
+            <div class="col-md-5 wrap-about pb-md-3 ftco-animate pr-md-5 pb-md-5 pt-md-4">
+                <div class="heading-section mb-4 my-5 my-md-0">
+                    <span class="subheading">About Paradise Hotel</span>
+                    <h2 class="mb-4">Paradise Hotel the Most Recommended Hotel All Over the World</h2>
+                </div>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                <p><a href="/Rooms/OurRooms"  class="btn btn-secondary rounded">Reserve Your Room Now</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<vc:superior-room-view-components></vc:superior-room-view-components>
+
+
+
+
+<section class="ftco-section ftco-menu bg-light">
+    <div class="container-fluid px-md-4">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <span class="subheading">Restaurant</span>
+                <h2>Restaurant</h2>
+            </div>
+        </div>
+        <div class="row">
+
+
+          <vc:index-meals></vc:index-meals>
+           
+
+            <div class="col-md-12 text-center ftco-animate">
+                <p><a href="/Restaurant/Products" class="btn btn-primary rounded">View All Menu</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <span class="subheading">Read Blog</span>
+                <h2>Recent Blog</h2>
+            </div>
+        </div>
+        <div class="row d-flex">
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry align-self-stretch">
+                    <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/image_1.jpg');">
+                    </a>
+                    <div class="text mt-3 text-center">
+                        <div class="meta mb-2">
+                            <div><a href="#">Oct. 30, 2019</a></div>
+                            <div><a href="#">Admin</a></div>
+                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                        </div>
+                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry align-self-stretch">
+                    <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/image_2.jpg');">
+                    </a>
+                    <div class="text mt-3 text-center">
+                        <div class="meta mb-2">
+                            <div><a href="#">Oct. 30, 2019</a></div>
+                            <div><a href="#">Admin</a></div>
+                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                        </div>
+                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry align-self-stretch">
+                    <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/image_3.jpg');">
+                    </a>
+                    <div class="text mt-3 text-center">
+                        <div class="meta mb-2">
+                            <div><a href="#">Oct. 30, 2019</a></div>
+                            <div><a href="#">Admin</a></div>
+                            <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                        </div>
+                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="instagram">
+    <div class="container-fluid">
+        <div class="row no-gutters justify-content-center pb-5">
+            <div class="col-md-7 text-center heading-section ftco-animate">
+                <span class="subheading">Photos</span>
+                <h2><span>Instagram</span></h2>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-sm-12 col-md ftco-animate">
+                <a href="images/insta-1.jpg" class="insta-img image-popup" style="background-image: url(images/insta-1.jpg);">
+                    <div class="icon d-flex justify-content-center">
+                        <span class="icon-instagram align-self-center"></span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-12 col-md ftco-animate">
+                <a href="images/insta-2.jpg" class="insta-img image-popup" style="background-image: url(images/insta-2.jpg);">
+                    <div class="icon d-flex justify-content-center">
+                        <span class="icon-instagram align-self-center"></span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-12 col-md ftco-animate">
+                <a href="images/insta-3.jpg" class="insta-img image-popup" style="background-image: url(images/insta-3.jpg);">
+                    <div class="icon d-flex justify-content-center">
+                        <span class="icon-instagram align-self-center"></span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-12 col-md ftco-animate">
+                <a href="images/insta-4.jpg" class="insta-img image-popup" style="background-image: url(images/insta-4.jpg);">
+                    <div class="icon d-flex justify-content-center">
+                        <span class="icon-instagram align-self-center"></span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-12 col-md ftco-animate">
+                <a href="images/insta-5.jpg" class="insta-img image-popup" style="background-image: url(images/insta-5.jpg);">
+                    <div class="icon d-flex justify-content-center">
+                        <span class="icon-instagram align-self-center"></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ProductsAllViewModel>
+
+
+@{
+    ViewData["Title"] = "Search";
+    this.Layout = "_Layout2";
+}
+
+
+<section id="shop">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div>
+                    <form action="/Restaurant/Search" method="get">
+                        <input type="text" name="name" />
+                        <button type="submit">Search</button>
+                    </form>
+                </div>	<!-- End of /.Products-heading -->
+                <div class="product-grid">
+                    <ul>
+                        @foreach (var product in this.Model)
+                        {
+
+                            <li>
+                                <div class="products">
+                                    <a href="/Products/Articles?id=@product.Id">
+                                        <img src="@product.Image" alt="">
+                                    </a>
+                                    <a href="#">
+                                        <h4>@product.Name</h4>
+                                    </a>
+                                    <p class="price">£@product.Price</p>
+                                    <div>
+                                        <a class="view-link shutter" href="#">
+                                            <i class="fa fa-plus-circle"></i>Add To Card
+                                        </a>
+                                    </div>
+                                </div>	<!-- End of /.products -->
+                            </li>
+
+                            <!--  ... -->
+
+                        }
+                    </ul>
+                </div>	<!-- End of /.products-grid -->
+                <!-- Pagination -->
+
+                <div class="pagination-bottom">
+                    <ul class="pagination">
+                        <li class="disabled"><a href="#">&laquo;</a></li>
+                        <li class="active"><a href="#">1 <span class="sr-only"></span></a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>	<!-- End of /.pagination -->
+                </div>
+            </div>	<!-- End of /.col-md-9 -->
+            <div class="col-md-3">
+                <div class="blog-sidebar">
+                    <div class="block">
+                        <h4>Categories</h4>
+                        <div class="list-group">
+                            <a href="/Restaurant/Italian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Italian Foods
+                            </a>
+                            <a href="/Restaurant/Traditional" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Traditional Food
+                            </a>
+                            <a href="/Restaurant/Indian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Indian Food
+                            </a>
+                            <a href="/Restaurant/Spanish" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Spanish Food
+                            </a>
+                            <a href="/Restaurant/Bulgarian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Bulgarian Food
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <img src="~/images/food-ad.png" alt="">
+                    </div>
+                    <div class="block">
+                        <h4>Food Suggestions</h4>
+                        <ul class="media-list">
+                        <vc:random-products></vc:random-products>
+                         
+                        </ul>
+                    </div>
+
+                    <div class="block">
+                        <h4>Food Tag</h4>
+                        <div class="tag-link">
+                            <a href="">BALLET</a>
+                            <a href="">CHRISTMAS</a>
+                            <a href="">ELEGANCE</a>
+                            <a href="">ELEGANT</a>
+                            <a href="">SHOPPING</a>
+                            <a href="">SHOP</a>
+                        </div>
+                    </div>
+                </div>	<!-- End of /.col-md-3 -->
+
+            </div>	<!-- End of /.row -->
+        </div>	<!-- End of /.container -->
+        </div>
+</section>	<!-- End of Section -->

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<RandomProductsViewComponentViewModel>
+
+
+@foreach (var dish in this.Model)
+{
+    <li class="media">
+        <a class="pull-left" href="/Restaurant/Product?id=@dish.Id">
+            <img class="media-object" src="@dish.Image" alt="...">
+        </a>
+        <div class="media-body">
+            <a href="/Restaurant/Product?id=@dish.Id" class="media-heading">
+                @dish.Name
+                <p>@dish.Description</p>
+            </a>
+        </div>
+    </li>
+}

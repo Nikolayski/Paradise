@@ -1,0 +1,168 @@
+﻿@model UserCartAddProductViewModel
+
+@{
+    ViewData["Title"] = "CountryFood";
+    this.Layout = "_Layout2";
+}
+
+<section id="shop">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div>
+                    <form action="/Restaurant/Search" method="get">
+                        <input type="text" name="name" />
+                        <button type="submit">Search</button>
+                    </form>
+                </div>	<!-- End of /.Products-heading -->
+                <div class="products-heading">
+                    <h2>Italian PRODUCTS</h2>
+                </div>
+                <div class="product-grid">
+                    <ul>
+                        @foreach (var product in this.Model.Products)
+                        {
+
+                            <li>
+                                <div class="products">
+                                    <a href="/Restaurant/Product?id=@product.Id">
+                                        <img src="@product.Image" alt="">
+                                    </a>
+                                    <a href="#">
+                                        <h4>@product.Name</h4>
+                                    </a>
+                                    <p class="price">£@product.Price</p>
+                                    <div>
+                                        <form method="post" action="/Cart/Remove">
+                                            <input type="hidden" name="productId" value="@product.Id" />
+                                            <button type="submit">Remove</button>
+                                        </form>
+                                        @*<a class="view-link shutter" href="#">
+                                    <i class="fa fa-plus-circle"></i>Add To Card
+                                </a>*@
+                                    </div>
+                                </div>	<!-- End of /.products -->
+                            </li>
+
+                            <!--  ... -->
+
+                        }
+                    </ul>
+                </div>	<!-- End of /.products-grid -->
+                <!-- Pagination -->
+
+                @if (this.Model.TotalPrice != 0)
+                {
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                <h3>$@this.Model.TotalPrice <a class="btn btn-info" href="/Restaurant/Paging">Order</a></h3>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+
+
+                <div class="pagination-bottom">
+                    <ul class="pagination">
+                        <li class="disabled"><a href="#">&laquo;</a></li>
+                        <li class="active"><a href="#">1 <span class="sr-only"></span></a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>	<!-- End of /.pagination -->
+                </div>
+            </div>	<!-- End of /.col-md-9 -->
+            <div class="col-md-3">
+                <div class="blog-sidebar">
+                    <div class="block">
+                        <h4>Categories</h4>
+                        <div class="list-group">
+                            <a href="/Restaurant/Italian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Italian Foods
+                            </a>
+                            <a href="/Restaurant/Traditional" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Traditional Food
+                            </a>
+                            <a href="/Restaurant/Indian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Indian Food
+                            </a>
+                            <a href="/Restaurant/Spanish" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Spanish Food
+                            </a>
+                            <a href="/Restaurant/Bulgarian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Bulgarian Food
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <img src="~/images/food-ad.png" alt="">
+                    </div>
+                    <div class="block">
+                        <h4>Food Suggestions</h4>
+                        <ul class="media-list">
+                            <vc:random-products></vc:random-products>
+                            @*<li class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="~/images/post-img.png" alt="...">
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="" class="media-heading">
+                                            Lamb leg roast
+                                            <p>Lorem ipsum dolor sit amet.</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="~/images/post-img-2.png" alt="...">
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="" class="media-heading">
+                                            Lamingtons
+                                            <p>Lorem ipsum dolor.</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="~/images/post-img-3.png" alt="...">
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="" class="media-heading">
+                                            Anzac Salad
+                                            <p>Lorem ipsum dolor sit.</p>
+
+                                        </a>
+                                    </div>
+                                </li>*@
+                        </ul>
+                    </div>
+
+                    <div class="block">
+                        <h4>Food Tag</h4>
+                        <div class="tag-link">
+                            <a href="">BALLET</a>
+                            <a href="">CHRISTMAS</a>
+                            <a href="">ELEGANCE</a>
+                            <a href="">ELEGANT</a>
+                            <a href="">SHOPPING</a>
+                            <a href="">SHOP</a>
+                        </div>
+                    </div>
+                </div>	<!-- End of /.col-md-3 -->
+
+            </div>	<!-- End of /.row -->
+        </div>	<!-- End of /.container -->
+    </div>>
+</section>	<!-- End of Section -->
