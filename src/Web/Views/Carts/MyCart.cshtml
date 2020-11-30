@@ -10,16 +10,24 @@
         <div class="row">
             <div class="col-md-9">
                 <div>
-                    <form action="/Restaurant/Search" method="get">
+                    <form asp-controller="Restaurant" asp-action="Search" method="get">
                         <input type="text" name="name" />
                         <button type="submit">Search</button>
                     </form>
                 </div>	<!-- End of /.Products-heading -->
-                <div class="products-heading">
-                    <h2>Italian PRODUCTS</h2>
-                </div>
                 <div class="product-grid">
+                    <hr />
+                    <hr />
+                    <hr />
+                    @if (this.Model.Products.Count == 0)
+                    {
+                        <div class="row">
+                            <h1>My Cart is Empty...</h1>
+                        </div>
+                    }
+
                     <ul>
+
                         @foreach (var product in this.Model.Products)
                         {
 
@@ -38,7 +46,7 @@
                                             <input type="hidden" name="productId" value="@product.Id" />
                                             <button type="submit">Remove</button>
                                         </form>
-                                       
+
                                     </div>
                                 </div>	<!-- End of /.products -->
                             </li>
@@ -66,16 +74,7 @@
 
 
 
-                <div class="pagination-bottom">
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1 <span class="sr-only"></span></a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>	<!-- End of /.pagination -->
-                </div>
+              
             </div>	<!-- End of /.col-md-9 -->
             <div class="col-md-3">
                 <div class="blog-sidebar">

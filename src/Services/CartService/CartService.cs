@@ -3,6 +3,7 @@ using Models;
 using ViewModels.Products;
 
 using System.Linq;
+using X.PagedList;
 
 namespace Services.CartService
 {
@@ -49,6 +50,8 @@ namespace Services.CartService
 
             return user;
         }
+
+
 
         public bool IsUserConnectedWithCart(string userId)
         {

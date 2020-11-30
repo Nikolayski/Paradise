@@ -1,4 +1,5 @@
 ﻿using ViewModels.Products;
+using X.PagedList;
 
 namespace Services.CartService
 {
@@ -11,6 +12,7 @@ namespace Services.CartService
         void AddProductsToCart(string productId, string userId);
 
         UserCartAddProductViewModel GetCartProducts(string userId);
+        
 
         void RemoveProduct(string productId, string userId);
     }

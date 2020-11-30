@@ -45,11 +45,18 @@ namespace Web.Controllers
 
         }
 
+        //public IActionResult MyCart()
+        //{
+        //    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        //    var user = this.cartService.GetCartProducts(userId);
+
+        //    return this.View(user);
+        //}
+
         public IActionResult MyCart()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = this.cartService.GetCartProducts(userId);
-
             return this.View(user);
         }
 
