@@ -19,6 +19,6 @@ namespace Services.ProductService
 
         IEnumerable<ProductsAllViewModel> GetProductsByName(string name);
 
-        IEnumerable<ProductsAllViewModel> GetProductsByType(ProductType type);
+        IPagedList<ProductsAllViewModel> GetProductsByType(int pageNumber, int pageSize, ProductType type);
     }
 }

@@ -13,7 +13,6 @@
             <div class="row no-gutters slider-text d-flex align-itemd-center justify-content-center">
                 <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
                     <div class="text">
-                        <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home</a></span> <span>Restaurant</span></p>
                         <h1 class="mb-4 bread">Rooms</h1>
                     </div>
                 </div>
@@ -35,7 +34,7 @@
                         </div>
                         <div class="d-block">
                             <p>@room.RoomCount rooms left!</p>
-                            <a class="btn btn-info" href="/Rooms/Details?id=@room.Id">Details</a>
+                            <a class="btn btn-info" asp-controller="Rooms" asp-action="Details" asp-route-id="@room.Id">Details</a>
                         </div>
                     </div>
                 </div>

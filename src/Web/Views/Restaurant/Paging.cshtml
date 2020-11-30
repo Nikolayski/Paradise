@@ -6,15 +6,15 @@
 }
 
 @*<div class="block-heading bg-info">
-    <h3>OUR MENU</h3>
-</div>*@
+        <h3>OUR MENU</h3>
+    </div>*@
 
 <section id="shop">
     <div class="container">
         <div class="row">
             <div class="col-md-9">
                 <div>
-                    <form action="/Restaurant/Search" method="get">
+                    <form asp-controller="Restaurant" asp-action="Search" method="get">
                         <input type="text" name="name" />
                         <button type="submit">Search</button>
                     </form>
@@ -30,179 +30,164 @@
                                })
                 </div>
 
-                    <div class="product-grid">
-                        <ul>
-                            @foreach (var product in this.Model)
-                            {
-                                <li>
-                                    <div class="products">
-                                        <a href="/Restaurant/Product?id=@product.Id">
-                                            <img src="@product.Image" alt="">
-                                        </a>
-                                        <a href="#">
-                                            <h4>@product.Name</h4>
-                                        </a>
-                                        <p class="price">From: £@product.Price</p>
-                                        @if (this.User.Identity.IsAuthenticated)
-                                        {
-                                            <div>
-                                                <form method="post" action="/Carts/Add">
-                                                    <input type="hidden" name="productId" value="@product.Id" />
-                                                    <button type="submit">Add to Cart</button>
-                                                </form>
+                <div class="product-grid">
+                    <ul>
+                        @foreach (var product in this.Model)
+                        {
+                            <li>
+                                <div class="products">
+                                    <a asp-controller="Restaurant" asp-action="Product" asp-route-id="@product.Id">
+                                        <img src="@product.Image" alt="">
+                                    </a>
+                                    <a href="#">
+                                        <h4>@product.Name</h4>
+                                    </a>
+                                    <p class="price">From: £@product.Price</p>
+                                    @if (this.User.Identity.IsAuthenticated)
+                                    {
+                                        <div>
+                                            <form method="post" asp-controller="Carts" asp-action="Add">
+                                                <input type="hidden" name="productId" value="@product.Id" />
+                                                <button type="submit">Add to Cart</button>
+                                            </form>
 
-                                            </div>
-                                        }
-                                    </div>	<!-- End of /.products -->
-                                </li>
-                                             
-                                  
-                            }
-
-                        </ul>
-                    </div>	<!-- End of /.products-grid -->
-                    <!-- Pagination -->
-
-                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Paging", new { page = page }),
-                                   new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
-                                   {
-                                       DisplayItemSliceAndTotal = true,
-                                       ContainerDivClasses = new[] { "navigation" },
-                                       LiElementClasses = new[] { "page-item" },
-                                       PageClasses = new[] { "page-link" },
-                                   })
-
-
-
-
-
-                    <section id="catagorie">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="block">
-                                        <div class="block-heading">
-                                            <h2>OUR FOOD CATEGORIES</h2>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-4">
-                                                <div class="thumbnail">
-                                                    <a class="catagotie-head" href="/Restaurant/Salads">
-                                                        <img src="https://www.culinaryhill.com/wp-content/uploads/2016/06/Mediterranean-Chopped-Salad-Recipe-Culinary-Hill-LR-04SQ-500x375.jpg" alt="...">
-                                                        <h3>Salads</h3>
-                                                    </a>
-                                                    <div class="caption">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
-                                                        <p>
-                                                            <a href="/Restaurant/Salads" class="btn btn-default btn-transparent" role="button">
-                                                                <span>Check Items</span>
-                                                            </a>
-                                                        </p>
-                                                    </div>	<!-- End of /.caption -->
-                                                </div>	<!-- End of /.thumbnail -->
-                                            </div>	<!-- End of /.col-sm-6 col-md-4 -->
-                                            <div class="col-sm-6 col-md-4">
-                                                <div class="thumbnail">
-                                                    <a class="catagotie-head" href="/Restaurant/Mains">
-                                                        <img src="https://www.thecookierookie.com/wp-content/uploads/2019/10/chicken-florentine-pasta-recipe-2-of-3-500x375.jpg" alt="...">
-                                                        <h3>Mains</h3>
-                                                    </a>
-                                                    <div class="caption">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
-                                                        <p>
-                                                            <a href="/Restaurant/Mains" class="btn btn-default btn-transparent" role="button">
-                                                                <span>Check Items</span>
-                                                            </a>
-                                                        </p>
-                                                    </div>	<!-- End of /.caption -->
-                                                </div>	<!-- End of /.thumbnail -->
-                                            </div>	<!-- End of /.col-sm-6 col-md-4 -->
-                                            <div class="col-sm-6 col-md-4">
-                                                <div class="thumbnail">
-                                                    <a class="catagotie-head" href="/Restaurant/Desserts">
-                                                        <img src="https://www.carveyourcraving.com/wp-content/uploads/2020/09/gulab-jamun-mousse-layered-dessert-500x375.jpg" alt="...">
-                                                        <h3>Desserts</h3>
-                                                    </a>
-                                                    <div class="caption">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
-                                                        <p>
-                                                            <a href="/Restaurant/Desserts" class="btn btn-default btn-transparent" role="button">
-                                                                <span>Check Items</span>
-                                                            </a>
-                                                        </p>
-                                                    </div>	<!-- End of /.caption -->
-                                                </div>	<!-- End of /.thumbnail -->
-                                            </div>	<!-- End of /.col-sm-6 col-md-4 -->
-                                        </div>	<!-- End of /.row -->
-                                    </div>	<!-- End of /.block -->
-                                </div>	<!-- End of /.col-md-12 -->
-                            </div>	<!-- End of /.row -->
-                        </div>	<!-- End of /.container -->
-                    </section>	<!-- End of Section -->
-                    @*<div class="pagination-bottom">
-                <ul class="pagination">
-                    <li class="disabled"><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1 <span class="sr-only"></span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">»</a></li>
-                </ul>	 End of /.pagination
-            </div>*@
-                </div>	<!-- End of /.col-md-9 -->
-                <div class="col-md-3">
-                    <div class="blog-sidebar">
-                        <div class="block">
-                            <h4>Categories</h4>
-                            <div class="list-group">
-                                <a href="/Restaurant/Italian" class="list-group-item">
-                                    <i class="fa  fa-dot-circle-o"></i>
-                                    Italian Foods
-                                </a>
-                                <a href="/Restaurant/Traditional" class="list-group-item">
-                                    <i class="fa  fa-dot-circle-o"></i>
-                                    Traditional Food
-                                </a>
-                                <a href="/Restaurant/Indian" class="list-group-item">
-                                    <i class="fa  fa-dot-circle-o"></i>
-                                    Indian Food
-                                </a>
-                                <a href="/Restaurant/Spanish" class="list-group-item">
-                                    <i class="fa  fa-dot-circle-o"></i>
-                                    Spanish Food
-                                </a>
-                                <a href="/Restaurant/Bulgarian" class="list-group-item">
-                                    <i class="fa  fa-dot-circle-o"></i>
-                                    Bulgarian Food
-                                </a>
-                            </div>
-                        </div>
-                        <div class="block">
-                            <img src="images/food-ad.png" alt="">
-                        </div>
-                        <div class="block">
-                            <h4>Our Suggestions</h4>
+                                    }
+                                </div>	<!-- End of /.products -->
+                            </li>
+                        }
+                    </ul>
+                </div>	<!-- End of /.products-grid -->
 
-                            <ul class="media-list">
-                                <vc:random-products></vc:random-products>
-                            </ul>
-                        </div>
+                <div class="pagination-bottom">
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Paging", new { page = page }),
+                               new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
+                               {
+                                   DisplayItemSliceAndTotal = true,
+                                   ContainerDivClasses = new[] { "navigation" },
+                                   LiElementClasses = new[] { "page-item" },
+                                   PageClasses = new[] { "page-link" },
+                               })
+                </div>
 
-                        <div class="block">
-                            <h4>Food Tag</h4>
-                            <div class="tag-link">
-                                <a href="">BALLET</a>
-                                <a href="">CHRISTMAS</a>
-                                <a href="">ELEGANCE</a>
-                                <a href="">ELEGANT</a>
-                                <a href="">SHOPPING</a>
-                                <a href="">SHOP</a>
-                            </div>
+                <section id="catagorie">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="block">
+                                    <div class="block-heading">
+                                        <h2>OUR FOOD CATEGORIES</h2>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="thumbnail">
+                                                <a class="catagotie-head" asp-controller="Restaurant" asp-action="Salads">
+                                                    <img src="https://www.culinaryhill.com/wp-content/uploads/2016/06/Mediterranean-Chopped-Salad-Recipe-Culinary-Hill-LR-04SQ-500x375.jpg" alt="...">
+                                                    <h3>Salads</h3>
+                                                </a>
+                                                <div class="caption">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
+                                                    <p>
+                                                        <a asp-controller="Restaurant" asp-action="Salads" class="btn btn-default btn-transparent" role="button">
+                                                            <span>Check Items</span>
+                                                        </a>
+                                                    </p>
+                                                </div>	<!-- End of /.caption -->
+                                            </div>	<!-- End of /.thumbnail -->
+                                        </div>	<!-- End of /.col-sm-6 col-md-4 -->
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="thumbnail">
+                                                <a class="catagotie-head" asp-controller="Restaurant" asp-action="Mains">
+                                                    <img src="https://www.thecookierookie.com/wp-content/uploads/2019/10/chicken-florentine-pasta-recipe-2-of-3-500x375.jpg" alt="...">
+                                                    <h3>Mains</h3>
+                                                </a>
+                                                <div class="caption">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
+                                                    <p>
+                                                        <a asp-controller="Restaurant" asp-action="Mains" class="btn btn-default btn-transparent" role="button">
+                                                            <span>Check Items</span>
+                                                        </a>
+                                                    </p>
+                                                </div>	<!-- End of /.caption -->
+                                            </div>	<!-- End of /.thumbnail -->
+                                        </div>	<!-- End of /.col-sm-6 col-md-4 -->
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="thumbnail">
+                                                <a asp-controller="Restaurant" asp-action="Desserts" class="catagotie-head">
+                                                    <img src="https://www.carveyourcraving.com/wp-content/uploads/2020/09/gulab-jamun-mousse-layered-dessert-500x375.jpg" alt="...">
+                                                    <h3>Desserts</h3>
+                                                </a>
+                                                <div class="caption">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, aut, esse, laborum placeat id illo a expedita aperiam...</p>
+                                                    <p>
+                                                        <a asp-controller="Restaurant" asp-action="Desserts" class="btn btn-default btn-transparent" role="button">
+                                                            <span>Check Items</span>
+                                                        </a>
+                                                    </p>
+                                                </div>	<!-- End of /.caption -->
+                                            </div>	<!-- End of /.thumbnail -->
+                                        </div>	<!-- End of /.col-sm-6 col-md-4 -->
+                                    </div>	<!-- End of /.row -->
+                                </div>	<!-- End of /.block -->
+                            </div>	<!-- End of /.col-md-12 -->
+                        </div>	<!-- End of /.row -->
+                    </div>	<!-- End of /.container -->
+                </section>	
+             
+            </div>	<!-- End of /.col-md-9 -->
+            <div class="col-md-3">
+                <div class="blog-sidebar">
+                    <div class="block">
+                        <h4>Categories</h4>
+                        <div class="list-group">
+                            <a asp-controller="Restaurant" asp-action="Italian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Italian Foods
+                            </a>
+                            <a asp-controller="Restaurant" asp-action="Traditional" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Traditional Food
+                            </a>
+                            <a asp-controller="Restaurant" asp-action="Indian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Indian Food
+                            </a>
+                            <a asp-controller="Restaurant" asp-action="Spanish" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Spanish Food
+                            </a>
+                            <a asp-controller="Restaurant" asp-action="Bulgarian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Bulgarian Food
+                            </a>
                         </div>
-                    </div>	<!-- End of /.col-md-3 -->
+                    </div>
+                    <div class="block">
+                        <img src="images/food-ad.png" alt="">
+                    </div>
+                    <div class="block">
+                        <h4>Our Suggestions</h4>
 
-                </div>	<!-- End of /.row -->
-            </div>	<!-- End of /.container -->
+                        <ul class="media-list">
+                            <vc:random-products></vc:random-products>
+                        </ul>
+                    </div>
+
+                    <div class="block">
+                        <h4>Food Tag</h4>
+                        <div class="tag-link">
+                            <a href="">BALLET</a>
+                            <a href="">CHRISTMAS</a>
+                            <a href="">ELEGANCE</a>
+                            <a href="">ELEGANT</a>
+                            <a href="">SHOPPING</a>
+                            <a href="">SHOP</a>
+                        </div>
+                    </div>
+                </div>	<!-- End of /.col-md-3 -->
+
+            </div>	<!-- End of /.row -->
+        </div>	<!-- End of /.container -->
     </div>
 </section>	<!-- End of Section -->
 

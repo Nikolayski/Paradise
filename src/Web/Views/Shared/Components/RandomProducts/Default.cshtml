@@ -8,7 +8,8 @@
             <img class="media-object" src="@dish.Image" alt="...">
         </a>
         <div class="media-body">
-            <a href="/Restaurant/Product?id=@dish.Id" class="media-heading">
+            @*<a href="/Restaurant/Product?id=@dish.Id" class="media-heading">*@
+            <a asp-controller="Restaurant" asp-action="Product" asp-route-id="@dish.Id" class="media-heading">
                 @dish.Name
                 <p>@dish.Description</p>
             </a>

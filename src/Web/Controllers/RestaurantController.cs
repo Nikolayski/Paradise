@@ -1,10 +1,10 @@
 ﻿using Data;
 using Models.Enums;
 using Services.ProductService;
+using ViewModels.Products;
 
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
-using ViewModels.Products;
 
 namespace Web.Controllers
 {
@@ -25,11 +25,9 @@ namespace Web.Controllers
             int pageSize = 6;
             var singlePageOfProducts = this.productsService.GetAll(pageNumber, pageSize);
             return this.View(singlePageOfProducts);
-
         }
 
-
-        public IActionResult Product(string id)
+       public IActionResult Product(string id)
         {
             var singleProduct = this.productsService.GetProductById(id);
             return this.View(singleProduct);
@@ -46,39 +44,47 @@ namespace Web.Controllers
         }
         public IActionResult Italian(int? page)
         {
-            var italiansDishes = GetCategoryProducts(page, ProductCountry.Italian);
+            var italiansDishes = GetProductsByCountry(page, ProductCountry.Italian);
             return this.PartialView("_CountryFood", italiansDishes);
         }
 
         public IActionResult Bulgarian(int? page)
         {
-            var bulgariansDishes = GetCategoryProducts(page, ProductCountry.Bulgarian);
+            var bulgariansDishes = GetProductsByCountry(page, ProductCountry.Bulgarian);
             return this.PartialView("_CountryFood", bulgariansDishes);
         }
 
         public IActionResult Traditional(int? page)
         {
-            var traditionalDishes = GetCategoryProducts(page, ProductCountry.Traditional);
+            var traditionalDishes = GetProductsByCountry(page, ProductCountry.Traditional);
             return this.PartialView("_CountryFood", traditionalDishes);
         }
 
         public IActionResult Indian(int? page)
         {
-            var indianDishes = GetCategoryProducts(page, ProductCountry.Indian);
+            var indianDishes = GetProductsByCountry(page, ProductCountry.Indian);
             return this.PartialView("_CountryFood", indianDishes);
         }
 
         public IActionResult Spanish(int? page)
         {
-            var spanishDishes = GetCategoryProducts(page, ProductCountry.Spanish);
+            var spanishDishes = GetProductsByCountry(page, ProductCountry.Spanish);
             return this.PartialView("_CountryFood", spanishDishes);
         }
 
-        private IPagedList<ProductsAllViewModel> GetCategoryProducts(int? page, ProductCountry type)
+        private IPagedList<ProductsAllViewModel> GetProductsByCountry(int? page, ProductCountry type)
         {
             int pageNumber = page ?? 1;
             int pageSize = 6;
             var wantedProducts = this.productsService.GetFoodListByCategory(pageNumber, pageSize, type);
+            return wantedProducts;
+        }
+
+        private IPagedList<ProductsAllViewModel> GetProductsByCategory(int? page, ProductType type)
+        {
+            int pageNumber = page ?? 1;
+            int pageSize = 6;
+            var wantedProducts = this.productsService.GetProductsByType(pageNumber, pageSize, type);
             return wantedProducts;
         }
 
@@ -88,24 +94,22 @@ namespace Web.Controllers
             return this.View(wantedModels);
         }
 
-
-        public IActionResult Salads()
+        public IActionResult Salads(int? page)
         {
-            var allSaladsModel = this.productsService.GetProductsByType(ProductType.Salad);
+
+            var allSaladsModel = GetProductsByCategory(page, ProductType.Salad);
             return this.PartialView("_CountryFood", allSaladsModel);
         }
 
-
-        public IActionResult Mains()
+        public IActionResult Mains(int? page)
         {
-            var allMainDishesModel = this.productsService.GetProductsByType(ProductType.Main);
+            var allMainDishesModel = GetProductsByCategory(page, ProductType.Main);
             return this.PartialView("_CountryFood", allMainDishesModel);
         }
 
-
-        public IActionResult Desserts()
+        public IActionResult Desserts(int? page)
         {
-            var allDessertsModel = this.productsService.GetProductsByType(ProductType.Dessert);
+            var allDessertsModel = GetProductsByCategory(page, ProductType.Dessert);
             return this.PartialView("_CountryFood", allDessertsModel);
         }
     }

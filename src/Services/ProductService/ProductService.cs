@@ -73,11 +73,11 @@ namespace Services.ProductService
                                  .ToList();
         }
 
-        public IEnumerable<ProductsAllViewModel> GetProductsByType(ProductType type)
+        public IPagedList<ProductsAllViewModel> GetProductsByType(int pageNumber, int pageSize, ProductType type)
         {
             return this.db.Products.Where(x => x.Type == type)
                           .ProjectTo<ProductsAllViewModel>(this.mapper.ConfigurationProvider)
-                          .ToList();
+                          .ToPagedList(pageNumber, pageSize);
         }
     }
 }

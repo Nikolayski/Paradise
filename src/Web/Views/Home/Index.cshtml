@@ -18,7 +18,7 @@
  <div class="container  bg-info">
         <div class="row no-gutters no-gutters">
             <div class="col-md-12">
-                <form class="form-group" method="post" action="/Rooms/Check">
+                <form class="form-group" method="post" asp-controller="Rooms" asp-action="Check">
                     <div class="row">
                         <div class="form-control col-md-3">
                             <input id="checkin_date" type="text" name="checkIn" class="checkin_date" placeholder="Check-in-date">
@@ -78,7 +78,7 @@
                     <h2 class="mb-4">Paradise Hotel the Most Recommended Hotel All Over the World</h2>
                 </div>
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                <p><a href="/Rooms/OurRooms"  class="btn btn-secondary rounded">Reserve Your Room Now</a></p>
+                <p><a asp-controller="Rooms" asp-action="OurRooms"  class="btn btn-secondary rounded">Reserve Your Room Now</a></p>
             </div>
         </div>
     </div>
@@ -109,7 +109,7 @@
            
 
             <div class="col-md-12 text-center ftco-animate">
-                <p><a href="/Restaurant/Products" class="btn btn-primary rounded">View All Menu</a></p>
+                <p><a asp-controller="Restaurant" asp-action="Paging" class="btn btn-primary rounded">View All Menu</a></p>
             </div>
         </div>
     </div>
