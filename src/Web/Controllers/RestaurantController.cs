@@ -5,6 +5,8 @@ using ViewModels.Products;
 
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
+using System.Security.Claims;
+using ViewModels.Users;
 
 namespace Web.Controllers
 {
@@ -112,5 +114,24 @@ namespace Web.Controllers
             var allDessertsModel = GetProductsByCategory(page, ProductType.Dessert);
             return this.PartialView("_CountryFood", allDessertsModel);
         }
+
+        public IActionResult Order()
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var orderModel = this.productsService.GetOrderProductsInfo(userId);
+            return this.View(orderModel);
+        }
+
+        [HttpPost]
+        public IActionResult Order(UserOrderInputViewModel orderViewModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.Redirect("/Restaurant/Order");
+            }
+            return this.Redirect("/");
+        }
     }
 }
+
+            

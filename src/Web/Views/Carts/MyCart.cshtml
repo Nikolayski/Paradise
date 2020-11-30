@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "CountryFood";
-    this.Layout = "_Layout2";
+    this.Layout = "_LayoutRestaurant";
 }
 
 <section id="shop">
@@ -55,7 +55,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 col-md-offset-4">
-                                <h3>$@this.Model.TotalPrice <a class="btn btn-info" href="/Restaurant/Paging">Order</a></h3>
+                                <h3>$@this.Model.TotalPrice <a class="btn btn-info" asp-controller="Restaurant" asp-action="Order">Order</a></h3>
 
                             </div>
                         </div>

@@ -3,6 +3,7 @@ using Models.Enums;
 
 using System.Collections.Generic;
 using ViewModels.Products;
+using ViewModels.Users;
 using X.PagedList;
 
 namespace Services.ProductService
@@ -20,5 +21,7 @@ namespace Services.ProductService
         IEnumerable<ProductsAllViewModel> GetProductsByName(string name);
 
         IPagedList<ProductsAllViewModel> GetProductsByType(int pageNumber, int pageSize, ProductType type);
+
+        UserOrderViewModel GetOrderProductsInfo(string userId);
     }
 }

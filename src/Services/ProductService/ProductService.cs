@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ViewModels.Products;
 using X.PagedList;
+using ViewModels.Users;
 
 namespace Services.ProductService
 {
@@ -78,6 +79,29 @@ namespace Services.ProductService
             return this.db.Products.Where(x => x.Type == type)
                           .ProjectTo<ProductsAllViewModel>(this.mapper.ConfigurationProvider)
                           .ToPagedList(pageNumber, pageSize);
+        }
+
+        public UserOrderViewModel GetOrderProductsInfo(string userId)
+        {
+            return this.db.Users.Where(x => x.Id == userId)
+                                .Select(x => new UserOrderViewModel
+                                {
+                                    Id = x.Id,
+                                    UserName = x.UserName,
+                                    FirstName = x.FirstName,
+                                    LastName = x.LastName,
+                                    Address = x.Address,
+                                    PhoneNumber = x.PhoneNumber,
+                                    Products = x.Cart.CartProducts.Select(cp => new ProductsUserOrderViewModel
+                                    {
+                                        Id = cp.Product.Id,
+                                        Image = cp.Product.Image,
+                                        Name = cp.Product.Name,
+                                        Price = cp.Product.Price
+                                    })
+                                        .ToList()
+                                })
+                                .FirstOrDefault();
         }
     }
 }
