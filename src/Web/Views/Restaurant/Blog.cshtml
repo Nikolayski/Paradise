@@ -2,22 +2,7 @@
     this.Layout = "_LayoutRestaurant";
 }
 
-<section id="topic-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h1>BLOG</h1>
-                <p>Latest News</p>
-            </div>	<!-- End of /.col-md-4 -->
-            <div class="col-md-8 hidden-xs">
-                <ol class="breadcrumb pull-right">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">Blog</li>
-                </ol>
-            </div>	<!-- End of /.col-md-8 -->
-        </div>	<!-- End of /.row -->
-    </div>	<!-- End of /.container -->
-</section>	<!-- End of /#Topic-header -->
+
 
 
 <section id="blog">
@@ -30,12 +15,12 @@
                             <i class="fa  fa-pencil"></i>
                         </div>
                         <div class="blog-box">
-                            <img src="~/restImages/blog-1.jpg" alt="">
+                            <img src="https://studybreaks.com/wp-content/uploads/2018/02/Food-Blog.jpg" alt="">
 
                             <div class="blog-post-body clearfix">
-                                <a href="blog-single.html">
-                                    <h2>Ricebean black-eyed pea</h2>
-                                </a>
+                               <a asp-controller="Restaurant" asp-action="Blog">
+                                    <h2>Cooking tips tricks</h2>
+                                </a>*
                                 <div class="blog-post-tag">
                                     <div class="block">
                                         <i class="fa fa-clock-o"></i>
@@ -57,7 +42,7 @@
                                         <p>3 Comments</p>
                                     </div>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, nostrum inventore debitis accusantium natus praesentium enim sequi culpa provident dignissimos veniam deserunt voluptatibus fugit delectus pariatur numquam optio quidem illo. Obcaecati, placeat, enim accusantium sunt inventore sed dolorum molestiae ab consequuntur voluptatem dolor necessitatibus reprehenderit adipisci explicabo hic quibusdam pariatur!</p>
+                                <p>Watch usefull videos and Improve your cooking skills!</p>
                                 <a href="blog-single.html" class="btn btn-default btn-transparent pull-right" role="button">
                                     <span>Read More</span>
                                 </a>
@@ -72,7 +57,18 @@
                         <!-- Youtube -->
                         <div class="blog-box">
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/9_5wHw6l11o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+                            <hr />
+                            <hr />
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/1kRcUKux2aU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <hr />
+                            <hr />
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/WEDndTCyGgU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <hr />
+                            <hr />
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/UYhKDweME3A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <hr />
+                            <hr />
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/L6yX6Oxy_J8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <div class="blog-post-body clearfix">
                                 <a href="blog-single.html">
                                     <h2>Youtube Video Post Type Example</h2>
@@ -110,78 +106,37 @@
                             <i class="fa fa-music"></i>
                         </div>
 
-                        <!-- Sound Cloud -->
-                        <div class="blog-box">
-                            <iframe src="https://w.soundcloud.com/player/?url=https://soundcloud.com/haloproject/halo-scenes-from-the-four" frameborder="0" allowfullscreen="" width="100%" height="166"></iframe>
-
-                            <div class="blog-post-body clearfix">
-                                <a href="blog-single.html">
-                                    <h2>Aduio Post Type Example</h2>
-                                </a>
-                                <div class="blog-post-tag">
-                                    <div class="block">
-                                        <i class="fa fa-clock-o"></i>
-                                        <p>12 Jan,2014</p>
-                                    </div>
-                                    <div class="block">
-                                        <i class="fa fa-user"></i>
-                                        <p>Admin</p>
-                                    </div>
-                                    <div class="block">
-                                        <i class="fa fa-tags"></i>
-                                        <p>
-                                            <a href="">Food Culture</a>,
-                                            <a href="">Green Items</a>
-                                        </p>
-                                    </div>
-                                    <div class="block">
-                                        <i class="fa fa-comments"></i>
-                                        <p>3 Comments</p>
-                                    </div>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, nostrum inventore debitis accusantium natus praesentium enim sequi culpa provident dignissimos veniam deserunt voluptatibus fugit delectus pariatur numquam optio quidem illo. Obcaecati, placeat, enim accusantium sunt inventore sed dolorum molestiae ab consequuntur voluptatem dolor necessitatibus reprehenderit adipisci explicabo hic quibusdam pariatur!</p>
-                                <a href="blog-single.html" class="btn btn-default btn-transparent pull-right" role="button">
-                                    <span>Read More</span>
-                                </a>
-                            </div>
-                        </div>
+                      
                     </li>
                 </ul>	<!-- End of /.blog-zone -->
                 <!-- Pagination -->
-                <ul class="pagination pull-right">
-                    <li class="disabled"><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1 <span class="sr-only"></span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">»</a></li>
-                </ul>	<!-- End of /.pagination -->
+                
             </div>	<!-- End of /.col-md-9 -->
 
             <div class="col-md-3">
                 <div class="blog-sidebar">
                     <div class="block">
-                        <h4>Catagories</h4>
+                        <h4>Categories</h4>
                         <div class="list-group">
-                            <a href="#" class="list-group-item">
+                            <a asp-controller="Restaurant" asp-action="Italian" class="list-group-item">
                                 <i class="fa  fa-dot-circle-o"></i>
                                 Italian Foods
                             </a>
-                            <a href="#" class="list-group-item">
+                            <a asp-controller="Restaurant" asp-action="Traditional" class="list-group-item">
                                 <i class="fa  fa-dot-circle-o"></i>
                                 Traditional Food
                             </a>
-                            <a href="#" class="list-group-item">
+                            <a asp-controller="Restaurant" asp-action="Indian" class="list-group-item">
                                 <i class="fa  fa-dot-circle-o"></i>
                                 Indian Food
                             </a>
-                            <a href="#" class="list-group-item">
+                            <a asp-controller="Restaurant" asp-action="Spanish" class="list-group-item">
                                 <i class="fa  fa-dot-circle-o"></i>
                                 Spanish Food
                             </a>
-                            <a href="#" class="list-group-item">
+                            <a asp-controller="Restaurant" asp-action="Bulgarian" class="list-group-item">
                                 <i class="fa  fa-dot-circle-o"></i>
-                                Thai FoodN
+                                Bulgarian Food
                             </a>
                         </div>
                     </div>	<!-- End of /.block -->
