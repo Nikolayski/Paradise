@@ -7,6 +7,7 @@ using System.Security.Claims;
 
 using Services.RoomService;
 using ViewModels.Rooms;
+using System.Threading.Tasks;
 
 namespace Web.Controllers
 {
@@ -29,15 +30,14 @@ namespace Web.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Reserve(ReserveRoomViewModel reserveInputModel)
+        public async Task<IActionResult> Reserve(ReserveRoomViewModel reserveInputModel)
         {
             if (!this.ModelState.IsValid)
             {
-                this.ModelState.AddModelError("SomeKey", "SomeErrorMessage");
                 return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
             }
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            this.roomsService.AddRoomToUser(reserveInputModel, userId);
+           await this.roomsService.AddRoomToUserAsync(reserveInputModel, userId);
             ;
             return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
         }

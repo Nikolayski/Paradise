@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 using ViewModels.Rooms;
 
 namespace Services.RoomService
@@ -15,6 +15,6 @@ namespace Services.RoomService
 
         RoomsAllViewModel GetSuperiorRoom();
 
-        void AddRoomToUser(ReserveRoomViewModel reserveInputModel, string userId);
+        Task AddRoomToUserAsync(ReserveRoomViewModel reserveInputModel, string userId);
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 using System.Security.Claims;
 using ViewModels.Users;
+using System.Threading.Tasks;
 
 namespace Web.Controllers
 {
@@ -21,11 +22,11 @@ namespace Web.Controllers
             this.db = db;
         }
 
-        public IActionResult Paging(int? page)
+        public async Task<IActionResult> Paging(int? page)
         {
             int pageNumber = page ?? 1;
             int pageSize = 6;
-            var singlePageOfProducts = this.productsService.GetAll(pageNumber, pageSize);
+            var singlePageOfProducts = await this.productsService.GetAllAsync(pageNumber, pageSize);
             return this.View(singlePageOfProducts);
         }
 
@@ -44,49 +45,49 @@ namespace Web.Controllers
         {
             return this.View();
         }
-        public IActionResult Italian(int? page)
+        public async Task<IActionResult> Italian(int? page)
         {
-            var italiansDishes = GetProductsByCountry(page, ProductCountry.Italian);
+            var italiansDishes =await GetProductsByCountryAsync(page, ProductCountry.Italian);
             return this.PartialView("_CountryFood", italiansDishes);
         }
 
-        public IActionResult Bulgarian(int? page)
+        public async Task<IActionResult> Bulgarian(int? page)
         {
-            var bulgariansDishes = GetProductsByCountry(page, ProductCountry.Bulgarian);
+            var bulgariansDishes =await GetProductsByCountryAsync(page, ProductCountry.Bulgarian);
             return this.PartialView("_CountryFood", bulgariansDishes);
         }
 
-        public IActionResult Traditional(int? page)
+        public async Task<IActionResult> Traditional(int? page)
         {
-            var traditionalDishes = GetProductsByCountry(page, ProductCountry.Traditional);
+            var traditionalDishes = await GetProductsByCountryAsync(page, ProductCountry.Traditional);
             return this.PartialView("_CountryFood", traditionalDishes);
         }
 
-        public IActionResult Indian(int? page)
+        public async Task<IActionResult> Indian(int? page)
         {
-            var indianDishes = GetProductsByCountry(page, ProductCountry.Indian);
+            var indianDishes =  await GetProductsByCountryAsync(page, ProductCountry.Indian);
             return this.PartialView("_CountryFood", indianDishes);
         }
 
-        public IActionResult Spanish(int? page)
+        public async Task<IActionResult> Spanish(int? page)
         {
-            var spanishDishes = GetProductsByCountry(page, ProductCountry.Spanish);
+            var spanishDishes = await GetProductsByCountryAsync(page, ProductCountry.Spanish);
             return this.PartialView("_CountryFood", spanishDishes);
         }
 
-        private IPagedList<ProductsAllViewModel> GetProductsByCountry(int? page, ProductCountry type)
+        private async Task<IPagedList<ProductsAllViewModel>> GetProductsByCountryAsync(int? page, ProductCountry type)
         {
             int pageNumber = page ?? 1;
             int pageSize = 6;
-            var wantedProducts = this.productsService.GetFoodListByCategory(pageNumber, pageSize, type);
+            var wantedProducts = await this.productsService.GetFoodListByCategoryAsync(pageNumber, pageSize, type);
             return wantedProducts;
         }
 
-        private IPagedList<ProductsAllViewModel> GetProductsByCategory(int? page, ProductType type)
+        private Task<IPagedList<ProductsAllViewModel>> GetProductsByCategoryAsync(int? page, ProductType type)
         {
             int pageNumber = page ?? 1;
             int pageSize = 6;
-            var wantedProducts = this.productsService.GetProductsByType(pageNumber, pageSize, type);
+            var wantedProducts = this.productsService.GetProductsByTypeAsync(pageNumber, pageSize, type);
             return wantedProducts;
         }
 
@@ -96,22 +97,21 @@ namespace Web.Controllers
             return this.View(wantedModels);
         }
 
-        public IActionResult Salads(int? page)
+        public async Task<IActionResult> Salads(int? page)
         {
-
-            var allSaladsModel = GetProductsByCategory(page, ProductType.Salad);
+            var allSaladsModel = await GetProductsByCategoryAsync(page, ProductType.Salad);
             return this.PartialView("_CountryFood", allSaladsModel);
         }
 
-        public IActionResult Mains(int? page)
+        public async Task<IActionResult> Mains(int? page)
         {
-            var allMainDishesModel = GetProductsByCategory(page, ProductType.Main);
+            var allMainDishesModel = await GetProductsByCategoryAsync(page, ProductType.Main);
             return this.PartialView("_CountryFood", allMainDishesModel);
         }
 
-        public IActionResult Desserts(int? page)
+        public async Task<IActionResult> Desserts(int? page)
         {
-            var allDessertsModel = GetProductsByCategory(page, ProductType.Dessert);
+            var allDessertsModel = await GetProductsByCategoryAsync(page, ProductType.Dessert);
             return this.PartialView("_CountryFood", allDessertsModel);
         }
 

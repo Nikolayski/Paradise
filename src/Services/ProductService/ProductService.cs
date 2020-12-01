@@ -10,6 +10,7 @@ using System.Linq;
 using ViewModels.Products;
 using X.PagedList;
 using ViewModels.Users;
+using System.Threading.Tasks;
 
 namespace Services.ProductService
 {
@@ -24,9 +25,9 @@ namespace Services.ProductService
             this.mapper = mapper;
         }
 
-        public IPagedList<Product> GetAll(int pageNumber, int pageSize)
+        public Task<IPagedList<Product>> GetAllAsync(int pageNumber, int pageSize)
         {
-            return this.db.Products.ToPagedList(pageNumber, pageSize);
+            return  this.db.Products.ToPagedListAsync(pageNumber, pageSize);
         }
 
         public SingleProductViewModel GetProductById(string productId)
@@ -60,11 +61,11 @@ namespace Services.ProductService
             return randomDishes;
         }
 
-        public IPagedList<ProductsAllViewModel> GetFoodListByCategory(int pageNumber, int pageSize,ProductCountry type)
+        public Task<IPagedList<ProductsAllViewModel>> GetFoodListByCategoryAsync(int pageNumber, int pageSize,ProductCountry type)
         {
             return this.db.Products.Where(x => x.Nationality == type)
                                   .ProjectTo<ProductsAllViewModel>(this.mapper.ConfigurationProvider)
-                                  .ToPagedList(pageNumber, pageSize);
+                                  .ToPagedListAsync(pageNumber, pageSize);
         }
 
        public IEnumerable<ProductsAllViewModel> GetProductsByName(string name)
@@ -74,11 +75,11 @@ namespace Services.ProductService
                                  .ToList();
         }
 
-        public IPagedList<ProductsAllViewModel> GetProductsByType(int pageNumber, int pageSize, ProductType type)
+        public Task<IPagedList<ProductsAllViewModel>> GetProductsByTypeAsync(int pageNumber, int pageSize, ProductType type)
         {
             return this.db.Products.Where(x => x.Type == type)
                           .ProjectTo<ProductsAllViewModel>(this.mapper.ConfigurationProvider)
-                          .ToPagedList(pageNumber, pageSize);
+                          .ToPagedListAsync(pageNumber, pageSize);
         }
 
         public UserOrderViewModel GetOrderProductsInfo(string userId)

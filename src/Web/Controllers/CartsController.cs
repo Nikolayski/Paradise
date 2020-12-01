@@ -2,6 +2,7 @@
 using System.Security.Claims;
 
 using Services.CartService;
+using System.Threading.Tasks;
 
 namespace Web.Controllers
 {
@@ -15,43 +16,30 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddFromDetails(string productId)
+        public async Task<IActionResult> AddFromDetails(string productId)
         {
-
-
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            UpdatingData(productId, userId);
+            await UpdatingDataAsync(productId, userId);
             return this.Redirect($"/Restaurant/Product/{productId}");
+       }
 
-        }
-
-        private void UpdatingData(string productId, string userId)
+        private async Task UpdatingDataAsync(string productId, string userId)
         {
             if (!this.cartService.IsUserConnectedWithCart(userId))
             {
-                this.cartService.AddCartToUser(userId);
+                await this.cartService.AddCartToUserAsync(userId);
             }
-            this.cartService.AddProductsToCart(productId, userId);
+            await this.cartService.AddProductsToCartAsync(productId, userId);
         }
 
         [HttpPost]
-        public IActionResult Add(string productId)
+        public async Task<IActionResult> Add(string productId)
         {
-
-
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            UpdatingData(productId, userId);
+            await UpdatingDataAsync(productId, userId);
             return this.Redirect("/Restaurant/Paging");
 
         }
-
-        //public IActionResult MyCart()
-        //{
-        //    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        //    var user = this.cartService.GetCartProducts(userId);
-
-        //    return this.View(user);
-        //}
 
         public IActionResult MyCart()
         {
@@ -61,11 +49,10 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Remove(string productId)
+        public async Task<IActionResult> Remove(string productId)
         {
-            ;
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            this.cartService.RemoveProduct(productId, userId);
+          await  this.cartService.RemoveProductAsync(productId, userId);
             return this.Redirect("/Carts/MyCart");
         }
     }

@@ -6,6 +6,7 @@ using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ViewModels.Images;
 using ViewModels.Rooms;
 
@@ -23,7 +24,7 @@ namespace Services.RoomService
             this.mapper = mapper;
         }
 
-        public void AddRoomToUser(ReserveRoomViewModel reserveInputModel, string userId)
+        public async Task AddRoomToUserAsync(ReserveRoomViewModel reserveInputModel, string userId)
         {
             var wantedRoom = this.db.Rooms.FirstOrDefault(x => x.Id == reserveInputModel.RoomId);
             var wantedUser = this.db.Users.FirstOrDefault(x => x.Id == userId);
@@ -31,7 +32,7 @@ namespace Services.RoomService
             wantedRoom.CheckOut = reserveInputModel.CheckOut;
             wantedRoom.RoomCount -= 1;
             wantedUser.UserRooms.Add(new UserRoom { RoomId = reserveInputModel.RoomId, UserId = userId });
-            this.db.SaveChanges();
+          await  this.db.SaveChangesAsync();
         }
 
         public IEnumerable<RoomCheckViewModel> CheckRooms(DateTime checkIn, DateTime checkOut, string adults, string roomType)

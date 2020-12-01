@@ -4,6 +4,7 @@ using ViewModels.Products;
 
 using System.Linq;
 using X.PagedList;
+using System.Threading.Tasks;
 
 namespace Services.CartService
 {
@@ -16,20 +17,20 @@ namespace Services.CartService
             this.db = db;
         }
 
-        public void AddCartToUser(string userId)
+        public async Task AddCartToUserAsync(string userId)
         {
             var wantedUser = this.db.Users.FirstOrDefault(X => X.Id == userId);
             wantedUser.Cart = new Cart();
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
 
         }
 
-        public void AddProductsToCart(string productId, string userId)
+        public async Task AddProductsToCartAsync(string productId, string userId)
         {
             var user = this.db.Users.FirstOrDefault(x => x.Id == userId);
             var product = this.db.Products.FirstOrDefault(X => X.Id == productId);
-            this.db.CartProducts.Add(new CartProduct { CartId = user.CartId, ProductId = productId });
-            this.db.SaveChanges();
+            await this.db.CartProducts.AddAsync(new CartProduct { CartId = user.CartId, ProductId = productId });
+            await this.db.SaveChangesAsync();
         }
 
         public UserCartAddProductViewModel GetCartProducts(string userId)
@@ -38,7 +39,7 @@ namespace Services.CartService
             {
                 Id = x.Id,
 
-                Products = x.Cart.CartProducts.Select(cp => new ProductToAddViewModel
+                Products =  x.Cart.CartProducts.Select(cp => new ProductToAddViewModel
                 {
                     Id = cp.Product.Id,
                     Image = cp.Product.Image,
@@ -63,12 +64,12 @@ namespace Services.CartService
             return true;
         }
 
-        public void RemoveProduct(string productId, string userId)
+        public async Task RemoveProductAsync(string productId, string userId)
         {
             var user = this.db.Users.FirstOrDefault(x => x.Id == userId);
             var productCart = this.db.CartProducts.FirstOrDefault(X => X.CartId == user.CartId && X.ProductId == productId);
             this.db.CartProducts.Remove(productCart);
-            this.db.SaveChanges();
+           await this.db.SaveChangesAsync();
         }
     }
 }
