@@ -1,4 +1,6 @@
-﻿namespace ViewModels.Products
+﻿using Models.Enums;
+
+namespace ViewModels.Products
 {
     public   class ProductsAllViewModel
     {
@@ -9,5 +11,7 @@
         public string Image { get; set; }
 
         public decimal Price { get; set; }
+
+        public ProductCountry ProductCountry { get; set; }
     }
 }

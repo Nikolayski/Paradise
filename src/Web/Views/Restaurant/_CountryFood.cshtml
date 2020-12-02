@@ -1,8 +1,11 @@
 ﻿@using X.PagedList.Mvc.Core;
 @using X.PagedList;
+@using Models.Enums
+@using System.Linq;
 
 @{
     this.Layout = "_LayoutRestaurant";
+    var type = this.Model[0].ProductCountry;   
 }
 
 <section id="shop">
@@ -16,7 +19,7 @@
                     </form>
                 </div>	<!-- End of /.Products-heading -->
                 <div>
-                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Paging", new { page = page }),
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action($"{type.ToString()}", new { page = page }),
                                new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
                                {
                                    DisplayItemSliceAndTotal = true,
@@ -29,32 +32,32 @@
                     <ul>
                         @foreach (var product in this.Model)
                         {
+                            
+                    <li>
+                        <div class="products">
+                            <a href="/Restaurant/Product?id=@product.Id">
+                                <img src="@product.Image" alt="" width="280" height="240">
+                            </a>
+                            <a href="#">
+                                <h4>@product.Name</h4>
+                            </a>
+                            <p class="price">£@product.Price</p>
+                            @if (this.User.Identity.IsAuthenticated)
+                            {
+                                <div>
+                                    <form method="post" action="/Carts/Add">
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <button type="submit">Add to Cart</button>
+                                    </form>
 
-                            <li>
-                                <div class="products">
-                                    <a href="/Restaurant/Product?id=@product.Id">
-                                        <img src="@product.Image" alt="">
-                                    </a>
-                                    <a href="#">
-                                        <h4>@product.Name</h4>
-                                    </a>
-                                    <p class="price">£@product.Price</p>
-                                    @if (this.User.Identity.IsAuthenticated)
-                                    {
-                                        <div>
-                                            <form method="post" action="/Carts/Add">
-                                                <input type="hidden" name="productId" value="@product.Id" />
-                                                <button type="submit">Add to Cart</button>
-                                            </form>
+                                </div>
+                            }
+                        </div>	<!-- End of /.products -->
+                    </li>
 
-                                        </div>
-                                    }
-                                </div>	<!-- End of /.products -->
-                            </li>
+                    <!--  ... -->
 
-                            <!--  ... -->
-
-                        }
+                }
                     </ul>
                 </div>	<!-- End of /.products-grid -->
                 <!-- Pagination -->
@@ -106,7 +109,7 @@
                         <ul class="media-list">
 
                             <vc:random-products></vc:random-products>
-                           
+
                         </ul>
                     </div>
 

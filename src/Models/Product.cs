@@ -16,9 +16,9 @@ namespace Models
         public string Id { get; set; }
 
         public string Name { get; set; }
-        public ProductCountry Nationality { get; set; }
+        public ProductCountry ProductCountry { get; set; }
 
-        public ProductType Type { get; set; }
+        public ProductType ProductType { get; set; }
 
         [Required]
         public string Image { get; set; }

@@ -34,7 +34,7 @@ namespace Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
+               return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
             }
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
            await this.roomsService.AddRoomToUserAsync(reserveInputModel, userId);

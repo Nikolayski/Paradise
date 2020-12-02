@@ -8,17 +8,20 @@ using X.PagedList;
 using System.Security.Claims;
 using ViewModels.Users;
 using System.Threading.Tasks;
+using Services.Comments;
 
 namespace Web.Controllers
 {
     public class RestaurantController : Controller
     {
         private readonly IProductService productsService;
+        private readonly ICommentService commentService;
         private readonly ApplicationDbContext db;
 
-        public RestaurantController(IProductService productsService, ApplicationDbContext db)
+        public RestaurantController(IProductService productsService,ICommentService commentService, ApplicationDbContext db)
         {
             this.productsService = productsService;
+            this.commentService = commentService;
             this.db = db;
         }
 
@@ -43,7 +46,8 @@ namespace Web.Controllers
 
         public IActionResult Recipe()
         {
-            return this.View();
+            var comments =  this.commentService.GetAllAsync();
+            return this.View(comments);
         }
         public async Task<IActionResult> Italian(int? page)
         {

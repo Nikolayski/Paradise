@@ -263,6 +263,27 @@ namespace Data.Migrations
                     b.ToTable("CartProducts");
                 });
 
+            modelBuilder.Entity("Models.Comment", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Models.Image", b =>
                 {
                     b.Property<string>("Id")
@@ -300,13 +321,13 @@ namespace Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Nationality")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Type")
+                    b.Property<int>("ProductCountry")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductType")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -465,6 +486,15 @@ namespace Data.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Models.Comment", b =>
+                {
+                    b.HasOne("Models.ApplicationUser", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Models.RoomImages", b =>
                 {
                     b.HasOne("Models.Image", "Image")
@@ -497,6 +527,8 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Models.ApplicationUser", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("UserRooms");
                 });
 

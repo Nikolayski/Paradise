@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace Services.ProductService
 {
+    
     public class ProductService : IProductService
     {
         private readonly ApplicationDbContext db;
@@ -63,12 +64,13 @@ namespace Services.ProductService
 
         public Task<IPagedList<ProductsAllViewModel>> GetFoodListByCategoryAsync(int pageNumber, int pageSize,ProductCountry type)
         {
-            return this.db.Products.Where(x => x.Nationality == type)
+            return this.db.Products.Where(x => x.ProductCountry == type)
                                   .ProjectTo<ProductsAllViewModel>(this.mapper.ConfigurationProvider)
                                   .ToPagedListAsync(pageNumber, pageSize);
+
         }
 
-       public IEnumerable<ProductsAllViewModel> GetProductsByName(string name)
+        public IEnumerable<ProductsAllViewModel> GetProductsByName(string name)
         {
             return this.db.Products.Where(x => x.Name.Contains(name))
                                  .ProjectTo<ProductsAllViewModel>(this.mapper.ConfigurationProvider)
@@ -77,7 +79,7 @@ namespace Services.ProductService
 
         public Task<IPagedList<ProductsAllViewModel>> GetProductsByTypeAsync(int pageNumber, int pageSize, ProductType type)
         {
-            return this.db.Products.Where(x => x.Type == type)
+            return this.db.Products.Where(x => x.ProductType == type)
                           .ProjectTo<ProductsAllViewModel>(this.mapper.ConfigurationProvider)
                           .ToPagedListAsync(pageNumber, pageSize);
         }

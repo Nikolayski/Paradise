@@ -16,6 +16,7 @@ using Services.CartService;
 using Services.RoomService;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
+using Services.Comments;
 
 namespace Web
 {
@@ -47,6 +48,7 @@ namespace Web
             services.AddTransient<IRoomService, RoomService>();
             services.AddTransient<IImageService, ImageService>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<ICommentService, CommentService>();
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -57,17 +59,17 @@ namespace Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            var userManager = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            //var userManager = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-            if (!userManager.Users.Any(x => x.UserName == "nikolayski@abv.bg"))
-            {
-                userManager.CreateAsync(new ApplicationUser
-                {
-                    UserName = "nikolayski@abv.bg",
-                    Email = "nikolayski@abv.bg",
-                    EmailConfirmed = true
-                }, "Dadada1122_").GetAwaiter().GetResult();
-            }
+            //if (!userManager.Users.Any(x => x.UserName == "nikolayski@abv.bg"))
+            //{
+            //    userManager.CreateAsync(new ApplicationUser
+            //    {
+            //        UserName = "nikolayski@abv.bg",
+            //        Email = "nikolayski@abv.bg",
+            //        EmailConfirmed = true
+            //    }, "Dadada1122_").GetAwaiter().GetResult();
+            //}
 
             if (env.IsDevelopment())
             {

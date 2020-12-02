@@ -11,6 +11,7 @@ namespace Models
         {
             this.Id = Guid.NewGuid().ToString();
             this.UserRooms = new HashSet<UserRoom>();
+            this.Comments = new HashSet<Comment>();
             //this.UserCart = new HashSet<UserCart>();
         }
 
@@ -30,6 +31,8 @@ namespace Models
         public virtual Cart Cart { get; set; }
 
         public virtual ICollection<UserRoom> UserRooms { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
 
 
     

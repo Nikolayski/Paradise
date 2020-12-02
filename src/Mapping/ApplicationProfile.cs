@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Models;
+using ViewModels.Comments;
 using ViewModels.Index;
 using ViewModels.Products;
 using ViewModels.Rooms;
@@ -32,6 +33,14 @@ namespace Mapping
 
             //index images
             this.CreateMap<Image, IndexImageViewModel>();
+
+
+            //comments
+
+            this.CreateMap<Comment, CommentAllViewModel>()
+                                .ForMember(dto => dto.FirstName,
+                                           opt => opt.MapFrom(c => c.User.FirstName));
+            
 
         }
     }

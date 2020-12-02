@@ -11,7 +11,9 @@ namespace ViewModels.Rooms
 
         public DateTime CheckOut { get; set; }
 
+        [Required]
         [RegularExpression(@"^\d{1,}$")]
         public string PhoneNumber { get; set; }
+
     }
 }
