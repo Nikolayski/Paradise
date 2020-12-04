@@ -9,6 +9,7 @@ using System.Security.Claims;
 using ViewModels.Users;
 using System.Threading.Tasks;
 using Services.Comments;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web.Controllers
 {
@@ -44,6 +45,7 @@ namespace Web.Controllers
             return this.View();
         }
 
+        [Authorize]
         public IActionResult Recipe()
         {
             var comments =  this.commentService.GetAllAsync();

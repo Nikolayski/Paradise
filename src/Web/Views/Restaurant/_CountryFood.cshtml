@@ -63,7 +63,7 @@
                 <!-- Pagination -->
 
                 <div class="pagination-bottom">
-                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Paging", new { page = page }),
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action($"{type.ToString()}", new { page = page }),
                                new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
                                {
                                    DisplayItemSliceAndTotal = true,
