@@ -21,12 +21,13 @@ namespace Web.Controllers
         private readonly IUsersService usersService;
         private readonly ApplicationDbContext db;
 
-        public RestaurantController(IProductService productsService,ICommentService commentService, IUsersService usersService, ApplicationDbContext db)
+        public RestaurantController(IProductService productsService,
+                                    ICommentService commentService,
+                                    IUsersService usersService)
         {
             this.productsService = productsService;
             this.commentService = commentService;
             this.usersService = usersService;
-            this.db = db;
         }
 
         public async Task<IActionResult> Paging(int? page)

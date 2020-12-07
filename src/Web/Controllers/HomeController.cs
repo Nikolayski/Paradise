@@ -27,7 +27,7 @@ namespace Web.Controllers
             {
                await seedService.AddProductsAsync();
             }
-            return View();
+            return this.View();
         }
 
         public  IActionResult About()

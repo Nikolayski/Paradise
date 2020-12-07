@@ -19,7 +19,9 @@ namespace Web.Controllers
         private readonly IUsersService usersService;
         private readonly IMapper imapper;
 
-        public RoomsController(IRoomService roomsService, IUsersService usersService ,IMapper imapper)
+        public RoomsController(IRoomService roomsService, 
+                               IUsersService usersService ,
+                               IMapper imapper)
         {
             this.roomsService = roomsService;
             this.usersService = usersService;
