@@ -11,6 +11,6 @@ namespace ViewModels.Comments
 
         public DateTime CreatedOn{ get; set; }
 
-        public string CreatedOnToString => this.CreatedOn.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+        public string CreatedOnToString => this.CreatedOn.AddHours(2).ToString("dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
     }
 }

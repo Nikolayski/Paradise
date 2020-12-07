@@ -8,17 +8,21 @@ using System.Security.Claims;
 using Services.RoomService;
 using ViewModels.Rooms;
 using System.Threading.Tasks;
+using Services.UserService;
+using ViewModels.Users;
 
 namespace Web.Controllers
 {
     public class RoomsController : Controller
     {
         private readonly IRoomService roomsService;
+        private readonly IUsersService usersService;
         private readonly IMapper imapper;
 
-        public RoomsController(IRoomService roomsService, IMapper imapper)
+        public RoomsController(IRoomService roomsService, IUsersService usersService ,IMapper imapper)
         {
             this.roomsService = roomsService;
+            this.usersService = usersService;
             this.imapper = imapper;
         }
 
@@ -29,16 +33,40 @@ namespace Web.Controllers
         }
 
         [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Reserve(ReserveRoomViewModel reserveInputModel)
+        public IActionResult Reserve(string id)
         {
+            
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var user = this.usersService.GetUser(userId);
+            user.RoomId = id;
+             return this.View(user);
+        }
+
+        [Authorize]
+        //[HttpPost]
+        //public async Task<IActionResult> Reserve(ReserveRoomViewModel reserveInputModel)
+        //{
+        //    ;
+        //    if (!this.ModelState.IsValid)
+        //    {
+        //       return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
+        //    }
+        //    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        //   await this.roomsService.AddRoomToUserAsync(reserveInputModel, userId);
+        //    ;
+        //    return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
+        //}
+
+        [HttpPost]
+        public async Task<IActionResult> Reserve(UserReserveFinishViewModel reserveInputModel)
+        {
+            ;
             if (!this.ModelState.IsValid)
             {
-               return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
+                return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
             }
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-           await this.roomsService.AddRoomToUserAsync(reserveInputModel, userId);
-            ;
+            await this.roomsService.AddRoomToUserAsync(reserveInputModel, userId);
             return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
         }
         public IActionResult Details(string id)

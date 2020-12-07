@@ -34,7 +34,9 @@ namespace Models
 
         public virtual ICollection<Comment> Comments { get; set; }
 
+        public virtual ICollection<Recipe> Recipes { get; set; }
 
-    
+
+
     }
 }

@@ -25,6 +25,7 @@ namespace Data
         public DbSet<RoomImages> RoomImages { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<CartProduct> CartProducts { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
 
            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

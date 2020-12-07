@@ -1,244 +1,201 @@
-﻿@model IEnumerable<CommentAllViewModel> 
+﻿@model IEnumerable<CommentAllViewModel>
 @using Microsoft.AspNetCore.Identity;
 @inject UserManager<ApplicationUser> userManager;
 
-@{ 
+@{
     this.Layout = "_LayoutRestaurant";
     var aspUser = this.userManager.GetUserAsync(this.User);
 }
 
 
-    <section id="blog">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-9 clearfix">
-                    <ul class="blog-zone">
-                        <li>
-                            <div class="blog-icon">
-                                <i class="fa  fa-pencil"></i>
-                            </div>
-                            <div class="blog-box">
-                                <img src="~/restImages/blog-1.jpg" alt="">
+<section id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 clearfix">
+                <ul class="blog-zone">
+                    <li>
+                        <div class="blog-icon">
+                            <i class="fa  fa-pencil"></i>
+                        </div>
+                        <div class="blog-box">
+                            <img src="~/restImages/blog-1.jpg" alt="">
 
-                                <div class="blog-post-body clearfix">
-                                    <a href="">
-                                        <h2>Ricebean black-eyed pea</h2>
-                                    </a>
-                                    <div class="blog-post-tag">
-                                        <div class="block">
-                                            <i class="fa fa-clock-o"></i>
-                                            <p>12 Jan,2014</p>
-                                        </div>
-                                        <div class="block">
-                                            <i class="fa fa-user"></i>
-                                            <p>Admin</p>
-                                        </div>
-                                        <div class="block">
-                                            <i class="fa fa-tags"></i>
-                                            <p>
-                                                <a href="">Food Culture</a>,
-                                                <a href="">Green Items</a>
-                                            </p>
-                                        </div>
-                                        <div class="block">
-                                            <i class="fa fa-comments"></i>
-                                            <p>3 Comments</p>
-                                        </div>
+                            <div class="blog-post-body clearfix">
+                                <a href="">
+                                    <h2>Ricebean black-eyed pea</h2>
+                                </a>
+                                <div class="blog-post-tag">
+                                    <div class="block">
+                                        <i class="fa fa-clock-o"></i>
+                                        <p>@DateTime.UtcNow.ToShortDateString()</p>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, nostrum inventore debitis accusantium natus praesentium enim sequi culpa provident dignissimos veniam deserunt voluptatibus fugit delectus pariatur numquam optio quidem illo. Obcaecati, placeat, enim accusantium sunt inventore sed dolorum molestiae ab consequuntur voluptatem dolor necessitatibus reprehenderit adipisci explicabo hic quibusdam pariatur!</p>
-                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren sed diam voluptua.</p>
 
-                                    <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, in pri offendit ocurreret. Vix sumo ferri an. pfs adodio fugit delenit ut qui. Omittam suscipiantur ex  vel,ex audiam  intellegat gfIn labitur discere eos, nam an feugiat voluptua.</p>
-                                        <div class="block-qoute-by">
-                                            - John Doe , Author
-                                        </div>
-                                    </blockquote>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde expedita neque excepturi iste cumque! Dolorem, ipsum, totam, culpa ullam dolores qui possimus corrupti suscipit recusandae quam magnam quis eaque incidunt!</p>
+                                    <div class="block">
+                                        <i class="fa fa-comments"></i>
+                                        <p>@this.Model.Count() Comments</p>
+                                    </div>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, nostrum inventore debitis accusantium natus praesentium enim sequi culpa provident dignissimos veniam deserunt voluptatibus fugit delectus pariatur numquam optio quidem illo. Obcaecati, placeat, enim accusantium sunt inventore sed dolorum molestiae ab consequuntur voluptatem dolor necessitatibus reprehenderit adipisci explicabo hic quibusdam pariatur!</p>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren sed diam voluptua.</p>
+
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, in pri offendit ocurreret. Vix sumo ferri an. pfs adodio fugit delenit ut qui. Omittam suscipiantur ex  vel,ex audiam  intellegat gfIn labitur discere eos, nam an feugiat voluptua.</p>
+                                    <div class="block-qoute-by">
+                                        - John Doe , Author
+                                    </div>
+                                </blockquote>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde expedita neque excepturi iste cumque! Dolorem, ipsum, totam, culpa ullam dolores qui possimus corrupti suscipit recusandae quam magnam quis eaque incidunt!</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>	<!-- End of /.blog-zone -->
+
+                <div class="author-id">
+                    <div class="media">
+                        <h5>About The Author</h5>
+                        <img class="media-object pull-left" src="images/author.jpg" alt="...">
+                        <div class="media-body">
+                            <h6 class="media-heading">John Mark</h6>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, sequi quibusdam voluptate perferendis veniam eveniet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, veritatis.</p>
+                        </div>	<!-- End of /.media-body -->
+                    </div>	<!-- End of /.media -->
+                </div>	<!-- End of /.author-id -->
+
+                <div class="comments-box">
+
+                    <h5>@this.Model.Count() Comments</h5>
+                    @foreach (var comment in this.Model)
+                    {
+                        <div class="row">
+                            <div class="media">
+                                <div class="media-body  col-md-12">
+                                    <div class="col-md-3">
+                                        <h6>@comment.FirstName</h6>
+                                        <span>@comment.CreatedOnToString</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        @*<p class="col-md-8">@comment.Message</p>*@
+                                        <pre style="display: inline-block; border:none">@comment.Message</pre>
+                                    </div>
                                 </div>
                             </div>
-                        </li>
-                    </ul>	<!-- End of /.blog-zone -->
+                        </div>
+                    }
 
-                    <div class="author-id">
-                        <div class="media">
-                            <h5>About The Author</h5>
-                            <img class="media-object pull-left" src="images/author.jpg" alt="...">
-                            <div class="media-body">
-                                <h6 class="media-heading">John Mark</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, sequi quibusdam voluptate perferendis veniam eveniet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, veritatis.</p>
-                            </div>	<!-- End of /.media-body -->
-                        </div>	<!-- End of /.media -->
-                    </div>	<!-- End of /.author-id -->
-
-                    <div class="comments-box">
-
-                        <h5>@this.Model.Count() REPSONSES</h5>
-                       @foreach (var comment in this.Model)
-                       {
+                    @*{
+                        <div class="row">
                             <div class="media">
-                                <div class="media-body">
+                                <div class="media-body  col-md-12">
+                                    <div class="col-md-4">
+
+                                    </div>
                                     <span>@comment.CreatedOnToString</span><h6 class="media-heading">@comment.FirstName<br /><a href="" class="pull-right">(reply)</a></h6>
                                     <p>@comment.Message</p>
-                                </div>	
+                                </div>
+                            </div>
                         </div>
-                       }
+                        }*@
 
-                        <!-- reply -->
-                        <!--<div class="media reply">
-                            <img class="media-object pull-left" src="images/author.jpg" alt="...">
-                            <div class="media-body">
-                                <h6 class="media-heading">John Mark <span>12 February 2013 at 2:05 am</span> <a href="" class="pull-right">(reply)</a></h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, sequi quibusdam voluptate perferendis </p>
-                            </div>
-                        </div>-->
+                </div>	<!-- End of /.comments-box -->
 
+                <div class="leave-comment">
+                    <h5>LEAVE A COMMENT</h5>
+                    <form method="post" asp-controller="Comments" asp-action="Comment" class="form-horizontal" role="form">
 
-                        <!-- reply -->
-                        <!--<div class="media reply">
-                            <img class="media-object pull-left" src="images/author.jpg" alt="...">
-                            <div class="media-body">
-                                <h6 class="media-heading">John Mark <span>12 February 2013 at 2:05 am</span> <a href="" class="pull-right">(reply)</a></h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, sequi quibusdam voluptate perferendis </p>
-                            </div>
-                        </div>-->
-
-
-                        <!-- media -->
-                        <!--<div class="media">
-                            <img class="media-object pull-left" src="images/author.jpg" alt="...">
-                            <div class="media-body">
-                                <h6 class="media-heading">John Mark <span>12 February 2013 at 2:05 am</span> <a href="" class="pull-right">(reply)</a></h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, sequi quibusdam voluptate perferendis veniam eveniet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, veritatis.</p>
-                            </div>-->	<!-- End of /.media-body -->
-                        <!--</div>-->	<!-- End of /.media -->
-                        <!-- reply -->
-                        <!--<div class="media reply">
-                            <img class="media-object pull-left" src="images/author.jpg" alt="...">
-                            <div class="media-body">
-                                <h6 class="media-heading">John Mark <span>12 February 2013 at 2:05 am</span> <a href="" class="pull-right">(reply)</a></h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, sequi quibusdam voluptate perferendis </p>
-                            </div>-->	<!-- End of /.media body -->
-                        <!--</div>-->	<!-- End of /.media-reply -->
-
-
-                    </div>	<!-- End of /.comments-box -->
-
-                    <div class="leave-comment">
-                        <h5>LEAVE A COMMENT</h5>
-                        <form method="post" asp-controller="Comments" asp-action="Comment" class="form-horizontal" role="form">
-
-                            @if (string.IsNullOrEmpty(aspUser.Result.FirstName))
-                            {
-                                <div class="form-group">
-                                    <label for="inputname" class="col-sm-2 control-label">Name</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputname" name="name" placeholder="Name">
-                                    </div>
-                                </div> <!-- End of /.form-group -->
-                            }
-
-
-
+                        @if (string.IsNullOrEmpty(aspUser.Result.FirstName))
+                        {
                             <div class="form-group">
-                                <label for="inputmessage" class="col-sm-2 control-label">Message</label>
+                                <label for="inputname" class="col-sm-2 control-label">Name</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" id="inputmessage" name="message" rows="3"></textarea>
+                                    <input type="text" class="form-control" id="inputname" name="name" placeholder="Name">
                                 </div>
-                            </div>	<!-- End of /.form-group -->
+                            </div> <!-- End of /.form-group -->
+                        }
+                        <div class="form-group">
+                            <label for="inputmessage" class="col-sm-2 control-label">Message</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="inputmessage" name="message" rows="3"></textarea>
+                            </div>
+                        </div>	<!-- End of /.form-group -->
 
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Send</button>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </div>	<!-- End of /.form-group -->
+                    </form>	<!-- End of /.form-horizontal -->
+                </div>	<!-- End of /.leave comments -->
+            </div>	<!-- End of /.col-md-9 -->
+
+            <div class="col-md-3">
+                <div class="blog-sidebar">
+                    <div class="block">
+                        <h4>Catagories</h4>
+                        <div class="list-group">
+                            <a asp-controller="Restaurant" asp-action="Italian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Italian Foods
+                            </a>
+                            <a asp-controller="Restaurant" asp-action="Traditional" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Traditional Food
+                            </a>
+                            <a asp-controller="Restaurant" asp-action="Indian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Indian Food
+                            </a>
+                            <a asp-controller="Restaurant" asp-action="Spanish" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Spanish Food
+                            </a>
+                            <a asp-controller="Restaurant" asp-action="Bulgarian" class="list-group-item">
+                                <i class="fa  fa-dot-circle-o"></i>
+                                Bulgarian Food
+                            </a>
+                        </div>
+                    </div>	<!-- End of /.block -->
+                    <div class="block">
+                        <h4>Popular Posts</h4>
+                        <ul class="media-list">
+                            <li class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="images/post-img.png" alt="...">
+                                </a>
+                                <div class="media-body">
+                                    <a href="" class="media-heading">
+                                        Lorem ipsum dolor
+                                    </a>
+                                    <p>January 10,2014</p>
                                 </div>
-                            </div>	<!-- End of /.form-group -->
-                        </form>	<!-- End of /.form-horizontal -->
-                    </div>	<!-- End of /.leave comments -->
-                </div>	<!-- End of /.col-md-9 -->
-
-                <div class="col-md-3">
-                    <div class="blog-sidebar">
-                        <div class="block">
-                            <h4>Catagories</h4>
-                            <div class="list-group">
-                                <a asp-controller="Restaurant" asp-action="Italian" class="list-group-item">
-                                    <i class="fa  fa-dot-circle-o"></i>
-                                    Italian Foods
+                            </li>
+                            <li class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="images/post-img-2.png" alt="...">
                                 </a>
-                                <a asp-controller="Restaurant" asp-action="Traditional" class="list-group-item">
-                                    <i class="fa  fa-dot-circle-o"></i>
-                                    Traditional Food
-                                </a>
-                                <a asp-controller="Restaurant" asp-action="Indian" class="list-group-item">
-                                    <i class="fa  fa-dot-circle-o"></i>
-                                    Indian Food
-                                </a>
-                                <a asp-controller="Restaurant" asp-action="Spanish" class="list-group-item">
-                                    <i class="fa  fa-dot-circle-o"></i>
-                                    Spanish Food
-                                </a>
-                                <a asp-controller="Restaurant" asp-action="Bulgarian" class="list-group-item">
-                                    <i class="fa  fa-dot-circle-o"></i>
-                                    Bulgarian Food
-                                </a>
-                            </div>
-                        </div>	<!-- End of /.block -->
-                        <div class="block">
-                            <h4>Popular Posts</h4>
-                            <ul class="media-list">
-                                <li class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="images/post-img.png" alt="...">
+                                <div class="media-body">
+                                    <a href="" class="media-heading">
+                                        Mauris blandit aliquet
                                     </a>
-                                    <div class="media-body">
-                                        <a href="" class="media-heading">
-                                            Lorem ipsum dolor
-                                        </a>
-                                        <p>January 10,2014</p>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="images/post-img-2.png" alt="...">
+                                    <p>January 10,2014</p>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="images/post-img-3.png" alt="...">
+                                </a>
+                                <div class="media-body">
+                                    <a href="" class="media-heading">
+                                        Quisque velit nisi
                                     </a>
-                                    <div class="media-body">
-                                        <a href="" class="media-heading">
-                                            Mauris blandit aliquet
-                                        </a>
-                                        <p>January 10,2014</p>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="images/post-img-3.png" alt="...">
-                                    </a>
-                                    <div class="media-body">
-                                        <a href="" class="media-heading">
-                                            Quisque velit nisi
-                                        </a>
-                                        <p>January 10,2014</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>	<!-- End of /.block -->
+                                    <p>January 10,2014</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>	<!-- End of /.block -->
 
-                        <div class="block">
-                            <h4>Tag Cloud</h4>
-                            <div class="tag-link">
-                                <a href="">BALLET</a>
-                                <a href="">BLOG</a>
-                                <a href="">CHRISTMAS</a>
-                                <a href="">ELEGANCE</a>
-                                <a href="">ELEGANT</a>
-                                <a href="">SHOPPING</a>
-                                <a href="">SHOP</a>
-                                <a href="">PHOTOGRAPHY</a>
-                            </div>
-                        </div>	<!-- End of /.block -->
 
-                    </div>	<!-- End of /.Sidebar -->
-                </div>	<!-- End of /.col-md-3 -->
-            </div>	<!-- End of /.row -->
-        </div>	<!-- End of /.container -->
-    </section> <!-- End of /.Section -->
- 
+                </div>	<!-- End of /.Sidebar -->
+            </div>	<!-- End of /.col-md-3 -->
+        </div>	<!-- End of /.row -->
+    </div>	<!-- End of /.container -->
+</section> <!-- End of /.Section -->

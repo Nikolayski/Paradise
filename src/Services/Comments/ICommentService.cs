@@ -8,6 +8,6 @@ namespace Services.Comments
     {
         Task AddCommentAsync(string userId, string name, string message);
 
-        List<CommentAllViewModel> GetAllAsync();
+        IEnumerable<CommentAllViewModel> GetAllAsync();
     }
 }

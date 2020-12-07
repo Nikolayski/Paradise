@@ -335,6 +335,39 @@ namespace Data.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Models.Recipe", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CookingTime")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Instructions")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("Recipes");
+                });
+
             modelBuilder.Entity("Models.Room", b =>
                 {
                     b.Property<string>("Id")
@@ -495,6 +528,15 @@ namespace Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Models.Recipe", b =>
+                {
+                    b.HasOne("Models.ApplicationUser", "Creator")
+                        .WithMany("Recipes")
+                        .HasForeignKey("CreatorId");
+
+                    b.Navigation("Creator");
+                });
+
             modelBuilder.Entity("Models.RoomImages", b =>
                 {
                     b.HasOne("Models.Image", "Image")
@@ -528,6 +570,8 @@ namespace Data.Migrations
             modelBuilder.Entity("Models.ApplicationUser", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Recipes");
 
                     b.Navigation("UserRooms");
                 });

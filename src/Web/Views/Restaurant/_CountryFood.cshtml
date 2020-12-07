@@ -45,7 +45,7 @@
                             @if (this.User.Identity.IsAuthenticated)
                             {
                                 <div>
-                                    <form method="post" action="/Carts/Add">
+                                    <form method="post" asp-controller="Carts" asp-action="Add">
                                         <input type="hidden" name="productId" value="@product.Id" />
                                         <button type="submit">Add to Cart</button>
                                     </form>
@@ -113,17 +113,6 @@
                         </ul>
                     </div>
 
-                    <div class="block">
-                        <h4>Food Tag</h4>
-                        <div class="tag-link">
-                            <a href="">BALLET</a>
-                            <a href="">CHRISTMAS</a>
-                            <a href="">ELEGANCE</a>
-                            <a href="">ELEGANT</a>
-                            <a href="">SHOPPING</a>
-                            <a href="">SHOP</a>
-                        </div>
-                    </div>
                 </div>	<!-- End of /.col-md-3 -->
 
             </div>	<!-- End of /.row -->

@@ -2,19 +2,21 @@
 
 namespace ViewModels.Users
 {
-    public class UserOrderInputViewModel
+    public  class UserReserveViewModel
     {
+        public string Id { get; set; }
 
-        [Required]
+        public string RoomId { get; set; }
+
+     
         public string FirstName { get; set; }
 
-        [Required]
+       
         public string LastName { get; set; }
 
-        [Required]
-        public string Address { get; set; }
+        public string UserName { get; set; }
 
-        [Required]
         public string PhoneNumber { get; set; }
+
     }
 }

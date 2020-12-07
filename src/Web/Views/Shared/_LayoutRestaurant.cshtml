@@ -48,42 +48,44 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav nav-main">
                     <li><a href="/">Hotel</a></li>
-                    <li><a href="/Restaurant/Paging">Products</a></li>
-                    <li><a href="/Restaurant/Blog">BLOG</a></li>
-                    <li><a href="/Restaurant/Recipe">Today's Recipe</a></li>
+                    <li><a asp-controller="Restaurant" asp-action="Paging">Products</a></li>
+                    <li><a asp-controller="Restaurant" asp-action="Blog">BLOG</a></li>
+
                     <li class="dropdown">
                         <a href="#">
-                            PAGES
+                            Recipe
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a asp-controller="Restaurant" asp-action="Recipe">Today's Recipe</a></li>
+                            <li><a asp-controller="Recipes" asp-action="Add">Add Recipe</a></li>
+                            <li><a asp-controller="Recipes" asp-action="All">All Recipes</a></li>
+                            <li><a asp-controller="Recipes" asp-action="MyRecipes">My Recipes</a></li>
                         </ul>
-                    </li> 
+                    </li> <!-- End of /.dropdown -->
+
+
                     @if (this.User.Identity.IsAuthenticated == false)
                     {
-                        <li>
-                            <div class="cart dropdown">
-                                <a href="/Identity/Account/Login"><i class="fa fa-shopping-cart"></i> My Cart</a>
-                            </div>
-                        </li>
-                        <li><a href="/Identity/Account/Login">Login</a></li>
-                        <li><a href="/Identity/Account/Register">Register</a></li> 
-                    }
-                     else
-                    {
-                        <li>
-                            <div class="cart dropdown">
-                                <a href="/Carts/MyCart"><i class="fa fa-shopping-cart"></i> My Cart</a>
-                            </div>
-                        </li>
-                        <li><a href="/Users/Logout">Logout</a></li>
-                    }
+                <li>
+                    <div class="cart dropdown">
+                        <a href="/Identity/Account/Login"><i class="fa fa-shopping-cart"></i> My Cart</a>
+                    </div>
+                </li>
+               <li><a href="/Identity/Account/Login">Login</a></li>
+                 <li><a href="/Identity/Account/Register">Register</a></li> }
+                   else
+                  {
+                 <li>
+                     <div class="cart dropdown">
+                         <a href="/Carts/MyCart"><i class="fa fa-shopping-cart"></i> My Cart</a>
+                     </div>
+                 </li>
+               <li><a href="/Users/Logout">Logout</a></li>
+               }
 
-               </ul> <!-- End of /.nav-main -->
+
+                </ul> <!-- End of /.nav-main -->
             </div>
         </div>
     </nav>

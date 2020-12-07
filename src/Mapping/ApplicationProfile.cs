@@ -3,7 +3,9 @@ using Models;
 using ViewModels.Comments;
 using ViewModels.Index;
 using ViewModels.Products;
+using ViewModels.Recipes;
 using ViewModels.Rooms;
+using ViewModels.Users;
 
 namespace Mapping
 {
@@ -40,6 +42,16 @@ namespace Mapping
             this.CreateMap<Comment, CommentAllViewModel>()
                                 .ForMember(dto => dto.FirstName,
                                            opt => opt.MapFrom(c => c.User.FirstName));
+
+
+            //users
+            this.CreateMap<ApplicationUser,UserReserveViewModel>();
+
+            //recipes
+            this.CreateMap<AddRecipeInputViewModel, Recipe>();
+            this.CreateMap<Recipe, RecipeAllViewModel>();
+            this.CreateMap<Recipe, RecipeDetailsViewModel>();
+            this.CreateMap<Recipe, UserRecipesViewModel>();
             
 
         }

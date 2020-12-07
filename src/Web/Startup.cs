@@ -17,6 +17,8 @@ using Services.RoomService;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using Services.Comments;
+using Services.UserService;
+using Services.RecipeService;
 
 namespace Web
 {
@@ -49,6 +51,8 @@ namespace Web
             services.AddTransient<IImageService, ImageService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<ICommentService, CommentService>();
+            services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IRecipeService, RecipeService>();
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

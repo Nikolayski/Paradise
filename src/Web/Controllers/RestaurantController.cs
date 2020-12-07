@@ -10,6 +10,7 @@ using ViewModels.Users;
 using System.Threading.Tasks;
 using Services.Comments;
 using Microsoft.AspNetCore.Authorization;
+using Services.UserService;
 
 namespace Web.Controllers
 {
@@ -17,12 +18,14 @@ namespace Web.Controllers
     {
         private readonly IProductService productsService;
         private readonly ICommentService commentService;
+        private readonly IUsersService usersService;
         private readonly ApplicationDbContext db;
 
-        public RestaurantController(IProductService productsService,ICommentService commentService, ApplicationDbContext db)
+        public RestaurantController(IProductService productsService,ICommentService commentService, IUsersService usersService, ApplicationDbContext db)
         {
             this.productsService = productsService;
             this.commentService = commentService;
+            this.usersService = usersService;
             this.db = db;
         }
 
@@ -129,13 +132,15 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Order(UserOrderInputViewModel orderViewModel)
+        public async Task<IActionResult> Order(UserOrderInputViewModel orderViewModel)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.Redirect("/Restaurant/Order");
             }
-            return this.Redirect("/");
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+          await  this.usersService.DeleteCartCollectionAsync(userId);
+            return this.Redirect("/Carts/MyCart");
         }
     }
 }

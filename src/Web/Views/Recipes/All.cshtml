@@ -1,0 +1,74 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+@{
+    this.Layout = "_LayoutRestaurant";
+}
+<hr />
+<hr />
+<hr />
+
+
+@if (this.Model.Count > 0)
+{
+    <div class="col-md-4 col-lg-offset-4">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("All", new { page = page }),
+                  new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
+                  {
+                      DisplayItemSliceAndTotal = true,
+                      ContainerDivClasses = new[] { "navigation" },
+                      LiElementClasses = new[] { "page-item" },
+                      PageClasses = new[] { "page-link" },
+                  })
+
+
+    </div>
+}
+<div class="container">
+    <div class="row">
+        @if (this.Model.Count == 0)
+        {
+            <div class="col-md-8">
+                <h1>  You have not added any recipes</h1>
+            </div>
+        }
+        else
+        {
+            @foreach (var recipe in this.Model)
+            {
+                <div class="card col-md-3">
+                    <img src="@recipe.ImageUrl" width="150" height="130" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@recipe.Name</h5>
+                        <p class="card-text">@recipe.Instructions.Substring(0, 20)</p>
+                        <a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            }
+        }
+        </div>
+</div>
+
+@if (this.Model.Count > 0)
+{
+    <div class="col-md-4 col-lg-offset-4">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("All", new { page = page }),
+                  new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
+                  {
+                      DisplayItemSliceAndTotal = true,
+                      ContainerDivClasses = new[] { "navigation" },
+                      LiElementClasses = new[] { "page-item" },
+                      PageClasses = new[] { "page-link" },
+                  })
+
+
+    </div>
+}
+
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />

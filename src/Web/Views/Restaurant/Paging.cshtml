@@ -39,16 +39,16 @@
                                     <a asp-controller="Restaurant" asp-action="Product" asp-route-id="@product.Id">
                                         <img src="@product.Image" alt="" width="280" height="240">
                                     </a>
-                                    <a href="#">
+                                    <a asp-controller="Restaurant" asp-action="Product" asp-route-id="@product.Id">
                                         <h4>@product.Name</h4>
                                     </a>
-                                    <p class="price">From: £@product.Price</p>
+                                    <p class="price">£@product.Price</p>
                                     @if (this.User.Identity.IsAuthenticated)
                                     {
                                         <div>
                                             <form method="post" asp-controller="Carts" asp-action="Add">
                                                 <input type="hidden" name="productId" value="@product.Id" />
-                                                <button type="submit">Add to Cart</button>
+                                                <button class="btn btn-success"  type="submit">Add to Cart</button>
                                             </form>
 
                                         </div>
@@ -173,17 +173,7 @@
                         </ul>
                     </div>
 
-                    <div class="block">
-                        <h4>Food Tag</h4>
-                        <div class="tag-link">
-                            <a href="">BALLET</a>
-                            <a href="">CHRISTMAS</a>
-                            <a href="">ELEGANCE</a>
-                            <a href="">ELEGANT</a>
-                            <a href="">SHOPPING</a>
-                            <a href="">SHOP</a>
-                        </div>
-                    </div>
+                  
                 </div>	<!-- End of /.col-md-3 -->
 
             </div>	<!-- End of /.row -->

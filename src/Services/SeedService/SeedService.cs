@@ -31,7 +31,7 @@ namespace Services.SeedService
                 {
                     UserName = "nikolayski@abv.bg",
                     Email = "nikolayski@abv.bg",
-                    EmailConfirmed = true
+                    EmailConfirmed = false
                 }, "Dadada1122_").GetAwaiter().GetResult();
             }
 
@@ -402,6 +402,7 @@ namespace Services.SeedService
                       ProductCountry = ProductCountry.Traditional,
                 ProductType = ProductType.Dessert,
                 Description = "Usually accompanied by a glass of milk or a cup of hot tea or coffee, chocolate chip cookies are well balanced between salty and sweet in flavor, tenderly chewy in texture, and filled with small melting chocolate pyramids, bringing a generation of Americans back to their childhood.",
+                Name="Cookies",
                 Price = 7.00M,
                 Image = "https://cdn-fastly.foodtalkdaily.com/media/2020/10/21/6266655/s-10-chocolate-chip-cookie-recipes-for-every-kind-of-cookie-lover.jpg",
                 } },

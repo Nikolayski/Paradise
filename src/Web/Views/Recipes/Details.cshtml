@@ -1,0 +1,79 @@
+﻿
+@model RecipeDetailsViewModel
+
+@{
+    ViewData["Title"] = "Product";
+    this.Layout = "_LayoutRestaurant";
+}
+
+
+<hr />
+<hr />
+<hr />
+<hr />
+<section id="single-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="single-product-img">
+                    <img src="@this.Model.ImageUrl" width="280" height="240" alt="">
+                </div>
+
+            </div> <!-- End of /.col-md-5 -->
+            <div class="col-md-4">
+                <div class="block">
+                    <div class="product-des">
+                        <h4>@this.Model.Name</h4>
+                    <h6>Description:</h6>
+                        <p>@this.Model.Instructions</p>
+
+                    </div>	<!-- End of /.product-des -->
+                </div> <!-- End of /.block -->
+            </div>	<!-- End of /.col-md-4 -->
+
+
+            <div class="col-md-9">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#home" data-toggle="tab">More Info</a></li>
+                    <li><a href="#profile" data-toggle="tab">Comments</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        @if (!string.IsNullOrEmpty(this.Model.CreatorUserName))
+                        {
+                            <p>Creator: <strong>@this.Model.CreatorUserName</strong></p>
+                        }
+                        else
+                        {
+                            <p>Creator: <strong>UNKNOWN</strong></p>
+                        }
+                    </div>
+                    <div class="tab-pane" id="profile">
+                        <p>No customer comments for the moment.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="blog-sidebar">
+                    <div class="block">
+                        <h4 class="top-catagori-heading">Food Suggestions</h4>
+                        <ul class="media-list">
+                            <vc:random-products></vc:random-products>
+                        </ul>	<!-- End of /.media-list -->
+                    </div>	<!-- End of /.block -->
+
+                </div>	<!-- End of /.blog-sidebar -->
+
+            </div>	<!-- End of /.col-md-3 -->
+        </div>	<!-- End of /.row -->
+
+    </div>	<!-- End of /.Container -->
+
+
+</section> <!-- End of /.Single-product -->
+

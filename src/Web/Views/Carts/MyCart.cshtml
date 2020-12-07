@@ -21,8 +21,24 @@
                     <hr />
                     @if (this.Model.Products.Count == 0)
                     {
-                        <div class="row">
-                            <h1>My Cart is Empty...</h1>
+                        @*<div class="row">
+                <h1>My Cart is Empty...</h1>
+            </div>*@
+                        <div class="container-fluid mt-100">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                       
+                                        <div class="card-body cart">
+                                            <div class="col-sm-12 empty-cart-cls text-center">
+                                                <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                                                <h3><strong>Your Cart is Empty</strong></h3>
+                                                <a asp-controller="Restaurant" asp-action="Paging" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     }
 
@@ -33,30 +49,27 @@
 
                             <li>
                                 <div class="products">
-                                    <a href="/Restaurant/Product?id=@product.Id">
-                                        <img src="@product.Image" alt="">
+                                    <a asp-controller="Restaurant" asp-action="Product" asp-route-id="@product.Id">
+                                        <img src="@product.Image">
                                     </a>
                                     <a href="#">
                                         <h4>@product.Name</h4>
                                     </a>
                                     <p class="price">£@product.Price</p>
+
                                     <div>
-
-                                        <form method="post" action="/Carts/Remove">
+                                        <form method="post" asp-controller="Carts" asp-action="Remove">
                                             <input type="hidden" name="productId" value="@product.Id" />
-                                            <button type="submit">Remove</button>
+                                            <button type="submit" class="btn btn-danger">Remove</button>
                                         </form>
-
                                     </div>
+
                                 </div>	<!-- End of /.products -->
                             </li>
-
-                            <!--  ... -->
-
                         }
                     </ul>
                 </div>	<!-- End of /.products-grid -->
-                <!-- Pagination -->
+
 
                 @if (this.Model.TotalPrice != 0)
                 {
@@ -71,10 +84,6 @@
                 }
 
 
-
-
-
-              
             </div>	<!-- End of /.col-md-9 -->
             <div class="col-md-3">
                 <div class="blog-sidebar">
@@ -110,54 +119,11 @@
                         <h4>Food Suggestions</h4>
                         <ul class="media-list">
                             <vc:random-products></vc:random-products>
-                            @*<li class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="~/images/post-img.png" alt="...">
-                                    </a>
-                                    <div class="media-body">
-                                        <a href="" class="media-heading">
-                                            Lamb leg roast
-                                            <p>Lorem ipsum dolor sit amet.</p>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="~/images/post-img-2.png" alt="...">
-                                    </a>
-                                    <div class="media-body">
-                                        <a href="" class="media-heading">
-                                            Lamingtons
-                                            <p>Lorem ipsum dolor.</p>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="~/images/post-img-3.png" alt="...">
-                                    </a>
-                                    <div class="media-body">
-                                        <a href="" class="media-heading">
-                                            Anzac Salad
-                                            <p>Lorem ipsum dolor sit.</p>
 
-                                        </a>
-                                    </div>
-                                </li>*@
                         </ul>
                     </div>
 
-                    <div class="block">
-                        <h4>Food Tag</h4>
-                        <div class="tag-link">
-                            <a href="">BALLET</a>
-                            <a href="">CHRISTMAS</a>
-                            <a href="">ELEGANCE</a>
-                            <a href="">ELEGANT</a>
-                            <a href="">SHOPPING</a>
-                            <a href="">SHOP</a>
-                        </div>
-                    </div>
+                    
                 </div>	<!-- End of /.col-md-3 -->
 
             </div>	<!-- End of /.row -->

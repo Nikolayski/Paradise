@@ -1,0 +1,48 @@
+﻿@model AddRecipeInputViewModel
+
+@{
+    this.ViewData["Title"] = "Add Recipe";
+    this.Layout = "_LayoutRestaurant";
+
+}
+
+<div class="container">
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <form method="post" class="col-md-6 offset-md-3"
+              enctype="multipart/form-data">
+            <h1>@this.ViewData["Title"]</h1>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instructions"></label>
+                <textarea asp-for="Instructions" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Instructions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CookingTime"></label>
+                <input asp-for="CookingTime" class="form-control" />
+                <span asp-validation-for="CookingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductType"></label>
+                <select asp-for="ProductType" class="form-control" asp-items="Html.GetEnumSelectList<ProductType>().Skip(1)"></select>
+                <span asp-validation-for="ProductType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <input type="submit" class="btn btn-primary" />
+        </form>
+
+    </div>
+</div>

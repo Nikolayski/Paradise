@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ViewModels.Images;
 using ViewModels.Rooms;
-
+using ViewModels.Users;
 
 namespace Services.RoomService
 {
@@ -24,15 +24,30 @@ namespace Services.RoomService
             this.mapper = mapper;
         }
 
-        public async Task AddRoomToUserAsync(ReserveRoomViewModel reserveInputModel, string userId)
+        //public async Task AddRoomToUserAsync(ReserveRoomViewModel reserveInputModel, string userId)
+        //{
+        //    var wantedRoom = this.db.Rooms.FirstOrDefault(x => x.Id == reserveInputModel.RoomId);
+        //    var wantedUser = this.db.Users.FirstOrDefault(x => x.Id == userId);
+        //    wantedRoom.CheckIn = reserveInputModel.CheckIn;
+        //    wantedRoom.CheckOut = reserveInputModel.CheckOut;
+        //    wantedRoom.RoomCount -= 1;
+        //    wantedUser.UserRooms.Add(new UserRoom { RoomId = reserveInputModel.RoomId, UserId = userId });
+        //  await  this.db.SaveChangesAsync();
+        //}
+
+        public async Task AddRoomToUserAsync(UserReserveFinishViewModel reserveInputModel, string userId)
         {
             var wantedRoom = this.db.Rooms.FirstOrDefault(x => x.Id == reserveInputModel.RoomId);
             var wantedUser = this.db.Users.FirstOrDefault(x => x.Id == userId);
             wantedRoom.CheckIn = reserveInputModel.CheckIn;
             wantedRoom.CheckOut = reserveInputModel.CheckOut;
             wantedRoom.RoomCount -= 1;
+            wantedUser.PhoneNumber = reserveInputModel.PhoneNumber;
+            wantedUser.FirstName = reserveInputModel.FirstName;
+            wantedUser.LastName = reserveInputModel.LastName;
             wantedUser.UserRooms.Add(new UserRoom { RoomId = reserveInputModel.RoomId, UserId = userId });
-          await  this.db.SaveChangesAsync();
+         
+            await this.db.SaveChangesAsync();
         }
 
         public IEnumerable<RoomCheckViewModel> CheckRooms(DateTime checkIn, DateTime checkOut, string adults, string roomType)

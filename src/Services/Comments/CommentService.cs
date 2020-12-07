@@ -31,9 +31,9 @@ namespace Services.Comments
             await this.db.SaveChangesAsync();
         }
 
-        public List<CommentAllViewModel> GetAllAsync()
+        public IEnumerable<CommentAllViewModel> GetAllAsync()
         {
-            return this.db.Comments.ProjectTo<CommentAllViewModel>(this.mapper.ConfigurationProvider).ToList();
+            return this.db.Comments.ProjectTo<CommentAllViewModel>(this.mapper.ConfigurationProvider).OrderByDescending(x=>x.CreatedOn).ToList();
         }
     }
 }

@@ -49,22 +49,14 @@
                         </div>
                         <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
 
-                        @if (!this.User.Identity.IsAuthenticated)
-                        {
-
-                            <h3>If u want to reserve our room</h3>
-
-                            <div class=" row">
-                                <div class="col-md-8">
-                                    <a href="/Identity/Account/Login">Log In</a>  <strong>or</strong> <a href="/Identity/Account/Register">Register</a>
-                                </div>
-                            </div>
-
-                        }
-                        else
-                        {
-                            <button type="button" class="btn btn-info" onclick="GetReserve()">Reserve</button>
-                        }
+                       
+                            @*<button type="button" class="btn btn-info" onclick="GetReserve()">Reserve</button>*@
+                    <form method="get" asp-controller="Rooms" asp-action="Reserve" asp-route-id="@this.Model.Id">
+                        
+                        <button type="submit" class="btn btn-info">Reserve</button>
+                    </form>
+                           
+                        
 
                         <div  id="wrappingDiv">
 
@@ -208,7 +200,7 @@
 <!-- .section -->
 
 
-@section Scripts{
+@*@section Scripts{
     <script>
         function GetReserve() {
             $('#wrappingDiv').append('<form method="post" action="/Rooms/Reserve"><input name="roomId" type="hidden" value="@this.Model.Id" /><input name="checkIn" type="date" /><input name="checkOut" type="date" /><input name="phoneNumber" type="text" placeholder="Phone" /><button type="submit" class="btn btn-info">Done</button></form>');
@@ -217,7 +209,7 @@
     </script>
 
 
-}
+}*@
 
 
 
