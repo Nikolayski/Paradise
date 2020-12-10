@@ -15,8 +15,7 @@
         <form method="post" class="col-md-6 offset-md-3"
               enctype="multipart/form-data">
             <h1>@this.ViewData["Title"]</h1>
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
+           <div class="form-group">
                 <label asp-for="Name"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>

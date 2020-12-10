@@ -23,17 +23,30 @@ namespace Services.SeedService
 
         public async Task AddProductsAsync()
         {
-
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            var roleName = "Admin";
+            await roleManager.CreateAsync(new ApplicationRole(roleName));
+
+
+
             if (!userManager.Users.Any(x => x.UserName == "nikolayski@abv.bg"))
             {
-                userManager.CreateAsync(new ApplicationUser
+                var user = new ApplicationUser
                 {
                     UserName = "nikolayski@abv.bg",
                     Email = "nikolayski@abv.bg",
                     EmailConfirmed = false
-                }, "Dadada1122_").GetAwaiter().GetResult();
+                };
+                userManager.CreateAsync(user, "Dadada1122_").GetAwaiter().GetResult();
+                await this.db.SaveChangesAsync();
+                await userManager.AddToRoleAsync(user, roleName);
+
             }
+
+          
+
 
             var images = new List<Image>
             {

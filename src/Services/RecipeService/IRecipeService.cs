@@ -10,6 +10,7 @@ namespace Services.RecipeService
         Task<IPagedList<RecipeAllViewModel>> GetAllAsync(int pageNumber, int pageSize);
         RecipeDetailsViewModel GetRecipeById(string id);
         Task<IPagedList<UserRecipesViewModel>> GetUserRecipes(int pageNumber, int pageSize, string userid);
-        Task RemoveRecipe(string id, string userId);
+        Task RemoveRecipeFromUserCollection(string id, string userId);
+        Task RemoveRecipe(string id);
     }
 }

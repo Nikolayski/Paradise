@@ -35,9 +35,9 @@ namespace Services.RoomService
         //  await  this.db.SaveChangesAsync();
         //}
 
-        public async Task AddRoomToUserAsync(UserReserveFinishViewModel reserveInputModel, string userId)
+        public async Task AddRoomToUserAsync(UserReserveFinishViewModel reserveInputModel, string userId, string roomId)
         {
-            var wantedRoom = this.db.Rooms.FirstOrDefault(x => x.Id == reserveInputModel.RoomId);
+            var wantedRoom = this.db.Rooms.FirstOrDefault(x => x.Id == roomId);
             var wantedUser = this.db.Users.FirstOrDefault(x => x.Id == userId);
             wantedRoom.CheckIn = reserveInputModel.CheckIn;
             wantedRoom.CheckOut = reserveInputModel.CheckOut;
@@ -45,7 +45,7 @@ namespace Services.RoomService
             wantedUser.PhoneNumber = reserveInputModel.PhoneNumber;
             wantedUser.FirstName = reserveInputModel.FirstName;
             wantedUser.LastName = reserveInputModel.LastName;
-            wantedUser.UserRooms.Add(new UserRoom { RoomId = reserveInputModel.RoomId, UserId = userId });
+            wantedUser.UserRooms.Add(new UserRoom { RoomId = roomId, UserId = userId });
          
             await this.db.SaveChangesAsync();
         }

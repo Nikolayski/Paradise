@@ -19,7 +19,7 @@ namespace Web.Controllers
         private readonly IProductService productsService;
         private readonly ICommentService commentService;
         private readonly IUsersService usersService;
-        private readonly ApplicationDbContext db;
+      
 
         public RestaurantController(IProductService productsService,
                                     ICommentService commentService,

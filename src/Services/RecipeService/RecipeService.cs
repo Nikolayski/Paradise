@@ -27,9 +27,9 @@ namespace Services.RecipeService
             await this.db.SaveChangesAsync();
         }
 
-        public Task<IPagedList<RecipeAllViewModel>> GetAllAsync(int pageNumber, int pageSize)
+        public async Task<IPagedList<RecipeAllViewModel>> GetAllAsync(int pageNumber, int pageSize)
         {
-           return this.db.Recipes
+           return await this.db.Recipes
                                 .ProjectTo<RecipeAllViewModel>(this.mapper.ConfigurationProvider)
                                 .ToPagedListAsync(pageNumber, pageSize);
         }
@@ -41,19 +41,23 @@ namespace Services.RecipeService
                                         .FirstOrDefault();
         }
 
-        public Task<IPagedList<UserRecipesViewModel>> GetUserRecipes(int pageNumber, int pageSize, string userid)
+        public async Task<IPagedList<UserRecipesViewModel>> GetUserRecipes(int pageNumber, int pageSize, string userid)
         {
-            return this.db.Recipes.Where(x => x.CreatorId == userid)
+            return await this.db.Recipes.Where(x => x.CreatorId == userid)
                                   .ProjectTo<UserRecipesViewModel>(this.mapper.ConfigurationProvider)
                                   .ToPagedListAsync(pageNumber, pageSize);
         }
 
-        public async Task RemoveRecipe(string id, string userId)
+        public async Task RemoveRecipe(string id)
         {
-            //  var recipe = this.db.Recipes.FirstOrDefault(X => X.Id == id);
-            //  this.db.Recipes.Remove(recipe);
-            //await  this.db.SaveChangesAsync();
+            var wantedRecipe = this.db.Recipes.FirstOrDefault(X => X.Id == id);
+            this.db.Recipes.Remove(wantedRecipe);
+            await this.db.SaveChangesAsync();
+        }
 
+        public async Task RemoveRecipeFromUserCollection(string id, string userId)
+        {
+           
              var user = this.db.Users.FirstOrDefault(X => X.Id == userId);
             var recipe = this.db.Recipes.FirstOrDefault(X => X.Id == id);
             user.Recipes.Remove(recipe);

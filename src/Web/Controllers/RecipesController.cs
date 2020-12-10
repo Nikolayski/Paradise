@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Services.RecipeService;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -21,12 +22,14 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Add(AddRecipeInputViewModel addRecipeViewModel)
         {
             ;
             if (!this.ModelState.IsValid)
             {
-                return this.Redirect("/Recipes/Add");
+                //return this.Redirect("/Recipes/Add");
+                return this.View(addRecipeViewModel);
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -34,7 +37,6 @@ namespace Web.Controllers
 
             return this.RedirectToAction("All");
         }
-
        public async Task<IActionResult> All(int? page)
         {
             int pageNumber = page ?? 1;
@@ -50,6 +52,13 @@ namespace Web.Controllers
             return this.View(recipeModel);
         }
 
+        public async Task<IActionResult> Delete(string id)
+        {
+            await this.recipeService.RemoveRecipe(id);
+            return this.Redirect("/Recipes/All");
+        }
+
+        [Authorize]
         public async Task<IActionResult>  MyRecipes(int? page)
         {
             int pageNumber = page ?? 1;
@@ -57,13 +66,11 @@ namespace Web.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var userRecipes = await this.recipeService.GetUserRecipes(pageNumber, pageSize, userId);
             return this.View(userRecipes);
-
         }
-
-        public async Task<IActionResult> Remove(string id)
+       public async Task<IActionResult> Remove(string id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            await  this.recipeService.RemoveRecipe(id,userId);
+            await  this.recipeService.RemoveRecipeFromUserCollection(id,userId);
             return this.RedirectToAction("MyRecipes");
         }
     }

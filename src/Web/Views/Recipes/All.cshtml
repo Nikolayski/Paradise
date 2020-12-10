@@ -28,9 +28,20 @@
     <div class="row">
         @if (this.Model.Count == 0)
         {
+            <hr />
+            <hr />
             <div class="col-md-8">
-                <h1>  You have not added any recipes</h1>
+                <h1>  You have not added any recipes!</h1>
             </div>
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+            <hr />
         }
         else
         {
@@ -42,11 +53,15 @@
                         <h5 class="card-title">@recipe.Name</h5>
                         <p class="card-text">@recipe.Instructions.Substring(0, 20)</p>
                         <a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-primary">Details</a>
+                        @if (this.User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="Recipes" asp-action="Delete" asp-route-id="@recipe.Id" class="btn btn-danger">Delete</a>
+                        }
                     </div>
                 </div>
             }
         }
-        </div>
+    </div>
 </div>
 
 @if (this.Model.Count > 0)
@@ -60,11 +75,8 @@
                       LiElementClasses = new[] { "page-item" },
                       PageClasses = new[] { "page-link" },
                   })
-
-
     </div>
 }
-
 <hr />
 <hr />
 <hr />
