@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201210110330_CreateDb")]
-    partial class CreateDb
+    [Migration("20201211104805_CreateFunctionality")]
+    partial class CreateFunctionality
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -308,6 +308,36 @@ namespace Data.Migrations
                     b.ToTable("Images");
                 });
 
+            modelBuilder.Entity("Models.Post", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.ToTable("Posts");
+                });
+
             modelBuilder.Entity("Models.Product", b =>
                 {
                     b.Property<string>("Id")
@@ -530,6 +560,15 @@ namespace Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Models.Post", b =>
+                {
+                    b.HasOne("Models.ApplicationUser", "Creator")
+                        .WithMany("Posts")
+                        .HasForeignKey("CreatorId");
+
+                    b.Navigation("Creator");
+                });
+
             modelBuilder.Entity("Models.Recipe", b =>
                 {
                     b.HasOne("Models.ApplicationUser", "Creator")
@@ -572,6 +611,8 @@ namespace Data.Migrations
             modelBuilder.Entity("Models.ApplicationUser", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Posts");
 
                     b.Navigation("Recipes");
 

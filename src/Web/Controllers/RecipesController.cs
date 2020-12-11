@@ -52,6 +52,7 @@ namespace Web.Controllers
             return this.View(recipeModel);
         }
 
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             await this.recipeService.RemoveRecipe(id);
@@ -67,7 +68,8 @@ namespace Web.Controllers
             var userRecipes = await this.recipeService.GetUserRecipes(pageNumber, pageSize, userId);
             return this.View(userRecipes);
         }
-       public async Task<IActionResult> Remove(string id)
+        [Authorize]
+        public async Task<IActionResult> Remove(string id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await  this.recipeService.RemoveRecipeFromUserCollection(id,userId);

@@ -2,6 +2,7 @@
 using Models;
 using ViewModels.Comments;
 using ViewModels.Index;
+using ViewModels.Posts;
 using ViewModels.Products;
 using ViewModels.Recipes;
 using ViewModels.Rooms;
@@ -52,7 +53,12 @@ namespace Mapping
             this.CreateMap<Recipe, RecipeAllViewModel>();
             this.CreateMap<Recipe, RecipeDetailsViewModel>();
             this.CreateMap<Recipe, UserRecipesViewModel>();
-            
+
+
+            //posts
+            this.CreateMap<PostInputViewModel, Post>();
+            this.CreateMap<Post, PostAllViewModel>();
+            this.CreateMap<Post, PostsDetailsViewModel>();
 
         }
     }
