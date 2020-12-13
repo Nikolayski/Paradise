@@ -71,18 +71,19 @@ namespace Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Reserve(UserReserveFinishViewModel reserveInputModel, string roomId)
         {
-            ;
-            if (!this.ModelState.IsValid)
+            
+            if (!this.ModelState.IsValid ||reserveInputModel.CheckIn < DateTime.UtcNow || reserveInputModel.CheckOut < DateTime.UtcNow)
             {
                 this.ViewData["id"] = roomId;
                 var room = this.db.Rooms.FirstOrDefault(X => X.Id == roomId);
                 var typeOfRoom = room.RoomType;
                 this.ViewData["type"] = typeOfRoom;
-                //return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
                 return this.View(reserveInputModel);
             }
+            
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await this.roomsService.AddRoomToUserAsync(reserveInputModel, userId,roomId);
+            this.TempData["Success"] = "Added Successfully!";
             return this.Redirect($"/Rooms/Details/{roomId}");
         }
         public IActionResult Details(string id)

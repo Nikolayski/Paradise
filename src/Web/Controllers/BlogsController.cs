@@ -23,6 +23,7 @@ namespace Web.Controllers
             return this.View(posts);
         }
 
+        [Authorize]
         public IActionResult Details(string id)
         {
             var post = this.postService.GetPostById(id);
@@ -44,8 +45,8 @@ namespace Web.Controllers
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            await this.postService.AddPostAsync(postInputModel, userId);
-            return this.Redirect("/Blogs/BlogPage");
+            var postId =  await this.postService.AddPostAsync(postInputModel, userId);
+            return this.Redirect($"/Blogs/Details/{postId}");
         }
 
         [Authorize(Roles = "Admin")]

@@ -19,12 +19,21 @@ namespace Services.RecipeService
             this.db = db;
             this.mapper = mapper;
         }
-        public async Task AddRecipeAsync(AddRecipeInputViewModel addRecipeViewModel, string userId)
+        //public async Task AddRecipeAsync(AddRecipeInputViewModel addRecipeViewModel, string userId)
+        //{
+        //    var recipe = this.mapper.Map<Recipe>(addRecipeViewModel);
+        //    recipe.CreatorId = userId;
+        //    await this.db.Recipes.AddAsync(recipe);
+        //    await this.db.SaveChangesAsync();
+        //}
+
+        public async Task<string> AddRecipeAsync(AddRecipeInputViewModel addRecipeViewModel, string userId)
         {
             var recipe = this.mapper.Map<Recipe>(addRecipeViewModel);
             recipe.CreatorId = userId;
             await this.db.Recipes.AddAsync(recipe);
             await this.db.SaveChangesAsync();
+            return recipe.Id;
         }
 
         public async Task<IPagedList<RecipeAllViewModel>> GetAllAsync(int pageNumber, int pageSize)

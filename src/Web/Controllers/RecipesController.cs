@@ -15,6 +15,8 @@ namespace Web.Controllers
         {
             this.recipeService = recipeService;
         }
+
+        [Authorize]
         public IActionResult Add()
         {
             var model = new AddRecipeInputViewModel();
@@ -33,9 +35,11 @@ namespace Web.Controllers
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            await this.recipeService.AddRecipeAsync(addRecipeViewModel, userId);
-
-            return this.RedirectToAction("All");
+            //await this.recipeService.AddRecipeAsync(addRecipeViewModel, userId);
+         var recipeId =   await this.recipeService.AddRecipeAsync(addRecipeViewModel, userId);
+            //return this.Redirect("/Recipes/All");
+            this.TempData["Success"] = "True";
+            return this.Redirect($"/Recipes/Details/{recipeId}");
         }
        public async Task<IActionResult> All(int? page)
         {

@@ -20,6 +20,7 @@ namespace ViewModels.Users
         public string LastName { get; set; }
 
         [Display(Name = "Check In Date")]
+       
         public DateTime  CheckIn{ get; set; }
 
         [Display(Name = "Check out Date")]

@@ -21,12 +21,13 @@ namespace Services.PostService
             this.db = db;
             this.mapper = mapper;
         }
-        public async Task AddPostAsync(PostInputViewModel postInputModel, string userId)
+        public async Task<string> AddPostAsync(PostInputViewModel postInputModel, string userId)
         {
             var post = this.mapper.Map<Post>(postInputModel);
             post.CreatorId = userId;
             await this.db.Posts.AddAsync(post);
             await this.db.SaveChangesAsync();
+            return post.Id;
         }
 
         public async  Task<IPagedList<PostAllViewModel>> GetAllPosts(int pageNumber, int pageSize)

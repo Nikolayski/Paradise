@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Models;
 using ViewModels.Comments;
+using ViewModels.Contacts;
 using ViewModels.Index;
 using ViewModels.Posts;
 using ViewModels.Products;
@@ -22,21 +23,18 @@ namespace Mapping
                         .ForMember(vm => vm.Description,
                                    map => map.MapFrom(p => p.Description.Substring(0, 50)));
 
-
-
             //rooms
 
             this.CreateMap<Room, RoomsAllViewModel>()
                             .ForMember(vm => vm.RoomType,
                                        map => map.MapFrom(r => r.RoomType.ToString()));
 
-            this.CreateMap<Room, RoomDetailsViewModel>();
+           this.CreateMap<Room, RoomDetailsViewModel>();
             this.CreateMap<Room, RoomCheckViewModel>();
 
-
             //index images
-            this.CreateMap<Image, IndexImageViewModel>();
 
+            this.CreateMap<Image, IndexImageViewModel>();
 
             //comments
 
@@ -44,21 +42,25 @@ namespace Mapping
                                 .ForMember(dto => dto.FirstName,
                                            opt => opt.MapFrom(c => c.User.FirstName));
 
-
             //users
+
             this.CreateMap<ApplicationUser,UserReserveViewModel>();
 
             //recipes
+
             this.CreateMap<AddRecipeInputViewModel, Recipe>();
             this.CreateMap<Recipe, RecipeAllViewModel>();
             this.CreateMap<Recipe, RecipeDetailsViewModel>();
             this.CreateMap<Recipe, UserRecipesViewModel>();
 
+           //posts
 
-            //posts
             this.CreateMap<PostInputViewModel, Post>();
             this.CreateMap<Post, PostAllViewModel>();
             this.CreateMap<Post, PostsDetailsViewModel>();
+
+            //contacts
+            this.CreateMap<AddContactViewModel, Contact>();
 
         }
     }

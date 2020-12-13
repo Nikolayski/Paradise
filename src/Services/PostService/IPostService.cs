@@ -7,7 +7,7 @@ namespace Services.PostService
 {
     public   interface IPostService
     {
-        Task AddPostAsync(PostInputViewModel postInputModel, string userId);
+        Task<string> AddPostAsync(PostInputViewModel postInputModel, string userId);
         Task<IPagedList<PostAllViewModel>> GetAllPosts(int pageNumber, int pageSize);
         PostsDetailsViewModel GetPostById(string id);
         Task RemovePostById(string id);

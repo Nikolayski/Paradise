@@ -569,7 +569,7 @@ namespace Services.SeedService
                              Image = "https://www.wanderluststorytellers.com/wp-content/uploads/2019/05/Devasom-Khao-Lak-Beach-Resort-Villas-Best-Hotels-in-Khao-Lak-Room.jpg",
                               Price = 100,
                               RoomCount= 20,
-                              Description = "Description for Single Room.",
+                              Description = "Our comfortable single rooms are just the right size if you are travelling alone.",
 
                         }
                 },
@@ -581,7 +581,7 @@ namespace Services.SeedService
                              Image = "https://may-hotel.gr/wp-content/uploads/2018/10/Bed-balcony-Triple-room-1-May-Beach-Hotel-Rethymno-Crete.jpg.jpg",
                               Price = 180,
                               RoomCount= 20,
-                              Description = "Description for Double Room.",
+                              Description = "Most suitable for couples and the size enables you to relax and feel at home. All rooms are also fitted with a desk, a closet and a washlet.",
 
                         }
                 },
@@ -593,7 +593,7 @@ namespace Services.SeedService
                              Image = "https://q-xx.bstatic.com/xdata/images/hotel/840x460/117919616.jpg?k=e5a5762f2cab35b3e3f5351ef449c499ba5ebe28c8e6e8fdf8de94f93efba5d0&o=",
                               Price = 240,
                               RoomCount= 15,
-                              Description = "Description for Tripple Room.",
+                              Description = "Quiet place, nice atmosphere, perfect room for 2 adults and 1 child.",
 
                         }
                 },
@@ -606,7 +606,7 @@ namespace Services.SeedService
                              Image = "https://www.sani-resort.com/uploads/assets/667x444/luxury-lounge-sani-greece-02.jpg",
                               Price = 280,
                               RoomCount= 10,
-                              Description = "Description for Family Room.",
+                              Description = "Enjoy your relaxing time during paradise vacation with your family.",
 
                         }
                 },
@@ -618,7 +618,7 @@ namespace Services.SeedService
                              Image = "https://cf.bstatic.com/images/hotel/max1024x768/153/153952717.jpg",
                               Price = 320,
                               RoomCount= 5,
-                              Description = "Description for Luxury Room.",
+                              Description = "Our luxury room for 2 adults offers you the perfect honeymoon!",
 
                         }
                 },
@@ -630,7 +630,7 @@ namespace Services.SeedService
                              Image = "https://www.hotels2see.com/sites/default/files/images/luxury-penthouse-majorca-hotel-boutique.jpg",
                               Price = 380,
                               RoomCount= 5,
-                              Description = "Description for Superior Room.",
+                              Description = "One word - superior. This is our best suggestion.We promise that you'll feel like you are in heaven!",
 
                         }
                 },

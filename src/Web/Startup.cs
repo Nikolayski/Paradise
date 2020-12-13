@@ -20,6 +20,7 @@ using Services.Comments;
 using Services.UserService;
 using Services.RecipeService;
 using Services.PostService;
+using Services.ContactService;
 
 namespace Web
 {
@@ -56,6 +57,7 @@ namespace Web
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IRecipeService, RecipeService>();
             services.AddTransient<IPostService, PostService>();
+            services.AddTransient<IContactService, ContactService>();
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
