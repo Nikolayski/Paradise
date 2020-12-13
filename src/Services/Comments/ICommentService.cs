@@ -9,5 +9,6 @@ namespace Services.Comments
         Task AddCommentAsync(string userId, string name, string message);
 
         IEnumerable<CommentAllViewModel> GetAllAsync();
+        Task AddCommentToPostAsync(string userId, string name, string message, string postId);
     }
 }

@@ -21,14 +21,16 @@ namespace Web.Controllers
             this.seedService = seedService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            if (!this.seedService.IsPopulate())
-            {
-               await seedService.AddProductsAsync();
-            }
+            //if (!this.seedService.IsPopulate())
+            //{
+            //    await seedService.AddProductsAsync();
+            //}
             return this.View();
         }
+
+
 
         public  IActionResult About()
         {

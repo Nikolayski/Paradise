@@ -268,16 +268,24 @@ namespace Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("CommentType")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PostId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PostId");
 
                     b.HasIndex("UserId");
 
@@ -551,9 +559,15 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Models.Comment", b =>
                 {
+                    b.HasOne("Models.Post", "Post")
+                        .WithMany("Comments")
+                        .HasForeignKey("PostId");
+
                     b.HasOne("Models.ApplicationUser", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Post");
 
                     b.Navigation("User");
                 });
@@ -627,6 +641,11 @@ namespace Data.Migrations
             modelBuilder.Entity("Models.Image", b =>
                 {
                     b.Navigation("RoomImages");
+                });
+
+            modelBuilder.Entity("Models.Post", b =>
+                {
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("Models.Product", b =>

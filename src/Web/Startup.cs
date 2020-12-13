@@ -66,17 +66,16 @@ namespace Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //var userManager = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                dbContext.Database.Migrate();
+                if (!dbContext.Products.Any())
+                {
+                    new SeedService(dbContext, serviceScope.ServiceProvider).AddProductsAsync().GetAwaiter().GetResult();
 
-            //if (!userManager.Users.Any(x => x.UserName == "nikolayski@abv.bg"))
-            //{
-            //    userManager.CreateAsync(new ApplicationUser
-            //    {
-            //        UserName = "nikolayski@abv.bg",
-            //        Email = "nikolayski@abv.bg",
-            //        EmailConfirmed = true
-            //    }, "Dadada1122_").GetAwaiter().GetResult();
-            //}
+                }
+            }
 
             if (env.IsDevelopment())
             {
@@ -86,7 +85,6 @@ namespace Web
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();

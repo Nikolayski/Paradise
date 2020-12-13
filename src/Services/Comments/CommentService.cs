@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Data;
 using Models;
+using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,17 +24,34 @@ namespace Services.Comments
         public async Task AddCommentAsync(string userId, string name, string message)
         {
             var wantedUser = this.db.Users.FirstOrDefault(X => X.Id == userId);
+            
+                if (!string.IsNullOrEmpty(name))
+                {
+                    wantedUser.FirstName = name;
+                }
+                wantedUser.Comments.Add(new Comment { UserId = userId, Message = message, CreatedOn = DateTime.UtcNow, CommentType = CommentType.Recipe });
+            
+            await this.db.SaveChangesAsync();
+        }
+
+        public async Task AddCommentToPostAsync(string userId, string name, string message, string postId)
+        {
+            var wantedUser = this.db.Users.FirstOrDefault(X => X.Id == userId);
+
             if (!string.IsNullOrEmpty(name))
             {
                 wantedUser.FirstName = name;
             }
-            wantedUser.Comments.Add(new Comment { UserId = userId, Message = message, CreatedOn = DateTime.UtcNow });
+            var comment = new Comment { UserId = userId, Message = message, CreatedOn = DateTime.UtcNow, CommentType = CommentType.Post };
+            this.db.Posts.FirstOrDefault(X => X.Id == postId).Comments.Add(comment);
             await this.db.SaveChangesAsync();
         }
 
+
+
         public IEnumerable<CommentAllViewModel> GetAllAsync()
         {
-            return this.db.Comments.ProjectTo<CommentAllViewModel>(this.mapper.ConfigurationProvider).OrderByDescending(x=>x.CreatedOn).ToList();
+            return this.db.Comments.Where(x=>x.CommentType == CommentType.Recipe).ProjectTo<CommentAllViewModel>(this.mapper.ConfigurationProvider).OrderByDescending(x=>x.CreatedOn).ToList();
         }
     }
 }

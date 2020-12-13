@@ -23,6 +23,10 @@ namespace Services.SeedService
 
         public async Task AddProductsAsync()
         {
+            //if (this.db.Products.Any())
+            //{
+            //    return;
+            //}
             var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 

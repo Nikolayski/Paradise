@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels.Comments;
 
 namespace ViewModels.Posts
 {
@@ -17,6 +18,10 @@ namespace ViewModels.Posts
         public string ImageUrl { get; set; }
 
         public string CreatorUserName { get; set; }
+
+        public ICollection<CommentAllViewModel> Comments{ get; set; }
+        public int CommentsCount => this.Comments.Count();
+
 
 
     }

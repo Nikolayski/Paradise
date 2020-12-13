@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models
@@ -8,6 +9,8 @@ namespace Models
         public Post()
         {
             this.Id = Guid.NewGuid().ToString();
+
+            this.Comments = new HashSet<Comment>();
         }
         public string Id { get; set; }
 
@@ -26,5 +29,9 @@ namespace Models
 
         public string CreatorId { get; set; }
         public ApplicationUser Creator { get; set; }
+
+
+
+        public virtual ICollection<Comment> Comments{ get; set; }
     }
 }
