@@ -36,5 +36,6 @@ namespace Data
                 optionsBuilder.UseSqlServer(Configuration.ConnectionString);
             }
         }
-    }
+
+     }
 }

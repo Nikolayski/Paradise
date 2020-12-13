@@ -20,20 +20,12 @@ namespace Services.SeedService
             this.db = db;
             this.serviceProvider = serviceProvider;
         }
-
         public async Task AddProductsAsync()
         {
-            //if (this.db.Products.Any())
-            //{
-            //    return;
-            //}
             var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-
             var roleName = "Admin";
             await roleManager.CreateAsync(new ApplicationRole(roleName));
-
-
 
             if (!userManager.Users.Any(x => x.UserName == "nikolayski@abv.bg"))
             {
@@ -48,9 +40,6 @@ namespace Services.SeedService
                 await userManager.AddToRoleAsync(user, roleName);
 
             }
-
-          
-
 
             var images = new List<Image>
             {
@@ -120,7 +109,7 @@ namespace Services.SeedService
                 {
                      Type = ImageType.Index,
                       Url = "https://cdn.cnn.com/cnnnext/dam/assets/160726132219-us-beautiful-hotels-4-four-seasons-maui1.jpg",
-                       Description = "Hotel for the whole family, all year round.",
+                       Description = "Place family and friends all year round.",
                }},
                         {new Image
                 {
@@ -155,8 +144,7 @@ namespace Services.SeedService
             {
                 //Italian
 
-                
-                {new Product
+                 {new Product
                 {
                        ProductCountry = ProductCountry.Italian,
                 ProductType = ProductType.Salad,
@@ -195,7 +183,7 @@ namespace Services.SeedService
                 Price = 15.99M,
                 Image = "https://4.bp.blogspot.com/-3eqyckCU3LA/VUR-U0LOn8I/AAAAAAABprc/TwaLIZPGlTo/s280/3-romana%2Bcopia.jpg",
                 } },
-                
+
                 {new Product
                 {
                      ProductCountry = ProductCountry.Italian,
@@ -245,7 +233,7 @@ namespace Services.SeedService
                 Price = 11.99M,
                 Image = "https://cdn140.picsart.com/238247617060212.png?type=webp&to=min&r=240",
                 } },
-                             
+
                {new Product
                 {
                      ProductCountry = ProductCountry.Italian,
@@ -340,7 +328,7 @@ namespace Services.SeedService
                 Price = 10.99M,
                 Image = "https://4.bp.blogspot.com/-zrkBhkmBjbw/Tn9-t7bgCxI/AAAAAAAAABU/UClqrBCcLqM/s280/lamb+vindaloo+empanadas.jpg",
                 } },
-                
+
                 {new Product
                 {
                      ProductCountry = ProductCountry.Indian,
@@ -350,7 +338,7 @@ namespace Services.SeedService
                 Price = 12.99M,
                 Image = "https://i.pinimg.com/474x/63/b7/15/63b7157f253d8e7cb97df861fb263363.jpg",
                 } },
-                
+
                 {new Product
                 {
                      ProductCountry = ProductCountry.Indian,
@@ -369,8 +357,8 @@ namespace Services.SeedService
                 Name = "Biryani",
                 Price = 13.00M,
                 Image = "https://content.jdmagicbox.com/comp/hyderabad/c1/040pxx40.xx40.160420150039.c3c1/catalogue/bahar-biryani-cafe-l-b-nagar-hyderabad-biryani-restaurants-tiidors7ww.jpg",
-                } }, 
-                
+                } },
+
                 {new Product
                 {
                     ProductCountry = ProductCountry.Indian,
@@ -402,8 +390,7 @@ namespace Services.SeedService
                 } },
 
 
-
-               //Traditional
+              //Traditional
                         {new Product
                 {
                       ProductCountry = ProductCountry.Traditional,
@@ -412,8 +399,8 @@ namespace Services.SeedService
                 Name = "Kadaiff",
                 Price = 8.00M,
                 Image = "https://t4.ftcdn.net/jpg/03/11/21/55/240_F_311215583_bMbBPQX1S7SYtAImVXiGT92pu5SLRgus.jpg",
-                } }, 
-                
+                } },
+
                 {new Product
                 {
                       ProductCountry = ProductCountry.Traditional,
@@ -432,8 +419,8 @@ namespace Services.SeedService
                 Name = "Burger",
                 Price = 8.75M,
                 Image = "https://3.bp.blogspot.com/_sABB4tAd_Q0/ShyVQqNWpgI/AAAAAAAAAh0/VQaG6owgT14/s280/100_0847.JPG",
-                } }, 
-                
+                } },
+
                 {new Product
                 {
                       ProductCountry = ProductCountry.Traditional,
@@ -443,7 +430,7 @@ namespace Services.SeedService
                 Price = 10.75M,
                 Image = "https://t3.ftcdn.net/jpg/01/15/65/76/240_F_115657636_PvtrSx5hS8OmuqA9sVfmy1en6FuXRjgg.jpg",
                 } },
-                
+
                 {new Product
                 {
                       ProductCountry = ProductCountry.Traditional,
@@ -452,8 +439,8 @@ namespace Services.SeedService
                 Name = "Macaroni  ",
                 Price = 11.75M,
                 Image = "https://i.pinimg.com/564x/ae/8f/ab/ae8fabae6958152f5388c2ab7c947ff8--artichoke-hearts-mediterranean-pasta.jpg",
-                } }, 
-                
+                } },
+
                 {new Product
                 {
                       ProductCountry = ProductCountry.Traditional,
@@ -476,6 +463,7 @@ namespace Services.SeedService
 
 
               //Spanish
+
             {new Product
                 {
                      ProductCountry = ProductCountry.Spanish,
@@ -495,7 +483,7 @@ namespace Services.SeedService
                 Price = 11.50M,
                 Image = "https://i.pinimg.com/474x/44/76/77/44767762d2c76551193661bfed3d9f9a.jpg",
                 } },
-                
+
                 {new Product
                 {
                      ProductCountry = ProductCountry.Spanish,
@@ -505,7 +493,7 @@ namespace Services.SeedService
                 Price = 10.25M,
                 Image = "https://3.bp.blogspot.com/_TxHsUEgIlvo/SZNDbIW5fcI/AAAAAAAAAKg/Rgo0BluzK2Q/s280/rasam.jpg",
                 } },
-                
+
                 {new Product
                 {
                      ProductCountry = ProductCountry.Spanish,
@@ -515,7 +503,7 @@ namespace Services.SeedService
                 Price = 11.25M,
                 Image = "https://i.pinimg.com/originals/f9/f3/b6/f9f3b600ed4d234a93fab2fe350c9a9b.jpg",
                 } },
-                
+
                 {new Product
                 {
                      ProductCountry = ProductCountry.Spanish,
@@ -524,8 +512,8 @@ namespace Services.SeedService
                 Name = "Tortilla",
                 Price = 10.00M,
                 Image = "https://t3.ftcdn.net/jpg/01/15/65/76/240_F_115657636_PvtrSx5hS8OmuqA9sVfmy1en6FuXRjgg.jpg",
-                } }, 
-                
+                } },
+
                 {new Product
                 {
                      ProductCountry = ProductCountry.Spanish,
@@ -535,7 +523,7 @@ namespace Services.SeedService
                 Price = 12.00M,
                 Image = "https://www.burkecorp.com/wp-content/uploads/2015/04/products-meatballs.png",
                 } },
-                
+
                 {new Product
                 {
                      ProductCountry = ProductCountry.Spanish,
@@ -558,8 +546,7 @@ namespace Services.SeedService
 
             };
 
-
-            var rooms = new List<Room>
+           var rooms = new List<Room>
             {
                 {
                     new Room
@@ -646,12 +633,10 @@ namespace Services.SeedService
                     }
                 }
             }
-
             await this.db.Products.AddRangeAsync(products);
             await this.db.Rooms.AddRangeAsync(rooms);
             await this.db.SaveChangesAsync();
-
-        }
+       }
 
         public bool IsPopulate()
         {

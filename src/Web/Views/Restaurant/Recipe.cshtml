@@ -36,28 +36,28 @@
                                         <p>@this.Model.Count() Comments</p>
                                     </div>
                                 </div>
-                                <p>For the white chocolate waffle cones: <br />Begin by dipping the waffle cones into the melted white chocolate and place point-side-up onto baking rack so excess chocolate can run off. While the chocolate is still warm, decorate with sprinkles and set aside for the chocolate to set.<br /> For the dough:<br />
-                                   1. Add butter, brown sugar and granulated sugar to a medium mixing bowl and sprinkle salt evenly over.<br />
+                                <p>
+                                    For the white chocolate waffle cones: <br />Begin by dipping the waffle cones into the melted white chocolate and place point-side-up onto baking rack so excess chocolate can run off. While the chocolate is still warm, decorate with sprinkles and set aside for the chocolate to set.<br /> For the dough:<br />
+                                    1. Add butter, brown sugar and granulated sugar to a medium mixing bowl and sprinkle salt evenly over.<br />
                                     2. Using an electric hand mixer, whip together until pale and fluffy, about 3 minutes. Mix in the milk and vanilla extract. Add in flour and blend just to combine, while adding milk, 1/2 tablespoon at a time, to thin if needed.<br />
 
                                     3. Using a rubber spatula, fold in chocolate chips.<br />
                                 </p>
 
 
-                                    
+
                                 @*<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren sed diam voluptua.</p>*@
 
                                 <blockquote>
                                     <p>Once ready to serve, place 1 popsicle stick directly into the cookie dough and hand them to your guests.</p>
                                     <div class="block-qoute-by">
-                                     </div>
+                                    </div>
                                 </blockquote>
                                 <p>4. Stuff cookie dough into decorated waffle cones using your hand or a pastry bag for filling.<br /> 5. Once the cones are packed tightly, set in a refrigerator until ready to serve.<br /> </p>
                             </div>
                         </div>
                     </li>
                 </ul>	<!-- End of /.blog-zone -->
-
                 <!--<div class="author-id">
                     <div class="media">
                         <h5>About The Author</h5>
@@ -65,8 +65,9 @@
                         <div class="media-body">
                             <h6 class="media-heading">John Mark</h6>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, sequi quibusdam voluptate perferendis veniam eveniet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, veritatis.</p>
-                        </div>-->	<!-- End of /.media-body -->
-                    <!--</div>-->	<!-- End of /.media -->
+                        </div>-->
+                <!-- End of /.media-body -->
+                <!--</div>-->	<!-- End of /.media -->
                 <!--</div>-->	<!-- End of /.author-id -->
 
                 <div class="comments-box">
@@ -90,24 +91,9 @@
                         </div>
                     }
 
-                    @*{
-                        <div class="row">
-                            <div class="media">
-                                <div class="media-body  col-md-12">
-                                    <div class="col-md-4">
-
-                                    </div>
-                                    <span>@comment.CreatedOnToString</span><h6 class="media-heading">@comment.FirstName<br /><a href="" class="pull-right">(reply)</a></h6>
-                                    <p>@comment.Message</p>
-                                </div>
-                            </div>
-                        </div>
-                        }*@
-
                 </div>	<!-- End of /.comments-box -->
 
                 <div class="leave-comment">
-                    <h5>LEAVE A COMMENT</h5>
                     <form method="post" asp-controller="Comments" asp-action="Comment" class="form-horizontal" role="form">
 
                         @if (string.IsNullOrEmpty(aspUser.Result.FirstName))
@@ -120,7 +106,7 @@
                             </div> <!-- End of /.form-group -->
                         }
                         <div class="form-group">
-                            <label for="inputmessage" class="col-sm-2 control-label">Message</label>
+                            <label for="inputmessage" class="col-sm-2 control-label"><h6>Comment:</h6></label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" id="inputmessage" name="message" rows="3"></textarea>
                             </div>
@@ -138,7 +124,7 @@
             <div class="col-md-3">
                 <div class="blog-sidebar">
                     <div class="block">
-                        <h4>Catagories</h4>
+                        <h4>Categories</h4>
                         <div class="list-group">
                             <a asp-controller="Restaurant" asp-action="Italian" class="list-group-item">
                                 <i class="fa  fa-dot-circle-o"></i>
@@ -163,45 +149,10 @@
                         </div>
                     </div>	<!-- End of /.block -->
                     <div class="block">
-                        <h4>Popular Posts</h4>
                         <ul class="media-list">
-                            <li class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="images/post-img.png" alt="...">
-                                </a>
-                                <div class="media-body">
-                                    <a href="" class="media-heading">
-                                        Lorem ipsum dolor
-                                    </a>
-                                    <p>January 10,2014</p>
-                                </div>
-                            </li>
-                            <li class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="images/post-img-2.png" alt="...">
-                                </a>
-                                <div class="media-body">
-                                    <a href="" class="media-heading">
-                                        Mauris blandit aliquet
-                                    </a>
-                                    <p>January 10,2014</p>
-                                </div>
-                            </li>
-                            <li class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="images/post-img-3.png" alt="...">
-                                </a>
-                                <div class="media-body">
-                                    <a href="" class="media-heading">
-                                        Quisque velit nisi
-                                    </a>
-                                    <p>January 10,2014</p>
-                                </div>
-                            </li>
+                            <vc:random-products></vc:random-products>
                         </ul>
-                    </div>	<!-- End of /.block -->
-
-
+                    </div>
                 </div>	<!-- End of /.Sidebar -->
             </div>	<!-- End of /.col-md-3 -->
         </div>	<!-- End of /.row -->

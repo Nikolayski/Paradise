@@ -20,25 +20,14 @@ namespace Web.Controllers
             _logger = logger;
             this.seedService = seedService;
         }
-
         public IActionResult Index()
         {
-            //if (!this.seedService.IsPopulate())
-            //{
-            //    await seedService.AddProductsAsync();
-            //}
             return this.View();
         }
-
-
-
-        public  IActionResult About()
+        public IActionResult About()
         {
             return this.View();
         }
-
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
