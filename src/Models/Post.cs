@@ -4,12 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
-    public   class Post
+    public class Post
     {
         public Post()
         {
             this.Id = Guid.NewGuid().ToString();
-
             this.Comments = new HashSet<Comment>();
         }
         public string Id { get; set; }
@@ -25,13 +24,13 @@ namespace Models
         [Required]
         public string ImageUrl { get; set; }
 
-        public DateTime  CreatedOn{ get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public bool IsDeleted { get; set; }
 
         public string CreatorId { get; set; }
         public ApplicationUser Creator { get; set; }
 
-        public virtual ICollection<Comment> Comments{ get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

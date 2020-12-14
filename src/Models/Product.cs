@@ -12,7 +12,6 @@ namespace Models
         {
             this.Id = Guid.NewGuid().ToString();
             this.CartProducts = new HashSet<CartProduct>();
-
         }
         public string Id { get; set; }
 

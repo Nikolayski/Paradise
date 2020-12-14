@@ -1,5 +1,4 @@
-﻿using Data;
-using Services.RoomService;
+﻿using Services.RoomService;
 using Services.UserService;
 using ViewModels.Users;
 
@@ -19,12 +18,10 @@ namespace Web.Controllers
     {
         private readonly IRoomService roomsService;
         private readonly IUsersService usersService;
-        private readonly ApplicationDbContext db;
-        private readonly IMapper imapper;
+         private readonly IMapper imapper;
 
         public RoomsController(IRoomService roomsService,
                                IUsersService usersService,
-                               ApplicationDbContext db,
                                IMapper imapper)
         {
             this.roomsService = roomsService;
