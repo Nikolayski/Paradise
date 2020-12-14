@@ -1,19 +1,21 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Data;
+﻿using Data;
 using Models;
 using Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ViewModels.Images;
 using ViewModels.Rooms;
 using ViewModels.Users;
 
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace Services.RoomService
 {
-    public  class RoomService : IRoomService
+    public class RoomService : IRoomService
     {
         private readonly ApplicationDbContext db;
         private readonly IMapper mapper;
@@ -35,7 +37,6 @@ namespace Services.RoomService
             wantedUser.FirstName = reserveInputModel.FirstName;
             wantedUser.LastName = reserveInputModel.LastName;
             wantedUser.UserRooms.Add(new UserRoom { RoomId = roomId, UserId = userId });
-         
             await this.db.SaveChangesAsync();
         }
 
@@ -68,7 +69,7 @@ namespace Services.RoomService
                                 {
                                     Id = x.Id,
                                     Adults = x.Adults,
-                                    Description = x.Description,                                                        //TODO: AM
+                                    Description = x.Description,
                                     Image = x.Image,
                                     Price = x.Price,
                                     RoomCount = x.RoomCount,

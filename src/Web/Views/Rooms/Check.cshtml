@@ -1,13 +1,10 @@
 ﻿@model IEnumerable<RoomCheckViewModel>
 
-
 @{
     ViewData["Title"] = "Check";
 
 }
-
-
-    <div class="hero-wrap" style="background-image: url('https://media.cntraveler.com/photos/5ea9066dcf46c80009a9fd49/master/pass/11Lekkerwater-Beach-Lodge---Bedroom-at-night.jpg');">
+   <div class="hero-wrap" style="background-image: url('https://media.cntraveler.com/photos/5ea9066dcf46c80009a9fd49/master/pass/11Lekkerwater-Beach-Lodge---Bedroom-at-night.jpg');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text d-flex align-itemd-center justify-content-center">
@@ -19,8 +16,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="row">
         @foreach (var room in this.Model)
         {

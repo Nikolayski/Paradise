@@ -1,8 +1,9 @@
-﻿using System;
+﻿using ViewModels.Rooms;
+using ViewModels.Users;
+
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ViewModels.Rooms;
-using ViewModels.Users;
 
 namespace Services.RoomService
 {
@@ -17,6 +18,7 @@ namespace Services.RoomService
         RoomsAllViewModel GetSuperiorRoom();
 
         IEnumerable<RoomsComponentViewModel> GetComponentRooms();
+
         Task AddRoomToUserAsync(UserReserveFinishViewModel reserveInputModel, string userId, string roomId);
     }
 }

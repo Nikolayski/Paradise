@@ -1,17 +1,17 @@
-﻿using AutoMapper;
+﻿using Data;
+using Services.RoomService;
+using Services.UserService;
+using ViewModels.Users;
+
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 using System;
 using System.Globalization;
 using System.Security.Claims;
-
-using Services.RoomService;
-using ViewModels.Rooms;
-using System.Threading.Tasks;
-using Services.UserService;
-using ViewModels.Users;
-using Data;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Web.Controllers
 {
@@ -22,8 +22,8 @@ namespace Web.Controllers
         private readonly ApplicationDbContext db;
         private readonly IMapper imapper;
 
-        public RoomsController(IRoomService roomsService, 
-                               IUsersService usersService ,
+        public RoomsController(IRoomService roomsService,
+                               IUsersService usersService,
                                ApplicationDbContext db,
                                IMapper imapper)
         {
@@ -35,7 +35,7 @@ namespace Web.Controllers
 
         public IActionResult OurRooms()
         {
-            
+
             var rooms = this.roomsService.GetRooms();
             return this.View(rooms);
         }
@@ -50,29 +50,14 @@ namespace Web.Controllers
             var typeOfRoom = room.RoomType;
             this.ViewData["id"] = room.Id;
             this.ViewData["type"] = typeOfRoom;
-           return this.View();
+            return this.View();
         }
 
         [Authorize]
-        //[HttpPost]
-        //public async Task<IActionResult> Reserve(ReserveRoomViewModel reserveInputModel)
-        //{
-        //    ;
-        //    if (!this.ModelState.IsValid)
-        //    {
-        //       return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
-        //    }
-        //    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        //   await this.roomsService.AddRoomToUserAsync(reserveInputModel, userId);
-        //    ;
-        //    return this.Redirect($"/Rooms/Details/{reserveInputModel.RoomId}");
-        //}
-
         [HttpPost]
         public async Task<IActionResult> Reserve(UserReserveFinishViewModel reserveInputModel, string roomId)
         {
-            
-            if (!this.ModelState.IsValid ||reserveInputModel.CheckIn < DateTime.UtcNow || reserveInputModel.CheckOut < DateTime.UtcNow)
+            if (!this.ModelState.IsValid || reserveInputModel.CheckIn < DateTime.UtcNow || reserveInputModel.CheckOut < DateTime.UtcNow)
             {
                 this.ViewData["id"] = roomId;
                 var room = this.db.Rooms.FirstOrDefault(X => X.Id == roomId);
@@ -80,34 +65,31 @@ namespace Web.Controllers
                 this.ViewData["type"] = typeOfRoom;
                 return this.View(reserveInputModel);
             }
-            
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            await this.roomsService.AddRoomToUserAsync(reserveInputModel, userId,roomId);
+            await this.roomsService.AddRoomToUserAsync(reserveInputModel, userId, roomId);
             this.TempData["Success"] = "Added Successfully!";
             return this.Redirect($"/Rooms/Details/{roomId}");
         }
+
         public IActionResult Details(string id)
         {
             var room = this.roomsService.GetRoomById(id);
-            ;
             return this.View(room);
         }
 
-      public IActionResult Check(string checkIn, string checkOut, string adults, string roomType)
+        public IActionResult Check(string checkIn, string checkOut, string adults, string roomType)
         {
-           DateTime checkInDate;
+            DateTime checkInDate;
             DateTime checkOutDate;
-            bool CancheckInDate = DateTime.TryParseExact(checkIn, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out checkInDate);
+            bool CancheckInDate = DateTime.TryParseExact(checkIn, "MM/dd/yyyy",CultureInfo.InvariantCulture, DateTimeStyles.None, out checkInDate);
             bool CancheckOutDate = DateTime.TryParseExact(checkOut, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out checkOutDate);
 
-            if (checkInDate > checkOutDate)
+            if (checkInDate > checkOutDate || checkInDate < DateTime.UtcNow || checkOutDate < DateTime.UtcNow)
             {
-
                 return this.Redirect("/");
             }
             var wantedRooms = this.roomsService.CheckRooms(checkInDate, checkOutDate, adults, roomType);
-           return this.View(wantedRooms);
-
+            return this.View(wantedRooms);
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using ViewModels.Index;
 
-using ViewModels.Index;
+using System.Collections.Generic;
 
 namespace Services.ImageService
 {
-    public    interface IImageService
+    public interface IImageService
     {
         IEnumerable<IndexImageViewModel> GetIndexImages();
     }

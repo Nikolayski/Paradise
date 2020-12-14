@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Services.Comments;
+﻿using Services.Comments;
 using Services.RecipeService;
+using ViewModels.Recipes;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
 using System.Security.Claims;
 using System.Threading.Tasks;
-using ViewModels.Recipes;
 
 namespace Web.Controllers
 {
@@ -13,7 +15,7 @@ namespace Web.Controllers
         private readonly IRecipeService recipeService;
         private readonly ICommentService commentService;
 
-        public RecipesController(IRecipeService recipeService,ICommentService commentService)
+        public RecipesController(IRecipeService recipeService, ICommentService commentService)
         {
             this.recipeService = recipeService;
             this.commentService = commentService;
@@ -38,17 +40,16 @@ namespace Web.Controllers
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-         var recipeId =   await this.recipeService.AddRecipeAsync(addRecipeViewModel, userId);
-             this.TempData["Success"] = "True";
+            var recipeId = await this.recipeService.AddRecipeAsync(addRecipeViewModel, userId);
+            this.TempData["Success"] = "True";
             return this.Redirect($"/Recipes/Details/{recipeId}");
         }
 
-       public async Task<IActionResult> All(int? page)
+        public async Task<IActionResult> All(int? page)
         {
             int pageNumber = page ?? 1;
             int pageSize = 8;
-            var allRecipes = await this.recipeService.GetAllAsync(pageNumber,pageSize);
-            ;
+            var allRecipes = await this.recipeService.GetAllAsync(pageNumber, pageSize);
             return this.View(allRecipes);
         }
 
@@ -59,14 +60,14 @@ namespace Web.Controllers
             return this.View(comments);
         }
 
-                    [Authorize]
+        [Authorize]
         public IActionResult Details(string id)
         {
             var recipeModel = this.recipeService.GetRecipeById(id);
             return this.View(recipeModel);
         }
 
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             await this.recipeService.RemoveRecipe(id);
@@ -74,7 +75,7 @@ namespace Web.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult>  MyRecipes(int? page)
+        public async Task<IActionResult> MyRecipes(int? page)
         {
             int pageNumber = page ?? 1;
             int pageSize = 8;
@@ -82,11 +83,12 @@ namespace Web.Controllers
             var userRecipes = await this.recipeService.GetUserRecipes(pageNumber, pageSize, userId);
             return this.View(userRecipes);
         }
+
         [Authorize]
         public async Task<IActionResult> Remove(string id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            await  this.recipeService.RemoveRecipeFromUserCollection(id,userId);
+            await this.recipeService.RemoveRecipeFromUserCollection(id, userId);
             return this.RedirectToAction("MyRecipes");
         }
     }

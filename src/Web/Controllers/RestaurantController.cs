@@ -1,16 +1,14 @@
-﻿using Data;
-using Models.Enums;
+﻿using Models.Enums;
 using Services.ProductService;
+using Services.UserService;
 using ViewModels.Products;
+using ViewModels.Users;
 
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
+
 using System.Security.Claims;
-using ViewModels.Users;
 using System.Threading.Tasks;
-using Services.Comments;
-using Microsoft.AspNetCore.Authorization;
-using Services.UserService;
 
 namespace Web.Controllers
 {

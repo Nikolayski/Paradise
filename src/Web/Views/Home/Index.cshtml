@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     this.ViewData["Title"] = "Home";
 }
 
@@ -9,9 +9,8 @@
 
     </section>
 </div>
-      
 <section>
- <div class="container  bg-info">
+    <div class="container  bg-info">
         <div class="row no-gutters no-gutters">
             <div class="col-md-12">
                 <form class="form-group" method="post" asp-controller="Rooms" asp-action="Check">
@@ -25,7 +24,7 @@
 
                         <div class="form-control col-md-2">
                             <label for="adults">Adults:</label>
-                            <select name="adults" id="adults">
+                            <select  name="adults" id="adults">
                                 <option value="1">1 Adult</option>
                                 <option value="2">2 Adult</option>
                                 <option value="3">3 Adult</option>
@@ -34,7 +33,7 @@
                         </div>
                         <div class="form-control col-md-3">
                             <label for="roomType">Room</label>
-                            <select  name="roomType" id="roomType">
+                            <select name="roomType" id="roomType">
                                 <option value="all">All</option>
                                 <option value="single">Single Room</option>
                                 <option value="double">Double Room</option>
@@ -54,9 +53,7 @@
     </div>
 </section>
 
-
 <partial name="_Services" />
-
 
 <section class="ftco-section ftco-wrap-about ftco-no-pt ftco-no-pb">
     <div class="container">
@@ -71,15 +68,13 @@
                     <h2 class="mb-4">Paradise Hotel the Most Recommended Hotel All Over the World</h2>
                 </div>
                 <p>Far far away, behind the world mountains, far from the countries, separated by daily routine there is an entry to the paradise!</p>
-                <p><a asp-controller="Rooms" asp-action="OurRooms"  class="btn btn-secondary rounded">Reserve Your Room Now</a></p>
+                <p><a asp-controller="Rooms" asp-action="OurRooms" class="btn btn-secondary rounded">Reserve Your Room Now</a></p>
             </div>
         </div>
     </div>
 </section>
 
-
 <vc:superior-room-view-components></vc:superior-room-view-components>
-
 
 <section class="ftco-section ftco-menu bg-light">
     <div class="container-fluid px-md-4">
@@ -91,9 +86,7 @@
         </div>
         <div class="row">
 
-
-          <vc:index-meals></vc:index-meals>
-           
+            <vc:index-meals></vc:index-meals>
 
             <div class="col-md-12 text-center ftco-animate">
                 <p><a asp-controller="Restaurant" asp-action="Paging" class="btn btn-primary rounded">View All Menu</a></p>
@@ -101,13 +94,12 @@
         </div>
     </div>
 </section>
-
 <section class="instagram">
     <div class="container-fluid">
         <div class="row no-gutters justify-content-center pb-5">
             <div class="col-md-7 text-center heading-section ftco-animate">
                 <span class="subheading">Photos</span>
-             </div>
+            </div>
         </div>
         <div class="row no-gutters">
             <div class="col-sm-12 col-md ftco-animate">
@@ -132,7 +124,7 @@
                 </a>
             </div>
             <div class="col-sm-12 col-md ftco-animate">
-                <a href="images/insta-4.jpg" class="insta-img image-popup" style="background-image: url(images/insta-4.jpg);">
+                <a href="images/insta-4.jpg" class="insta-img image-popup" style="background-image: url(https://cf.bstatic.com/images/hotel/max1024x768/616/61699362.jpg);">
                     <div class="icon d-flex justify-content-center">
                         <span class="icon-instagram align-self-center"></span>
                     </div>

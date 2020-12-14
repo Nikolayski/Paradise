@@ -6,10 +6,6 @@
     this.ViewData["Title"] = "Products";
 }
 
-@*<div class="block-heading bg-info">
-        <h3>OUR MENU</h3>
-    </div>*@
-
 <section id="shop">
     <div class="container">
         <div class="row">
@@ -30,7 +26,6 @@
                                    PageClasses = new[] { "page-link" },
                                })
                 </div>
-
                 <div class="product-grid">
                     <ul>
                         @foreach (var product in this.Model)
@@ -54,12 +49,11 @@
 
                                         </div>
                                     }
-                                </div>	<!-- End of /.products -->
+                                </div>	
                             </li>
                         }
                     </ul>
-                </div>	<!-- End of /.products-grid -->
-
+                </div>	
                 <div class="pagination-bottom">
                     @Html.PagedListPager((IPagedList)Model, page => Url.Action("Paging", new { page = page }),
                                new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
@@ -70,7 +64,6 @@
                                    PageClasses = new[] { "page-link" },
                                })
                 </div>
-
                 <section id="catagorie">
                     <div class="container">
                         <div class="row">
@@ -109,9 +102,9 @@
                                                             <span>Check Items</span>
                                                         </a>
                                                     </p>
-                                                </div>	<!-- End of /.caption -->
-                                            </div>	<!-- End of /.thumbnail -->
-                                        </div>	<!-- End of /.col-sm-6 col-md-4 -->
+                                                </div>
+                                            </div>	
+                                        </div>	
                                         <div class="col-sm-6 col-md-4">
                                             <div class="thumbnail">
                                                 <a asp-controller="Restaurant" asp-action="Desserts" class="catagotie-head">
@@ -125,17 +118,16 @@
                                                             <span>Check Items</span>
                                                         </a>
                                                     </p>
-                                                </div>	<!-- End of /.caption -->
-                                            </div>	<!-- End of /.thumbnail -->
-                                        </div>	<!-- End of /.col-sm-6 col-md-4 -->
-                                    </div>	<!-- End of /.row -->
-                                </div>	<!-- End of /.block -->
-                            </div>	<!-- End of /.col-md-12 -->
-                        </div>	<!-- End of /.row -->
-                    </div>	<!-- End of /.container -->
+                                                </div>	
+                                            </div>	
+                                        </div>	
+                                    </div>	
+                                </div>	
+                            </div>	
+                        </div>	
+                    </div>	 
                 </section>
-
-            </div>	<!-- End of /.col-md-9 -->
+            </div>
             <div class="col-md-3">
                 <div class="blog-sidebar">
                     <div class="block">
@@ -173,17 +165,11 @@
                             <vc:random-products></vc:random-products>
                         </ul>
                     </div>
-
-
-                </div>	<!-- End of /.col-md-3 -->
-
-            </div>	<!-- End of /.row -->
-        </div>	<!-- End of /.container -->
+                </div>	
+            </div>	
+        </div>
     </div>
-</section>	<!-- End of Section -->
-
-
-
+</section>	
 
 @section Scripts{
     <script>

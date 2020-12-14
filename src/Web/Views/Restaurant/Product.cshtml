@@ -1,55 +1,47 @@
 ﻿@model SingleProductViewModel
 
-@{ 
+@{
     ViewData["Title"] = "Product";
     this.Layout = "_LayoutRestaurant";
 }
 
-   
-<hr />
-<hr />
-<hr />
-<hr />
-    <section id="single-product">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="single-product-img">
-                        <img src="@this.Model.Image" alt="">
-                    </div>
+<section id="single-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="single-product-img">
+                    <img src="@this.Model.Image" alt="">
+                </div>
+            </div> 
+            <div class="col-md-4">
+                <div class="block">
+                    <div class="product-des">
+                        <h4>@this.Model.Name</h4>
+                        <p class="price">$@this.Model.Price</p>
+                        <p>@this.Model.Description</p>
 
-                </div> <!-- End of /.col-md-5 -->
-                <div class="col-md-4">
+                        @if (this.User.Identity.IsAuthenticated)
+                        {
+                            <form method="post" action="/Carts/AddFromDetails">
+                                <input type="hidden" name="productId" value="@this.Model.Id" />
+                                <button class="btn btn-success" type="submit">Add to Cart</button>
+                            </form>
+                        }
+                    </div>	
+                </div> 
+            </div>
+            <div class="col-md-3">
+                <div class="blog-sidebar">
                     <div class="block">
-                        <div class="product-des">
-                            <h4>@this.Model.Name</h4>
-                            <p class="price">$@this.Model.Price</p>
-                            <p>@this.Model.Description</p>
-                            
-                            @if (this.User.Identity.IsAuthenticated)
-	                     {
-                        <form method="post" action="/Carts/AddFromDetails">
-                            <input type="hidden" name="productId" value="@this.Model.Id" />
-                            <button class="btn btn-success"  type="submit">Add to Cart</button>
-                        </form>
-	                     }
-                        </div>	<!-- End of /.product-des -->
-                    </div> <!-- End of /.block -->
-                </div>	<!-- End of /.col-md-4 -->
-                <div class="col-md-3">
-                    <div class="blog-sidebar">
-                        <div class="block">
-                            <h4 class="top-catagori-heading">Food Suggestions</h4>
-                            <ul class="media-list">
-                              <vc:random-products></vc:random-products>
-                            </ul>	<!-- End of /.media-list -->
-                        </div>	<!-- End of /.block -->
+                        <h4 class="top-catagori-heading">Food Suggestions</h4>
+                        <ul class="media-list">
 
-                    </div>	<!-- End of /.blog-sidebar -->
+                            <vc:random-products></vc:random-products>
 
-                </div>	<!-- End of /.col-md-3 -->
-            </div>	<!-- End of /.row -->
-            
-        </div>	<!-- End of /.Container -->
-    </section> <!-- End of /.Single-product -->
- 
+                        </ul>	
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

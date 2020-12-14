@@ -1,8 +1,10 @@
-﻿using AutoMapper;
-using Data;
+﻿using Data;
 using Models;
-using System.Threading.Tasks;
 using ViewModels.Contacts;
+
+using AutoMapper;
+
+using System.Threading.Tasks;
 
 namespace Services.ContactService
 {
@@ -16,11 +18,12 @@ namespace Services.ContactService
             this.db = db;
             this.mapper = mapper;
         }
+
         public async Task AddContactAsync(AddContactViewModel addContactViewModel)
         {
             var contact = this.mapper.Map<Contact>(addContactViewModel);
-          await  this.db.Contacts.AddAsync(contact);
-          await  this.db.SaveChangesAsync();
+            await this.db.Contacts.AddAsync(contact);
+            await this.db.SaveChangesAsync();
         }
     }
 }

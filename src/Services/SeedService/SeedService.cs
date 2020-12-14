@@ -1,8 +1,10 @@
 ﻿using Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
 using Models;
 using Models.Enums;
+
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +40,6 @@ namespace Services.SeedService
                 userManager.CreateAsync(user, "Dadada1122_").GetAwaiter().GetResult();
                 await this.db.SaveChangesAsync();
                 await userManager.AddToRoleAsync(user, roleName);
-
             }
 
             var images = new List<Image>
@@ -557,7 +558,6 @@ namespace Services.SeedService
                               Price = 100,
                               RoomCount= 20,
                               Description = "Our comfortable single rooms are just the right size if you are travelling alone.",
-
                         }
                 },
                  {
@@ -569,7 +569,6 @@ namespace Services.SeedService
                               Price = 180,
                               RoomCount= 20,
                               Description = "Most suitable for couples and the size enables you to relax and feel at home. All rooms are also fitted with a desk, a closet and a washlet.",
-
                         }
                 },
                  {
@@ -581,8 +580,7 @@ namespace Services.SeedService
                               Price = 240,
                               RoomCount= 15,
                               Description = "Quiet place, nice atmosphere, perfect room for 2 adults and 1 child.",
-
-                        }
+                       }
                 },
 
                    {
@@ -594,7 +592,6 @@ namespace Services.SeedService
                               Price = 280,
                               RoomCount= 10,
                               Description = "Enjoy your relaxing time during paradise vacation with your family.",
-
                         }
                 },
                    {
@@ -606,7 +603,6 @@ namespace Services.SeedService
                               Price = 320,
                               RoomCount= 5,
                               Description = "Our luxury room for 2 adults offers you the perfect honeymoon!",
-
                         }
                 },
                    {
@@ -618,11 +614,11 @@ namespace Services.SeedService
                               Price = 380,
                               RoomCount= 5,
                               Description = "One word - superior. This is our best suggestion.We promise that you'll feel like you are in heaven!",
-
                         }
                 },
 
             };
+
             foreach (var room in rooms)
             {
                 foreach (var image in images)

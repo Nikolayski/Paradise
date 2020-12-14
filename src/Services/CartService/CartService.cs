@@ -2,8 +2,9 @@
 using Models;
 using ViewModels.Products;
 
-using System.Linq;
 using X.PagedList;
+
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Services.CartService
@@ -22,7 +23,6 @@ namespace Services.CartService
             var wantedUser = this.db.Users.FirstOrDefault(X => X.Id == userId);
             wantedUser.Cart = new Cart();
             await this.db.SaveChangesAsync();
-
         }
 
         public async Task AddProductsToCartAsync(string productId, string userId)
@@ -38,8 +38,7 @@ namespace Services.CartService
             var user = this.db.Users.Where(x => x.Id == userId).Select(x => new UserCartAddProductViewModel
             {
                 Id = x.Id,
-
-                Products =  x.Cart.CartProducts.Select(cp => new ProductToAddViewModel
+                Products = x.Cart.CartProducts.Select(cp => new ProductToAddViewModel
                 {
                     Id = cp.Product.Id,
                     Image = cp.Product.Image,
@@ -48,11 +47,8 @@ namespace Services.CartService
                 }).ToList()
             })
              .FirstOrDefault();
-
             return user;
         }
-
-
 
         public bool IsUserConnectedWithCart(string userId)
         {
@@ -69,7 +65,7 @@ namespace Services.CartService
             var user = this.db.Users.FirstOrDefault(x => x.Id == userId);
             var productCart = this.db.CartProducts.FirstOrDefault(X => X.CartId == user.CartId && X.ProductId == productId);
             this.db.CartProducts.Remove(productCart);
-           await this.db.SaveChangesAsync();
+            await this.db.SaveChangesAsync();
         }
     }
 }

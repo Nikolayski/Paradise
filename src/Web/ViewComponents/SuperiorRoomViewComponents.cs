@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Services.RoomService;
+﻿using Services.RoomService;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Web.ViewComponents
 {
@@ -11,7 +11,6 @@ namespace Web.ViewComponents
         {
             this.roomsService = roomsService;
         }
-
 
         public IViewComponentResult Invoke()
         {

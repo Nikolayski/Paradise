@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ViewModels.Contacts;
+
+using Microsoft.AspNetCore.Mvc;
+
 using Services.ContactService;
 using System.Threading.Tasks;
-using ViewModels.Contacts;
 
 namespace Web.Controllers
 {
@@ -15,7 +17,7 @@ namespace Web.Controllers
         }
         public IActionResult Contact()
         {
-           return this.View();
+            return this.View();
         }
 
         [HttpPost]
@@ -25,7 +27,7 @@ namespace Web.Controllers
             {
                 return this.View(addContactViewModel);
             }
-             await  this.contactService.AddContactAsync(addContactViewModel);
+            await this.contactService.AddContactAsync(addContactViewModel);
             this.TempData["Success"] = "Added Successfully!";
             return this.View();
         }

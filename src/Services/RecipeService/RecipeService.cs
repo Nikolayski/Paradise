@@ -1,11 +1,13 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Data;
+﻿using Data;
 using Models;
+using ViewModels.Recipes;
+
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using X.PagedList;
+
 using System.Linq;
 using System.Threading.Tasks;
-using ViewModels.Recipes;
-using X.PagedList;
 
 namespace Services.RecipeService
 {
@@ -19,13 +21,6 @@ namespace Services.RecipeService
             this.db = db;
             this.mapper = mapper;
         }
-        //public async Task AddRecipeAsync(AddRecipeInputViewModel addRecipeViewModel, string userId)
-        //{
-        //    var recipe = this.mapper.Map<Recipe>(addRecipeViewModel);
-        //    recipe.CreatorId = userId;
-        //    await this.db.Recipes.AddAsync(recipe);
-        //    await this.db.SaveChangesAsync();
-        //}
 
         public async Task<string> AddRecipeAsync(AddRecipeInputViewModel addRecipeViewModel, string userId)
         {
@@ -38,9 +33,9 @@ namespace Services.RecipeService
 
         public async Task<IPagedList<RecipeAllViewModel>> GetAllAsync(int pageNumber, int pageSize)
         {
-           return await this.db.Recipes
-                                .ProjectTo<RecipeAllViewModel>(this.mapper.ConfigurationProvider)
-                                .ToPagedListAsync(pageNumber, pageSize);
+            return await this.db.Recipes
+                                 .ProjectTo<RecipeAllViewModel>(this.mapper.ConfigurationProvider)
+                                 .ToPagedListAsync(pageNumber, pageSize);
         }
 
         public RecipeDetailsViewModel GetRecipeById(string id)
@@ -66,11 +61,11 @@ namespace Services.RecipeService
 
         public async Task RemoveRecipeFromUserCollection(string id, string userId)
         {
-           
-             var user = this.db.Users.FirstOrDefault(X => X.Id == userId);
+
+            var user = this.db.Users.FirstOrDefault(X => X.Id == userId);
             var recipe = this.db.Recipes.FirstOrDefault(X => X.Id == id);
             user.Recipes.Remove(recipe);
-          await  this.db.SaveChangesAsync();
+            await this.db.SaveChangesAsync();
         }
     }
 }

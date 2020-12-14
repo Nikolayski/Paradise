@@ -1,11 +1,9 @@
 ﻿@using X.PagedList.Mvc.Core;
 @using X.PagedList;
-@using Models.Enums
-@using System.Linq;
 
 @{
     this.Layout = "_LayoutRestaurant";
-    var type = this.Model[0].ProductCountry;   
+    var type = this.Model[0].ProductCountry;
 }
 
 <section id="shop">
@@ -32,36 +30,30 @@
                     <ul>
                         @foreach (var product in this.Model)
                         {
-                            
-                    <li>
-                        <div class="products">
-                            <a href="/Restaurant/Product?id=@product.Id">
-                                <img src="@product.Image" alt="" width="280" height="240">
-                            </a>
-                            <a href="#">
-                                <h4>@product.Name</h4>
-                            </a>
-                            <p class="price">£@product.Price</p>
-                            @if (this.User.Identity.IsAuthenticated)
-                            {
-                                <div>
-                                    <form method="post" asp-controller="Carts" asp-action="Add">
-                                        <input type="hidden" name="productId" value="@product.Id" />
-                                        <button type="submit" class="btn btn-success">Add to Cart</button>
-                                    </form>
+                            <li>
+                                <div class="products">
+                                    <a href="/Restaurant/Product?id=@product.Id">
+                                        <img src="@product.Image" alt="" width="280" height="240">
+                                    </a>
+                                    <a href="#">
+                                        <h4>@product.Name</h4>
+                                    </a>
+                                    <p class="price">£@product.Price</p>
+                                    @if (this.User.Identity.IsAuthenticated)
+                                    {
+                                        <div>
+                                            <form method="post" asp-controller="Carts" asp-action="Add">
+                                                <input type="hidden" name="productId" value="@product.Id" />
+                                                <button type="submit" class="btn btn-success">Add to Cart</button>
+                                            </form>
 
+                                        </div>
+                                    }
                                 </div>
-                            }
-                        </div>	<!-- End of /.products -->
-                    </li>
-
-                    <!--  ... -->
-
-                }
+                            </li>
+                        }
                     </ul>
-                </div>	<!-- End of /.products-grid -->
-                <!-- Pagination -->
-
+                </div>>
                 <div class="pagination-bottom">
                     @Html.PagedListPager((IPagedList)Model, page => Url.Action($"{type.ToString()}", new { page = page }),
                                new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
@@ -72,8 +64,7 @@
                                    PageClasses = new[] { "page-link" },
                                })
                 </div>
-
-            </div>	<!-- End of /.col-md-9 -->
+           </div>	
             <div class="col-md-3">
                 <div class="blog-sidebar">
                     <div class="block">
@@ -112,10 +103,8 @@
 
                         </ul>
                     </div>
-
-                </div>	<!-- End of /.col-md-3 -->
-
-            </div>	<!-- End of /.row -->
-        </div>	<!-- End of /.container -->
+                </div>	
+            </div>	
+        </div>	
     </div>>
-</section>	<!-- End of Section -->
+</section>	

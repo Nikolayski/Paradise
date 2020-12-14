@@ -1,13 +1,14 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Data;
+﻿using Data;
 using Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ViewModels.Comments;
 using ViewModels.Posts;
+
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using X.PagedList;
+
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Services.PostService
 {
@@ -31,31 +32,31 @@ namespace Services.PostService
             return post.Id;
         }
 
-        public async  Task<IPagedList<PostAllViewModel>> GetAllPosts(int pageNumber, int pageSize)
+        public async Task<IPagedList<PostAllViewModel>> GetAllPosts(int pageNumber, int pageSize)
         {
             return await this.db.Posts
-                        .Where(x=>x.IsDeleted == false)
+                        .Where(x => x.IsDeleted == false)
                         .ProjectTo<PostAllViewModel>(this.mapper.ConfigurationProvider)
-                        .ToPagedListAsync(pageNumber,pageSize);
+                        .ToPagedListAsync(pageNumber, pageSize);
         }
 
         public PostsDetailsViewModel GetPostById(string id)
         {
             return this.db.Posts.Where(x => x.Id == id && x.IsDeleted == false)
-                       .Select(x=> new PostsDetailsViewModel
+                       .Select(x => new PostsDetailsViewModel
                        {
-                            Id = x.Id,
-                             CreatorUserName = x.Creator.UserName,
-                              Description = x.Description,
-                               ImageUrl = x.ImageUrl,
-                               Title = x.Title,
-                                Comments = x.Comments.Select(c=> new CommentAllViewModel
-                                {
-                                     Id = c.Id,
-                                     CreatedOn = c.CreatedOn,
-                                      FirstName = c.User.FirstName,
-                                       Message = c.Message
-                                })
+                           Id = x.Id,
+                           CreatorUserName = x.Creator.UserName,
+                           Description = x.Description,
+                           ImageUrl = x.ImageUrl,
+                           Title = x.Title,
+                           Comments = x.Comments.Select(c => new CommentAllViewModel
+                           {
+                               Id = c.Id,
+                               CreatedOn = c.CreatedOn,
+                               FirstName = c.User.FirstName,
+                               Message = c.Message
+                           })
                                 .ToList()
                        })
                       .FirstOrDefault();
@@ -65,8 +66,7 @@ namespace Services.PostService
         {
             var post = this.db.Posts.FirstOrDefault(X => X.Id == id);
             post.IsDeleted = true;
-            //this.db.Posts.Remove(post);
-          await  this.db.SaveChangesAsync();
+            await this.db.SaveChangesAsync();
         }
     }
 }

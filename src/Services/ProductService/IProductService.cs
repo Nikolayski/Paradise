@@ -1,11 +1,12 @@
 ﻿using Models;
 using Models.Enums;
+using ViewModels.Products;
+using ViewModels.Users;
+
+using X.PagedList;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ViewModels.Products;
-using ViewModels.Users;
-using X.PagedList;
 
 namespace Services.ProductService
 {

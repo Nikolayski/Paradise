@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using ViewModels.Posts;
 using Services.PostService;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
 using System.Security.Claims;
 using System.Threading.Tasks;
-using ViewModels.Posts;
 
 namespace Web.Controllers
 {
@@ -15,11 +17,12 @@ namespace Web.Controllers
         {
             this.postService = postService;
         }
+
         public async Task<IActionResult> BlogPage(int? page)
         {
             int pageNumber = page ?? 1;
             int pageSize = 6;
-            var posts = await this.postService.GetAllPosts(pageNumber,pageSize);
+            var posts = await this.postService.GetAllPosts(pageNumber, pageSize);
             return this.View(posts);
         }
 
@@ -28,7 +31,8 @@ namespace Web.Controllers
         {
             var post = this.postService.GetPostById(id);
             return this.View(post);
-        } 
+        }
+
         [Authorize]
         public IActionResult Add()
         {
@@ -37,7 +41,7 @@ namespace Web.Controllers
 
         [Authorize]
         [HttpPost]
-        public async  Task<IActionResult> Add(PostInputViewModel postInputModel)
+        public async Task<IActionResult> Add(PostInputViewModel postInputModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -45,17 +49,15 @@ namespace Web.Controllers
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var postId =  await this.postService.AddPostAsync(postInputModel, userId);
+            var postId = await this.postService.AddPostAsync(postInputModel, userId);
             return this.Redirect($"/Blogs/Details/{postId}");
         }
 
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Remove(string id)
         {
-          await  this.postService.RemovePostById(id);
+            await this.postService.RemovePostById(id);
             return this.Redirect("/Blogs/BlogPage");
         }
-        
-       
     }
 }

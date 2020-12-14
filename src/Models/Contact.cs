@@ -22,6 +22,5 @@ namespace Models
         [Required]
         [MinLength(5)]
         public string Message { get; set; }
-
     }
 }

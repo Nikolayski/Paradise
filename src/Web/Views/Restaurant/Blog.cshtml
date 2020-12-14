@@ -3,9 +3,6 @@
     this.ViewData["Title"] = "Videos";
 }
 
-
-
-
 <section id="blog">
     <div class="container">
         <div class="row">
@@ -17,9 +14,8 @@
                         </div>
                         <div class="blog-box">
                             <img src="https://studybreaks.com/wp-content/uploads/2018/02/Food-Blog.jpg" alt="">
-
                             <div class="blog-post-body clearfix">
-                               <a asp-controller="Restaurant" asp-action="Blog">
+                                <a asp-controller="Restaurant" asp-action="Blog">
                                     <h2>Cooking Tips&Tricks</h2>
                                 </a>*
                                 <div class="blog-post-tag">
@@ -30,72 +26,31 @@
                                 </div>
                                 <p>Watch useful videos and improve your cooking skills!</p>
                             </div>
-                        </div>	<!-- End of /.blog-box -->
+                        </div>
                     </li>
                     <li>
                         <div class="blog-icon">
                             <i class="fa  fa-video-camera"></i>
                         </div>
-
-                        <!-- Youtube -->
                         <div class="blog-box">
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/9_5wHw6l11o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <hr />
-                            <hr />
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/1kRcUKux2aU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <hr />
                             <hr />
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/WEDndTCyGgU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <hr />
-                            <hr />
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/UYhKDweME3A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <hr />
-                            <hr />
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/L6yX6Oxy_J8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <div class="blog-post-body clearfix">
-                                <a href="blog-single.html">
-                                    <h2>Youtube Video Post Type Example</h2>
-                                </a>
-                                <div class="blog-post-tag">
-                                    <div class="block">
-                                        <i class="fa fa-clock-o"></i>
-                                        <p>12 Jan,2014</p>
-                                    </div>
-                                    <div class="block">
-                                        <i class="fa fa-user"></i>
-                                        <p>Admin</p>
-                                    </div>
-                                    <div class="block">
-                                        <i class="fa fa-tags"></i>
-                                        <p>
-                                            <a href="">Food Culture</a>,
-                                            <a href="">Green Items</a>
-                                        </p>
-                                    </div>
-                                    <div class="block">
-                                        <i class="fa fa-comments"></i>
-                                        <p>3 Comments</p>
-                                    </div>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, nostrum inventore debitis accusantium natus praesentium enim sequi culpa provident dignissimos veniam deserunt voluptatibus fugit delectus pariatur numquam optio quidem illo. Obcaecati, placeat, enim accusantium sunt inventore sed dolorum molestiae ab consequuntur voluptatem dolor necessitatibus reprehenderit adipisci explicabo hic quibusdam pariatur!</p>
-                                <a href="blog-single.html" class="btn btn-default btn-transparent pull-right" role="button">
-                                    <span>Read More</span>
-                                </a>
-                            </div>
-                        </div>	<!-- End of /.blog-box -->
+                        </div>
                     </li>
                     <li>
                         <div class="blog-icon">
                             <i class="fa fa-music"></i>
                         </div>
-
-                      
                     </li>
-                </ul>	<!-- End of /.blog-zone -->
-                <!-- Pagination -->
-                
-            </div>	<!-- End of /.col-md-9 -->
-
+                </ul>
+            </div>
             <div class="col-md-3">
                 <div class="blog-sidebar">
                     <div class="block">
@@ -122,18 +77,17 @@
                                 Bulgarian Food
                             </a>
                         </div>
-                    </div>	<!-- End of /.block -->
+                    </div>
                     <div class="block">
                         <h4>Our Suggestions</h4>
                         <ul class="media-list">
-                           
-                            <vc:random-products></vc:random-products>
-                        </ul>	<!-- End of /.media-list -->
-                    </div>	<!-- End of /.block -->
 
-                   
-                </div>	<!-- End of /.blog-sidebar -->
-            </div>	<!-- End of /.col-md-3 -->
-        </div>	<!-- End of /.row -->
-    </div>	<!-- End of /.container -->
-</section>	<!-- End of /#Blog -->
+                            <vc:random-products></vc:random-products>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

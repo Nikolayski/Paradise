@@ -6,6 +6,7 @@
     var r = this.Model;
     ;
 }
+
 <div class="hero-wrap" style="background-image: url('https://cf.bstatic.com/data/xphoto/1182x887/125/12568814.jpg?size=S'); ">
     <div class="overlay"></div>
     <div class="container">
@@ -18,19 +19,15 @@
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <a type="button" asp-controller="Blogs" asp-action="Add" class="btn btn-secondary col-md-12">Add your story</a>
     </div>
 </div>
-
-
 <section class="ftco-section">
-
     <div class="container">
         <div class="row d-flex">
-            @if (this.Model.Count==0)
+            @if (this.Model.Count == 0)
             {
                 <div class="col-md-4 d-flex ftco-animate">
                     <h2>There are no stories</h2>
@@ -71,6 +68,5 @@
                            PageClasses = new[] { "page-link" },
                        })
         </div>
-           
     </div>
 </section>

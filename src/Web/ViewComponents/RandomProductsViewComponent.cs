@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Services.ProductService;
+﻿using Services.ProductService;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace Web.ViewComponents
 {

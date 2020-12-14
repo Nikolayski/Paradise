@@ -1,4 +1,5 @@
 ﻿using Models.Enums;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace ViewModels.Recipes

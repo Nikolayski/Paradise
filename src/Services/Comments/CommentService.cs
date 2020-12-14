@@ -1,13 +1,15 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Data;
+﻿using Data;
 using Models;
 using Models.Enums;
+using ViewModels.Comments;
+
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ViewModels.Comments;
 
 namespace Services.Comments
 {
@@ -24,24 +26,23 @@ namespace Services.Comments
         public async Task AddCommentAsync(string userId, string name, string message)
         {
             var wantedUser = this.db.Users.FirstOrDefault(X => X.Id == userId);
-
             if (!string.IsNullOrEmpty(name))
             {
                 wantedUser.FirstName = name;
             }
-            wantedUser.Comments.Add(new Comment { UserId = userId, Message = message, CreatedOn = DateTime.UtcNow, CommentType = CommentType.Recipe });
 
-            await this.db.SaveChangesAsync();
+            wantedUser.Comments.Add(new Comment { UserId = userId, Message = message, CreatedOn = DateTime.UtcNow, CommentType = CommentType.Recipe });
+           await this.db.SaveChangesAsync();
         }
 
         public async Task AddCommentToPostAsync(string userId, string name, string message, string postId)
         {
             var wantedUser = this.db.Users.FirstOrDefault(X => X.Id == userId);
-
             if (!string.IsNullOrEmpty(name))
             {
                 wantedUser.FirstName = name;
             }
+
             var comment = new Comment { UserId = userId, Message = message, CreatedOn = DateTime.UtcNow, CommentType = CommentType.Post };
             this.db.Posts.FirstOrDefault(X => X.Id == postId).Comments.Add(comment);
             await this.db.SaveChangesAsync();

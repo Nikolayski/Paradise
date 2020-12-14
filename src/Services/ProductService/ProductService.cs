@@ -1,20 +1,20 @@
 ﻿using Data;
 using Models;
 using Models.Enums;
+using ViewModels.Products;
+using ViewModels.Users;
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using X.PagedList;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ViewModels.Products;
-using X.PagedList;
-using ViewModels.Users;
 using System.Threading.Tasks;
 
 namespace Services.ProductService
 {
-    
     public class ProductService : IProductService
     {
         private readonly ApplicationDbContext db;
@@ -28,7 +28,7 @@ namespace Services.ProductService
 
         public Task<IPagedList<Product>> GetAllAsync(int pageNumber, int pageSize)
         {
-            return  this.db.Products.ToPagedListAsync(pageNumber, pageSize);
+            return this.db.Products.ToPagedListAsync(pageNumber, pageSize);
         }
 
         public SingleProductViewModel GetProductById(string productId)
@@ -62,12 +62,11 @@ namespace Services.ProductService
             return randomDishes;
         }
 
-        public Task<IPagedList<ProductsAllViewModel>> GetFoodListByCategoryAsync(int pageNumber, int pageSize,ProductCountry type)
+        public Task<IPagedList<ProductsAllViewModel>> GetFoodListByCategoryAsync(int pageNumber, int pageSize, ProductCountry type)
         {
             return this.db.Products.Where(x => x.ProductCountry == type)
                                   .ProjectTo<ProductsAllViewModel>(this.mapper.ConfigurationProvider)
                                   .ToPagedListAsync(pageNumber, pageSize);
-
         }
 
         public IEnumerable<ProductsAllViewModel> GetProductsByName(string name)

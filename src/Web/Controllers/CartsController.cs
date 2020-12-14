@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+﻿using Services.CartService;
 
-using Services.CartService;
+using Microsoft.AspNetCore.Mvc;
+
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Web.Controllers
@@ -21,7 +22,7 @@ namespace Web.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await UpdatingDataAsync(productId, userId);
             return this.Redirect($"/Restaurant/Product/{productId}");
-       }
+        }
 
         private async Task UpdatingDataAsync(string productId, string userId)
         {
@@ -38,7 +39,6 @@ namespace Web.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await UpdatingDataAsync(productId, userId);
             return this.Redirect("/Restaurant/Paging");
-
         }
 
         public IActionResult MyCart()
@@ -52,7 +52,7 @@ namespace Web.Controllers
         public async Task<IActionResult> Remove(string productId)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-          await  this.cartService.RemoveProductAsync(productId, userId);
+            await this.cartService.RemoveProductAsync(productId, userId);
             return this.Redirect("/Carts/MyCart");
         }
     }

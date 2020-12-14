@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Services.ImageService;
 
-using Services.ImageService;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Web.ViewComponents
 {

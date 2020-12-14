@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
-using ViewModels.Contacts;
+﻿using ViewModels.Contacts;
+
+using System.Threading.Tasks;
 
 namespace Services.ContactService
 {
     public interface IContactService
     {
-        Task AddContactAsync(AddContactViewModel addContactViewModel);
+       Task AddContactAsync(AddContactViewModel addContactViewModel);
     }
 }

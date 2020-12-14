@@ -2,10 +2,9 @@
 @model UserReserveFinishViewModel
 
 @{
-    ViewData["Title"] = "Resere Room";
+    this.ViewData["Title"] = "Resere Room";
     this.Layout = "_Layout";
     var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
- 
     var roomType = this.ViewData["type"];
 
 }
@@ -21,11 +20,7 @@
         </div>
     </div>
 </div>
-
-
 <div class="container">
-
-
     <div class="row">
         <div class="col-md-8 order-md-1">
             <h1 class="mb-3">Reservation</h1>
@@ -39,7 +34,7 @@
                     <div class="col-md-6 mb-3">
                         <label asp-for="CheckOut" class="control-label"></label>
                         <input asp-for="CheckOut" class="form-control">
-                       <span asp-validation-for="CheckOut"></span>
+                        <span asp-validation-for="CheckOut"></span>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label asp-for="FirstName" class="control-label"></label>
@@ -52,7 +47,6 @@
                         <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
-
                 <div class="mb-3">
                     <label asp-for="PhoneNumber" class="control-label"></label>
                     <input asp-for="PhoneNumber" class="form-control" />
@@ -63,13 +57,9 @@
                     <select asp-for="Room" class="form-control" asp-items="Html.GetEnumSelectList<RoomType>().Where(x=>x.Text ==roomType.ToString())"></select>
                     <span asp-validation-for="Room" class="text-danger"></span>
                 </div>
-
                 <hr class="mb-4">
-
                 <hr class="mb-4">
-
                 <h4 class="mb-3">Payment</h4>
-
                 <div class="d-block my-3">
                     <div class="custom-control custom-radio">
                         <input id="credit" name="paymentMethod" type="radio" class="custom-control-input">

@@ -1,4 +1,5 @@
 ﻿using Models.Enums;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,6 +17,7 @@ namespace Models
         public string Id { get; set; }
 
         public string Name { get; set; }
+
         public ProductCountry ProductCountry { get; set; }
 
         public ProductType ProductType { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -25,7 +26,7 @@ namespace Models
 
         [MinLength(10)]
         public string Address { get; set; }
-        
+
         public string CartId { get; set; }
 
         public virtual Cart Cart { get; set; }
@@ -37,8 +38,5 @@ namespace Models
         public virtual ICollection<Recipe> Recipes { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
-
-
-
     }
 }

@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using Web.Models;
 using Services.SeedService;
-using System;
-using System.Collections.Generic;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Web.Models;
 
 namespace Web.Controllers
 {
@@ -20,10 +18,12 @@ namespace Web.Controllers
             _logger = logger;
             this.seedService = seedService;
         }
+
         public IActionResult Index()
         {
             return this.View();
         }
+
         public IActionResult About()
         {
             return this.View();

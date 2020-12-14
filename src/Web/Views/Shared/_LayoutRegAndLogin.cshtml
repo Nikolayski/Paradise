@@ -36,56 +36,44 @@
    </head>
 
 <body>
-      <div class="container">
+    <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light" id="divNavBar">
             <a class="navbar-brand text-white" href="/">Hotel Paradise</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-
             <div class="collapse navbar-collapse" id="ftco-nav">
-
-
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="/Rooms/OurRooms" class="nav-link text-white">Our Rooms</a></li>
-                    <li class="nav-item"><a href="/Restaurant/Paging" class="nav-link text-white">Restaurant</a></li>
-                    <li class="nav-item"><a href="/Home/About" class="nav-link text-white">About Us</a></li>
-                    <li class="nav-item"><a href="/Blogs/BlogPage" class="nav-link text-white">Blog</a></li>
-                    <li class="nav-item"><a href="/Contacts/Contact" class="nav-link text-white">Contact</a></li>
+                    <li class="nav-item"><a asp-controller="Rooms" asp-action="OurRooms" class="nav-link text-white">Our Rooms</a></li>
+                    <li class="nav-item"><a asp-controller="Restaurant" asp-action="Paging" class="nav-link text-white">Restaurant</a></li>
+                    <li class="nav-item"><a asp-controller="Blogs" asp-action="BlogPage" class="nav-link text-white">Blog</a></li>
+                    <li class="nav-item"><a asp-controller="Home" asp-action="About" class="nav-link text-white">About Us</a></li>
+                    <li class="nav-item"><a asp-controller="Contacts" asp-action="Contact" class="nav-link text-white">Contact</a></li>
                 </ul>
                 @if (!User.Identity.IsAuthenticated)
                 {
-    <ul class="navbar-nav ml-auto" id="userAuth">
-        <li class="nav-item"><a href="/Identity/Account/Register" class="nav-link text-white">Register</a></li>
-        <li class="nav-item"><a href="/Identity/Account/Login" class="nav-link text-white">Login</a></li>
-    </ul> }
+                    <ul class="navbar-nav ml-auto" id="userAuth">
+                        <li class="nav-item"><a href="/Identity/Account/Login" class="nav-link text-white"></a></li>
+                        <li class="nav-item"><a href="/Identity/Account/Register" class="nav-link text-white"></a></li>
+                    </ul> 
+                    }
                 else
                 {
-            <ul class="navbar-nav ml-auto" id="userAuthLogout">
-                <li class="nav-item"><a href="/Users/Logout" class="nav-link  text-white">Logout</a></li>
-            </ul>
-                }
-
+                    <ul class="navbar-nav ml-auto" id="userAuthLogout">
+                        <li class="nav-item"><a href="/Users/Logout" class="nav-link  text-white">Logout</a></li>
+                    </ul>
+                    }
             </div>
         </nav>
     </div>
 
-
-     @for (int i = 0; i < 5; i++)
-    {
-        <pre></pre>
-    }
-
+    <hr style="height:20px">
 
     @RenderBody()
 
-    @for (int i = 0; i < 10; i++)
-    {
-        <pre></pre>
-    }
+    <hr style="height:20px">
 
-    <footer class="ftco-footer ftco-section img" style="background-image: url(images/bg_4.jpg);">
+   <footer class="ftco-footer ftco-section img" style="background-image: url(images/bg_4.jpg);">
         <div class="overlay"></div>
         <div class="container">
             <div class="row mb-5">
@@ -137,9 +125,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-
                     <p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;
                         <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -149,9 +135,7 @@
         </div>
     </footer>
 
-
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
-
+   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
 
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
