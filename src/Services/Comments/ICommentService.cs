@@ -10,5 +10,6 @@ namespace Services.Comments
 
         IEnumerable<CommentAllViewModel> GetAllAsync();
         Task AddCommentToPostAsync(string userId, string name, string message, string postId);
+        Task RemoveByIdAsync(string id);
     }
 }

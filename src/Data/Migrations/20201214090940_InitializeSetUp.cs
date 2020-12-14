@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class CreateDbInitializeSetUp : Migration
+    public partial class InitializeSetUp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -298,6 +298,7 @@ namespace Data.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatorId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>

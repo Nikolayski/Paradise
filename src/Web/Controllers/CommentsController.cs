@@ -19,35 +19,44 @@ namespace Web.Controllers
             this.commentService = commentService;
             this.postService = postService;
         }
+
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Comment(string name, string message)
         {
-            ;
-            //var HasHeader = this.Request.Headers.TryGetValue("referer", out StringValues value);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
 
-            //if (value[0].Contains("recipe") || value[0].Contains("Recipe"))
-            //{
-
                 await this.commentService.AddCommentAsync(userId, name, message);
-                return this.Redirect("/Restaurant/Recipe");
-            //}
-            //else
-            //{
-            //    await this.commentService.AddCommentAsync(userId, name, message, false);
-            //    return this.Redirect("/");
-            //}
+                return this.Redirect("/Recipes/Recipe");
+          }
 
-
-        }
+        [Authorize]
+        [HttpPost]
         public async Task<IActionResult> CommentBlog(string name, string message, string id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await this.commentService.AddCommentToPostAsync(userId, name, message,id);
             return this.Redirect($"/Blogs/Details/{id}");
         }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Remove(string id)
+        {
+            await  this.commentService.RemoveByIdAsync(id);
+            var value = this.Request.Headers["referer"];
+            if (value[0].Contains("recipe") || value[0].Contains("Recipe"))
+            {
+                return this.Redirect("/Recipes/Recipe");
+            }
+            else
+            {
+                return this.Redirect("/Blogs/BlogPage");
+            }
+            
+        }
+
+        
     }
 }
 

@@ -27,10 +27,10 @@ namespace Models
 
         public DateTime  CreatedOn{ get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public string CreatorId { get; set; }
         public ApplicationUser Creator { get; set; }
-
-
 
         public virtual ICollection<Comment> Comments{ get; set; }
     }

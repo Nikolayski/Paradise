@@ -24,17 +24,6 @@ namespace Services.RoomService
             this.mapper = mapper;
         }
 
-        //public async Task AddRoomToUserAsync(ReserveRoomViewModel reserveInputModel, string userId)
-        //{
-        //    var wantedRoom = this.db.Rooms.FirstOrDefault(x => x.Id == reserveInputModel.RoomId);
-        //    var wantedUser = this.db.Users.FirstOrDefault(x => x.Id == userId);
-        //    wantedRoom.CheckIn = reserveInputModel.CheckIn;
-        //    wantedRoom.CheckOut = reserveInputModel.CheckOut;
-        //    wantedRoom.RoomCount -= 1;
-        //    wantedUser.UserRooms.Add(new UserRoom { RoomId = reserveInputModel.RoomId, UserId = userId });
-        //  await  this.db.SaveChangesAsync();
-        //}
-
         public async Task AddRoomToUserAsync(UserReserveFinishViewModel reserveInputModel, string userId, string roomId)
         {
             var wantedRoom = this.db.Rooms.FirstOrDefault(x => x.Id == roomId);
@@ -66,12 +55,14 @@ namespace Services.RoomService
                 .ProjectTo<RoomCheckViewModel>(this.mapper.ConfigurationProvider);
         }
 
+        public IEnumerable<RoomsComponentViewModel> GetComponentRooms()
+        {
+            return this.db.Rooms.ProjectTo<RoomsComponentViewModel>(this.mapper.ConfigurationProvider)
+                                     .ToList();
+        }
+
         public RoomDetailsViewModel GetRoomById(string id)
         {
-            //return this.db.Rooms.Where(x => x.Id == id)
-            //           .ProjectTo<RoomDetailsViewModel>(this.mapper.ConfigurationProvider)
-            //           .FirstOrDefault();
-
             return this.db.Rooms.Where(x => x.Id == id)
                                 .Select(x => new RoomDetailsViewModel
                                 {

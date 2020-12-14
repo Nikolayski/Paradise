@@ -5,6 +5,7 @@ namespace ViewModels.Comments
 {
     public  class CommentAllViewModel
     {
+        public string Id { get; set; }
         public string FirstName { get; set; }
 
         public string Message { get; set; }

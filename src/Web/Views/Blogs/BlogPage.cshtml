@@ -47,8 +47,6 @@
                             <div class="text mt-3">
                                 <div class="meta mb-2">
                                     <div><a asp-controller="Blogs" asp-action="Details" asp-route-id="@post.Id">@post.CreatedOnToString</a></div>
-                                    <div><a href="#">Admin</a></div>
-                                    <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
                                 </div>
                                 <h3 class="heading"><a asp-controller="Blogs" asp-action="Details" asp-route-id="@post.Id">@post.Title</a></h3>
                                 <p>@post.Description.Substring(0, 20)...</p>

@@ -1,0 +1,7 @@
+﻿@model IEnumerable<RoomsComponentViewModel>
+
+
+@foreach (var room in this.Model)
+{
+    <li><a asp-controller="Rooms" asp-action="Details" asp-route-id="@room.Id">@room.RoomType.ToString()<span>(@room.RoomCount)</span></a></li>
+}

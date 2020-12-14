@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201213230401_CreateDbInitializeSetUp")]
-    partial class CreateDbInitializeSetUp
+    [Migration("20201214090940_InitializeSetUp")]
+    partial class InitializeSetUp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -356,6 +356,9 @@ namespace Data.Migrations
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()

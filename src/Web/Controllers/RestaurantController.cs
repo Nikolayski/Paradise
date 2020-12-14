@@ -17,16 +17,12 @@ namespace Web.Controllers
     public class RestaurantController : Controller
     {
         private readonly IProductService productsService;
-        private readonly ICommentService commentService;
         private readonly IUsersService usersService;
       
-
         public RestaurantController(IProductService productsService,
-                                    ICommentService commentService,
                                     IUsersService usersService)
         {
             this.productsService = productsService;
-            this.commentService = commentService;
             this.usersService = usersService;
         }
 
@@ -49,12 +45,6 @@ namespace Web.Controllers
             return this.View();
         }
 
-        [Authorize]
-        public IActionResult Recipe()
-        {
-            var comments =  this.commentService.GetAllAsync();
-            return this.View(comments);
-        }
         public async Task<IActionResult> Italian(int? page)
         {
             var italiansDishes =await GetProductsByCountryAsync(page, ProductCountry.Italian);

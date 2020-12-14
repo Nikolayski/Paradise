@@ -1,13 +1,11 @@
-﻿@model PostsDetailsViewModel
-@using Microsoft.AspNetCore.Identity;
-@inject UserManager<ApplicationUser> userManager;
+﻿@using Microsoft.AspNetCore.Identity;
+@model PostsDetailsViewModel
+@inject UserManager<ApplicationUser> userManager
 
 @{
     ViewData["Title"] = "Details";
     var aspUser = this.userManager.GetUserAsync(this.User);
 }
-
-
 
 <div class="hero-wrap" style="background-image: url('https://www.chongfahresort.com/wp-content/uploads/2019/12/gallery-slide-overview-02.jpg');">
     <div class="overlay"></div>
@@ -40,20 +38,22 @@
                     <h3 class="mb-5">@this.Model.CommentsCount Comments</h3>
                     <ul class="comment-list">
 
-
-                        @foreach (var comment in this.Model.Comments)
+                       @foreach (var comment in this.Model.Comments)
                         {
                             <li class="comment">
                                 <div class="comment-body">
                                     <h3>@comment.FirstName</h3>
                                     <div class="meta">@comment.CreatedOnToString </div>
                                     <p>@comment.Message</p>
+                                    @if (this.User.IsInRole("Admin"))
+                                    {
+                                    <a class="btn btn-danger" asp-controller="Comments" asp-action="Remove" asp-route-id="@comment.Id">Remove</a>
+                                    }
                                 </div>
                             </li>
                         }
 
-
-                    </ul>
+                   </ul>
                     <!-- END comment-list -->
                     <form method="post" asp-controller="Comments" asp-action="CommentBlog" class="form-horizontal" role="form">
                         @if (string.IsNullOrEmpty(aspUser.Result.FirstName))
@@ -77,113 +77,40 @@
                             </div>
                             <input type="hidden" name="id" value="@this.Model.Id" />
                         </div>
-
-                    </form>
-
-
-                    @*<div class="comment-form-wrap pt-5">
-                            <h3 class="mb-5">Leave a comment</h3>
-                            <form action="#" class="p-5 bg-light">
-                                <div class="form-group">
-                                    <label for="name">Name *</label>
-                                    <input type="text" class="form-control" id="name">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="message">Message</label>
-                                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-                                </div>
-
-                            </form>
-                        </div>*@
-
-
-
-
+                   </form>
                 </div>
-
-            </div> <!-- .col-md-8 -->
+            </div>
             <div class="col-lg-4 sidebar ftco-animate pl-md-5">
                 <div class="sidebar-box">
-                    <form action="#" class="search-form">
-                        <div class="form-group">
-                            <span class="icon fa fa-search"></span>
-                            <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
-                        </div>
-                    </form>
+                    <h3>Free rooms</h3>
                 </div>
                 <div class="sidebar-box ftco-animate">
                     <div class="categories">
-                        <h3>Categories</h3>
-                        <li><a href="#">Single <span>(12)</span></a></li>
-                        <li><a href="#">Double <span>(22)</span></a></li>
-                        <li><a href="#">Tripple <span>(37)</span></a></li>
-                        <li><a href="#">Family <span>(42)</span></a></li>
-                        <li><a href="#">Luxury <span>(14)</span></a></li>
-                        <li><a href="#">Superior <span>(140)</span></a></li>
+
+                        <vc:rooms></vc:rooms>
                     </div>
                 </div>
-
-                <div class="sidebar-box ftco-animate">
-                    <h3>Recent Blog</h3>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                            <div class="meta">
-                                <div><a href="#"><span class="icon-calendar"></span> July, 04 2019</a></div>
-                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                            <div class="meta">
-                                <div><a href="#"><span class="icon-calendar"></span> July, 04 2019</a></div>
-                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
-                        <div class="text">
-                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                            <div class="meta">
-                                <div><a href="#"><span class="icon-calendar"></span> July, 04 2019</a></div>
-                                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="sidebar-box ftco-animate">
                     <h3>Tag Cloud</h3>
                     <div class="tagcloud">
-                        <a href="#" class="tag-cloud-link">dish</a>
-                        <a href="#" class="tag-cloud-link">menu</a>
-                        <a href="#" class="tag-cloud-link">food</a>
-                        <a href="#" class="tag-cloud-link">sweet</a>
-                        <a href="#" class="tag-cloud-link">tasty</a>
-                        <a href="#" class="tag-cloud-link">delicious</a>
-                        <a href="#" class="tag-cloud-link">desserts</a>
-                        <a href="#" class="tag-cloud-link">drinks</a>
+                        <a asp-controller="Rooms" asp-action="OurRooms">Rooms</a>
+                        <a asp-controller="Restaurant" asp-action="Paging">Products</a>
+                        <a asp-controller="Recipes" asp-action="Recipe">Recipe</a>
+                        <a asp-controller="Restaurant" asp-action="Salads">Salads</a>
+                        <a asp-controller="Restaurant" asp-action="Mains">Mains</a>
+                        <a asp-controller="Restaurant" asp-action="Desserts">Desserts</a>
+                        <a asp-controller="Recipes" asp-action="All">Recipes</a>
+                        <a asp-controller="Restaurant" asp-action="Blog">Videos</a>
                     </div>
                 </div>
-
-                <div class="sidebar-box ftco-animate">
+               <div class="sidebar-box ftco-animate">
                     <h3>Paragraph</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    <p>
+                        We love food! Let’s create a digital cook book for everyone in the region to share our favorite recipes. It may be a new creation, a personalized favourite, a family secret shared by your grandma, your aunt’s prize winning chutney or uncle Ron’s hot sauce.
+                        Use our recipe form to load up your original* in the hills recipe – please share your tweaks, culinary secrets and local tips with a photo if possible! Check out the other recipes on our site, share them with friends and on social media. Make them, rate them and comment on the recipes. Let’s get cooking.
+                    </p>
                 </div>
             </div>
-
         </div>
     </div>
 </section> <!-- .section -->

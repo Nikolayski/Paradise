@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services.Comments;
 using Services.RecipeService;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -10,10 +11,12 @@ namespace Web.Controllers
     public class RecipesController : Controller
     {
         private readonly IRecipeService recipeService;
+        private readonly ICommentService commentService;
 
-        public RecipesController(IRecipeService recipeService)
+        public RecipesController(IRecipeService recipeService,ICommentService commentService)
         {
             this.recipeService = recipeService;
+            this.commentService = commentService;
         }
 
         [Authorize]
@@ -35,12 +38,11 @@ namespace Web.Controllers
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            //await this.recipeService.AddRecipeAsync(addRecipeViewModel, userId);
          var recipeId =   await this.recipeService.AddRecipeAsync(addRecipeViewModel, userId);
-            //return this.Redirect("/Recipes/All");
-            this.TempData["Success"] = "True";
+             this.TempData["Success"] = "True";
             return this.Redirect($"/Recipes/Details/{recipeId}");
         }
+
        public async Task<IActionResult> All(int? page)
         {
             int pageNumber = page ?? 1;
@@ -50,6 +52,14 @@ namespace Web.Controllers
             return this.View(allRecipes);
         }
 
+        [Authorize]
+        public IActionResult Recipe()
+        {
+            var comments = this.commentService.GetAllAsync();
+            return this.View(comments);
+        }
+
+                    [Authorize]
         public IActionResult Details(string id)
         {
             var recipeModel = this.recipeService.GetRecipeById(id);

@@ -20,33 +20,15 @@
 
                             <div class="blog-post-body clearfix">
                                <a asp-controller="Restaurant" asp-action="Blog">
-                                    <h2>Cooking tips tricks</h2>
+                                    <h2>Cooking Tips&Tricks</h2>
                                 </a>*
                                 <div class="blog-post-tag">
                                     <div class="block">
                                         <i class="fa fa-clock-o"></i>
-                                        <p>12 Jan,2014</p>
-                                    </div>
-                                    <div class="block">
-                                        <i class="fa fa-user"></i>
-                                        <p>Admin</p>
-                                    </div>
-                                    <div class="block">
-                                        <i class="fa fa-tags"></i>
-                                        <p>
-                                            <a href="">Food Culture</a>,
-                                            <a href="">Green Items</a>
-                                        </p>
-                                    </div>
-                                    <div class="block">
-                                        <i class="fa fa-comments"></i>
-                                        <p>3 Comments</p>
-                                    </div>
+                                        <p>@DateTime.UtcNow.AddHours(2)</p>
+                                    </div>>
                                 </div>
-                                <p>Watch usefull videos and Improve your cooking skills!</p>
-                                <a href="blog-single.html" class="btn btn-default btn-transparent pull-right" role="button">
-                                    <span>Read More</span>
-                                </a>
+                                <p>Watch useful videos and improve your cooking skills!</p>
                             </div>
                         </div>	<!-- End of /.blog-box -->
                     </li>
@@ -142,41 +124,10 @@
                         </div>
                     </div>	<!-- End of /.block -->
                     <div class="block">
-                        <h4>Popular Posts</h4>
+                        <h4>Our Suggestions</h4>
                         <ul class="media-list">
-                            <li class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="images/post-img.png" alt="...">
-                                </a>
-                                <div class="media-body">
-                                    <a href="" class="media-heading">
-                                        Lorem ipsum dolor
-                                    </a>
-                                    <p>January 10,2014</p>
-                                </div>
-                            </li>	<!-- End of /.media -->
-                            <li class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="images/post-img-2.png" alt="...">
-                                </a>
-                                <div class="media-body">
-                                    <a href="" class="media-heading">
-                                        Mauris blandit aliquet
-                                    </a>
-                                    <p>January 10,2014</p>
-                                </div>
-                            </li>	<!-- End of /.media -->
-                            <li class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="images/post-img-3.png" alt="...">
-                                </a>
-                                <div class="media-body">
-                                    <a href="" class="media-heading">
-                                        Quisque velit nisi
-                                    </a>
-                                    <p>January 10,2014</p>
-                                </div>
-                            </li>	<!-- End of /.media -->
+                           
+                            <vc:random-products></vc:random-products>
                         </ul>	<!-- End of /.media-list -->
                     </div>	<!-- End of /.block -->
 

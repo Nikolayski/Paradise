@@ -24,6 +24,7 @@ namespace Services.PostService
         public async Task<string> AddPostAsync(PostInputViewModel postInputModel, string userId)
         {
             var post = this.mapper.Map<Post>(postInputModel);
+            post.IsDeleted = false;
             post.CreatorId = userId;
             await this.db.Posts.AddAsync(post);
             await this.db.SaveChangesAsync();
@@ -33,17 +34,14 @@ namespace Services.PostService
         public async  Task<IPagedList<PostAllViewModel>> GetAllPosts(int pageNumber, int pageSize)
         {
             return await this.db.Posts
+                        .Where(x=>x.IsDeleted == false)
                         .ProjectTo<PostAllViewModel>(this.mapper.ConfigurationProvider)
                         .ToPagedListAsync(pageNumber,pageSize);
         }
 
         public PostsDetailsViewModel GetPostById(string id)
         {
-            //return this.db.Posts.Where(x => x.Id == id)
-            //           .ProjectTo<PostsDetailsViewModel>(this.mapper.ConfigurationProvider)
-            //           .FirstOrDefault();
-
-            return this.db.Posts.Where(x => x.Id == id)
+            return this.db.Posts.Where(x => x.Id == id && x.IsDeleted == false)
                        .Select(x=> new PostsDetailsViewModel
                        {
                             Id = x.Id,
@@ -53,6 +51,7 @@ namespace Services.PostService
                                Title = x.Title,
                                 Comments = x.Comments.Select(c=> new CommentAllViewModel
                                 {
+                                     Id = c.Id,
                                      CreatedOn = c.CreatedOn,
                                       FirstName = c.User.FirstName,
                                        Message = c.Message
@@ -65,7 +64,8 @@ namespace Services.PostService
         public async Task RemovePostById(string id)
         {
             var post = this.db.Posts.FirstOrDefault(X => X.Id == id);
-            this.db.Posts.Remove(post);
+            post.IsDeleted = true;
+            //this.db.Posts.Remove(post);
           await  this.db.SaveChangesAsync();
         }
     }

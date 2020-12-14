@@ -57,20 +57,7 @@
                             </div>
                         </div>
                     </li>
-                </ul>	<!-- End of /.blog-zone -->
-                <!--<div class="author-id">
-                    <div class="media">
-                        <h5>About The Author</h5>
-                        <img class="media-object pull-left" src="images/author.jpg" alt="...">
-                        <div class="media-body">
-                            <h6 class="media-heading">John Mark</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, sequi quibusdam voluptate perferendis veniam eveniet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, veritatis.</p>
-                        </div>-->
-                <!-- End of /.media-body -->
-                <!--</div>-->	<!-- End of /.media -->
-                <!--</div>-->	<!-- End of /.author-id -->
-
-                <div class="comments-box">
+                </ul>	 <div class="comments-box">
 
                     <h5>@this.Model.Count() Comments</h5>
                     @foreach (var comment in this.Model)
@@ -83,9 +70,14 @@
                                         <span>@comment.CreatedOnToString</span>
                                     </div>
                                     <div class="col-md-8">
-                                        @*<p class="col-md-8">@comment.Message</p>*@
                                         <pre style="display: inline-block; border:none">@comment.Message</pre>
                                     </div>
+                                    @if (this.User.IsInRole("Admin"))
+                                    {
+                                    <div>
+                                        <a class="btn btn-danger" asp-controller="Comments" asp-action="Remove" asp-route-id="@comment.Id">Remove</a>
+                                    </div>
+                                    }
                                 </div>
                             </div>
                         </div>

@@ -55,5 +55,7 @@ namespace Web.Controllers
           await  this.postService.RemovePostById(id);
             return this.Redirect("/Blogs/BlogPage");
         }
+        
+       
     }
 }

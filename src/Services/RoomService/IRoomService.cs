@@ -16,7 +16,7 @@ namespace Services.RoomService
 
         RoomsAllViewModel GetSuperiorRoom();
 
-        //Task AddRoomToUserAsync(ReserveRoomViewModel reserveInputModel, string userId);
+        IEnumerable<RoomsComponentViewModel> GetComponentRooms();
         Task AddRoomToUserAsync(UserReserveFinishViewModel reserveInputModel, string userId, string roomId);
     }
 }

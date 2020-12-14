@@ -28,6 +28,7 @@ namespace Mapping
             this.CreateMap<Room, RoomsAllViewModel>()
                             .ForMember(vm => vm.RoomType,
                                        map => map.MapFrom(r => r.RoomType.ToString()));
+            this.CreateMap<Room, RoomsComponentViewModel>();
 
            this.CreateMap<Room, RoomDetailsViewModel>();
             this.CreateMap<Room, RoomCheckViewModel>();
