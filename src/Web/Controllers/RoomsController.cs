@@ -11,6 +11,7 @@ using System.Globalization;
 using System.Security.Claims;
 using System.Linq;
 using System.Threading.Tasks;
+using Data;
 
 namespace Web.Controllers
 {
@@ -19,6 +20,7 @@ namespace Web.Controllers
         private readonly IRoomService roomsService;
         private readonly IUsersService usersService;
          private readonly IMapper imapper;
+        private readonly ApplicationDbContext db;
 
         public RoomsController(IRoomService roomsService,
                                IUsersService usersService,
@@ -26,13 +28,11 @@ namespace Web.Controllers
         {
             this.roomsService = roomsService;
             this.usersService = usersService;
-            this.db = db;
             this.imapper = imapper;
         }
 
         public IActionResult OurRooms()
         {
-
             var rooms = this.roomsService.GetRooms();
             return this.View(rooms);
         }
@@ -40,12 +40,10 @@ namespace Web.Controllers
         [Authorize]
         public IActionResult Reserve(string id)
         {
-
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = this.usersService.GetUser(userId);
-            var room = this.db.Rooms.FirstOrDefault(X => X.Id == id);
-            var typeOfRoom = room.RoomType;
-            this.ViewData["id"] = room.Id;
+            var typeOfRoom = this.roomsService.GetTypeOfRoom(id);
+            this.ViewData["id"] = id;
             this.ViewData["type"] = typeOfRoom;
             return this.View();
         }
@@ -57,8 +55,7 @@ namespace Web.Controllers
             if (!this.ModelState.IsValid || reserveInputModel.CheckIn < DateTime.UtcNow || reserveInputModel.CheckOut < DateTime.UtcNow)
             {
                 this.ViewData["id"] = roomId;
-                var room = this.db.Rooms.FirstOrDefault(X => X.Id == roomId);
-                var typeOfRoom = room.RoomType;
+                var typeOfRoom = this.roomsService.GetTypeOfRoom(roomId);
                 this.ViewData["type"] = typeOfRoom;
                 return this.View(reserveInputModel);
             }
