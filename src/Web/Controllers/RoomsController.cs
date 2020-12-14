@@ -20,7 +20,6 @@ namespace Web.Controllers
         private readonly IRoomService roomsService;
         private readonly IUsersService usersService;
          private readonly IMapper imapper;
-        private readonly ApplicationDbContext db;
 
         public RoomsController(IRoomService roomsService,
                                IUsersService usersService,

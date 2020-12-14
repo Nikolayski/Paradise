@@ -96,5 +96,10 @@ namespace Services.RoomService
                                 .ProjectTo<RoomsAllViewModel>(this.mapper.ConfigurationProvider)
                                 .FirstOrDefault();
         }
+
+        public RoomType GetTypeOfRoom(string id)
+        {
+            return this.db.Rooms.FirstOrDefault(X => X.Id == id).RoomType;
+        }
     }
 }

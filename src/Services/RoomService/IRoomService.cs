@@ -4,6 +4,7 @@ using ViewModels.Users;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Models.Enums;
 
 namespace Services.RoomService
 {
@@ -20,5 +21,7 @@ namespace Services.RoomService
         IEnumerable<RoomsComponentViewModel> GetComponentRooms();
 
         Task AddRoomToUserAsync(UserReserveFinishViewModel reserveInputModel, string userId, string roomId);
+
+        RoomType GetTypeOfRoom(string id);
     }
 }
