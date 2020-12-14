@@ -7,14 +7,8 @@ namespace Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
-        public ApplicationDbContext()
-        {
-
-        }
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-
-        }
+        public ApplicationDbContext() { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Image> Images { get; set; }
@@ -28,14 +22,13 @@ namespace Data
         public DbSet<Post> Posts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(Configuration.ConnectionString);
+                optionsBuilder.UseSqlServer(@"Server=.;Database=Paradise;Integrated Security=true;");
             }
         }
 
-     }
+    }
 }

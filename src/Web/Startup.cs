@@ -1,37 +1,37 @@
+using AutoMapper;
+using Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AutoMapper;
-using Mapping;
 
 using Data;
 using Models;
-using Services.SeedService;
-using Services.ProductService;
-using Services.ImageService;
-using Services.CartService;
-using Services.RoomService;
-using Microsoft.AspNetCore.Identity;
 using System.Linq;
+using Services.CartService;
 using Services.Comments;
-using Services.UserService;
-using Services.RecipeService;
-using Services.PostService;
 using Services.ContactService;
+using Services.ImageService;
+using Services.ProductService;
+using Services.PostService;
+using Services.RoomService;
+using Services.RecipeService;
+using Services.SeedService;
+using Services.UserService;
 
 namespace Web
 {
     public class Startup
     {
+        private readonly IConfiguration configuration;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -39,7 +39,7 @@ namespace Web
             //db
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(
-                   Configuration.GetConnectionString("DefaultConnection")));
+                   this.configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();

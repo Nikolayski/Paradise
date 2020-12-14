@@ -61,6 +61,7 @@ namespace Mapping
             this.CreateMap<Post, PostsDetailsViewModel>();
 
             //contacts
+
             this.CreateMap<AddContactViewModel, Contact>();
 
         }
