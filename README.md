@@ -1,5 +1,5 @@
 # Paradise Beach Resort
 .NET Core 5.0 Project
 
-
-![alt text](C:\Users\Huko\Desktop\Paradise images)
+Home Page
+![alt text](https://ibb.co/ZXmSthV)
