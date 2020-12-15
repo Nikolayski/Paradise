@@ -7,3 +7,7 @@ Home Page
 
 Rooms Page
 ![alt text](https://www.linkpicture.com/q/room_1.jpg)
+
+
+Restaurant Page
+![alt text](https://www.linkpicture.com/q/Restaurant.jpg)
