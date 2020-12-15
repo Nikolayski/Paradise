@@ -36,7 +36,7 @@
                     <img src="@recipe.ImageUrl" width="150" height="130" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">@recipe.Name</h5>
-                        <p class="card-text">@recipe.Instructions.Substring(0, 20)</p>
+                        <p class="card-text">@recipe.Instructions.Substring(0, 20) ...</p>
                         <a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-primary">Details</a>
                         @if (this.User.IsInRole("Admin"))
                         {

@@ -19,5 +19,8 @@ namespace Services.RecipeService
         Task RemoveRecipeFromUserCollection(string id, string userId);
 
         Task RemoveRecipe(string id);
+
+        RecipeEditViewModel GetRecipeForEdit(string id);
+        Task ApplyEditRecipe(RecipeEditViewModel recipeEditViewModel);
     }
 }

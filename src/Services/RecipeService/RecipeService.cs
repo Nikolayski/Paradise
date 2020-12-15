@@ -31,6 +31,16 @@ namespace Services.RecipeService
             return recipe.Id;
         }
 
+        public async Task ApplyEditRecipe(RecipeEditViewModel recipeEditViewModel)
+        {
+            var recipe = this.db.Recipes.FirstOrDefault(X => X.Id == recipeEditViewModel.Id);
+            recipe.Name = recipeEditViewModel.Name;
+            recipe.ImageUrl = recipeEditViewModel.ImageUrl;
+            recipe.CookingTime = recipeEditViewModel.CookingTime;
+            recipe.Instructions = recipeEditViewModel.Instructions;
+            await this.db.SaveChangesAsync();
+        }
+
         public async Task<IPagedList<RecipeAllViewModel>> GetAllAsync(int pageNumber, int pageSize)
         {
             return await this.db.Recipes
@@ -43,6 +53,13 @@ namespace Services.RecipeService
             return this.db.Recipes.Where(x => x.Id == id)
                                         .ProjectTo<RecipeDetailsViewModel>(this.mapper.ConfigurationProvider)
                                         .FirstOrDefault();
+        }
+
+        public RecipeEditViewModel GetRecipeForEdit(string id)
+        {
+            var recipe = this.db.Recipes.FirstOrDefault(X => X.Id == id);
+            var recipeEditModel = this.mapper.Map<RecipeEditViewModel>(recipe);
+            return recipeEditModel;
         }
 
         public async Task<IPagedList<UserRecipesViewModel>> GetUserRecipes(int pageNumber, int pageSize, string userid)

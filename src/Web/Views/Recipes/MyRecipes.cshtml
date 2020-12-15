@@ -37,6 +37,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Id">@recipe.Name</a></h5>
                         <p class="card-text">@recipe.Instructions.Substring(0, 20)</p>
+                        <a asp-controller="Recipes" asp-action="Edit" asp-route-id="@recipe.Id" class="btn btn-info">Edit</a>
                         <a asp-controller="Recipes" asp-action="Remove" asp-route-id="@recipe.Id" class="btn btn-danger">Remove</a>
                     </div>
                 </div>

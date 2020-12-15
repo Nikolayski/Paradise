@@ -54,6 +54,7 @@ namespace Mapping
             this.CreateMap<Recipe, RecipeAllViewModel>();
             this.CreateMap<Recipe, RecipeDetailsViewModel>();
             this.CreateMap<Recipe, UserRecipesViewModel>();
+            this.CreateMap<Recipe, RecipeEditViewModel>();
 
            //posts
 

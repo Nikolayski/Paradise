@@ -1,0 +1,47 @@
+﻿@model ViewModels.Recipes.RecipeEditViewModel
+
+@{
+    this.Layout = "_LayoutRestaurant";
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ImageUrl" class="control-label"></label>
+                    <input asp-for="ImageUrl" class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Instructions" class="control-label"></label>
+                    <textarea asp-for="Instructions" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="Instructions" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CookingTime" class="control-label"></label>
+                    <input asp-for="CookingTime" class="form-control" />
+                    <span asp-validation-for="CookingTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -91,5 +91,24 @@ namespace Web.Controllers
             await this.recipeService.RemoveRecipeFromUserCollection(id, userId);
             return this.RedirectToAction("MyRecipes");
         }
+
+        [Authorize]
+        public IActionResult Edit(string id)
+        {
+            var recipe = this.recipeService.GetRecipeForEdit(id);
+            return this.View(recipe);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async  Task<IActionResult> Edit(RecipeEditViewModel recipeEditViewModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(recipeEditViewModel);
+            }
+            await this.recipeService.ApplyEditRecipe(recipeEditViewModel);
+            return this.Redirect($"/Recipes/Details/{recipeEditViewModel.Id}");
+        }
     }
 }
