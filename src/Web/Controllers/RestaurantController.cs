@@ -35,6 +35,10 @@ namespace Web.Controllers
        public IActionResult Product(string id)
         {
             var singleProduct = this.productsService.GetProductById(id);
+            if (singleProduct == null)
+            {
+                return this.NotFound();
+            }
             return this.View(singleProduct);
         }
 

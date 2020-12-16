@@ -99,7 +99,17 @@ namespace Services.RoomService
 
         public RoomType GetTypeOfRoom(string id)
         {
-            return this.db.Rooms.FirstOrDefault(X => X.Id == id).RoomType;
+            //return this.db.Rooms.FirstOrDefault(X => X.Id == id).RoomType;
+            ;
+           var room =  this.db.Rooms.FirstOrDefault(X => X.Id == id);
+            if (room==null)
+            {
+                return RoomType.UNKNOWN;
+            }
+            else
+            {
+              return  room.RoomType;
+            }
         }
     }
 }

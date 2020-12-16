@@ -35,10 +35,8 @@ namespace Web.Controllers
             ;
             if (!this.ModelState.IsValid)
             {
-                //return this.Redirect("/Recipes/Add");
                 return this.View(addRecipeViewModel);
             }
-
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var recipeId = await this.recipeService.AddRecipeAsync(addRecipeViewModel, userId);
             this.TempData["Success"] = "True";
@@ -64,6 +62,10 @@ namespace Web.Controllers
         public IActionResult Details(string id)
         {
             var recipeModel = this.recipeService.GetRecipeById(id);
+            if (recipeModel == null)
+            {
+                return this.NotFound();
+            }
             return this.View(recipeModel);
         }
 
@@ -96,6 +98,10 @@ namespace Web.Controllers
         public IActionResult Edit(string id)
         {
             var recipe = this.recipeService.GetRecipeForEdit(id);
+            if (recipe == null)
+            {
+                return this.NotFound();
+            }
             return this.View(recipe);
         }
 

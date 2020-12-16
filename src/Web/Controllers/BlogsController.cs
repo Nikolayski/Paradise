@@ -30,6 +30,10 @@ namespace Web.Controllers
         public IActionResult Details(string id)
         {
             var post = this.postService.GetPostById(id);
+            if (post == null)
+            {
+                return this.NotFound();
+            }
             return this.View(post);
         }
 

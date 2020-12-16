@@ -17,7 +17,7 @@ namespace ViewModels.Recipes
         public ProductType ProductType { get; set; }
 
         [Required]
-        [MinLength(20, ErrorMessage = "Instructions should be at least 20 characters long!")]
+        [MinLength(30, ErrorMessage = "Instructions should be at least 30 characters long!")]
         public string Instructions { get; set; }
 
         [Range(1, int.MaxValue,ErrorMessage = "Cooking time cannot be zero or negative number!")]

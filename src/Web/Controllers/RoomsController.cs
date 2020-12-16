@@ -12,6 +12,7 @@ using System.Security.Claims;
 using System.Linq;
 using System.Threading.Tasks;
 using Data;
+using Models.Enums;
 
 namespace Web.Controllers
 {
@@ -42,6 +43,10 @@ namespace Web.Controllers
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = this.usersService.GetUser(userId);
             var typeOfRoom = this.roomsService.GetTypeOfRoom(id);
+            if (typeOfRoom == RoomType.UNKNOWN)
+            {
+                return this.NotFound();
+            }
             this.ViewData["id"] = id;
             this.ViewData["type"] = typeOfRoom;
             return this.View();
@@ -67,6 +72,10 @@ namespace Web.Controllers
         public IActionResult Details(string id)
         {
             var room = this.roomsService.GetRoomById(id);
+            if (room == null)
+            {
+                return this.NotFound();
+            }
             return this.View(room);
         }
 
