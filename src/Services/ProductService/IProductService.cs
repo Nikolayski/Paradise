@@ -1,5 +1,4 @@
-﻿using Models;
-using Models.Enums;
+﻿using Models.Enums;
 using ViewModels.Products;
 using ViewModels.Users;
 
@@ -12,7 +11,7 @@ namespace Services.ProductService
 {
     public interface IProductService
     {
-        Task<IPagedList<Product>> GetAllAsync(int pageNumber, int pageSize);
+        Task<IPagedList<ProductPagingViewModel>> GetAllAsync(int pageNumber, int pageSize);
 
         SingleProductViewModel GetProductById(string productId);
 

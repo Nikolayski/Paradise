@@ -23,6 +23,7 @@ namespace Mapping
             this.CreateMap<Product, RandomProductsViewComponentViewModel>()
                         .ForMember(vm => vm.Description,
                                    map => map.MapFrom(p => p.Description.Substring(0, 50)));
+            this.CreateMap<Product, ProductPagingViewModel>();
 
             //rooms
 

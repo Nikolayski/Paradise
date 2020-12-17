@@ -26,9 +26,10 @@ namespace Services.ProductService
             this.mapper = mapper;
         }
 
-        public Task<IPagedList<Product>> GetAllAsync(int pageNumber, int pageSize)
+        public Task<IPagedList<ProductPagingViewModel>> GetAllAsync(int pageNumber, int pageSize)
         {
-            return this.db.Products.ToPagedListAsync(pageNumber, pageSize);
+            return this.db.Products.ProjectTo<ProductPagingViewModel>(this.mapper.ConfigurationProvider)
+                                            .ToPagedListAsync(pageNumber, pageSize);
         }
 
         public SingleProductViewModel GetProductById(string productId)
@@ -68,6 +69,7 @@ namespace Services.ProductService
                                   .ProjectTo<ProductsAllViewModel>(this.mapper.ConfigurationProvider)
                                   .ToPagedListAsync(pageNumber, pageSize);
         }
+        
 
         public IEnumerable<ProductsAllViewModel> GetProductsByName(string name)
         {
