@@ -11,7 +11,7 @@ namespace ViewModels.Users
         public string FirstName { get; set; }
 
         [Required]
-        [MinLength(3)]
+        [MinLength(3 )]
         [MaxLength(30)]
         public string LastName { get; set; }
 

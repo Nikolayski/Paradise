@@ -47,6 +47,7 @@ namespace Web
 
             //services
             services.AddTransient<ISeedService, SeedService>();
+            services.AddTransient<ISeedProductsService, SeedProductsService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IRoomService, RoomService>();
             services.AddTransient<IImageService, ImageService>();
@@ -69,9 +70,10 @@ namespace Web
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 dbContext.Database.Migrate();
-                if (!dbContext.Products.Any())
+                if (!dbContext.Products.Any() && !dbContext.Users.Any())
                 {
-                    new SeedService(dbContext, serviceScope.ServiceProvider).AddProductsAsync().GetAwaiter().GetResult();
+                    new SeedService(dbContext, serviceScope.ServiceProvider).AddUserAndRoleAsync().GetAwaiter().GetResult();
+                    new SeedProductsService(dbContext).AddProductsAsync().GetAwaiter().GetResult();
                 }
             }
 
