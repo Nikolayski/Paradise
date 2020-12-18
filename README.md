@@ -1,6 +1,8 @@
 # Paradise Beach Resort
 .NET Core 5.0 Project
 
+https://paradise.azurewebsites.net/
+
 The user can reserve room and order meals, add recipe, blog article and comments.
 
 Home Page
