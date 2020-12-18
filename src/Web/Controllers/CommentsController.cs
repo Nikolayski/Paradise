@@ -24,6 +24,10 @@ namespace Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Comment(string name, string message)
         {
+            if (string.IsNullOrEmpty(message))
+            {
+                return this.Redirect("/Recipes/Recipe");
+            }
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await this.commentService.AddCommentAsync(userId, name, message);
             return this.Redirect("/Recipes/Recipe");
@@ -33,6 +37,10 @@ namespace Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CommentBlog(string name, string message, string id)
         {
+            if (string.IsNullOrEmpty(message))
+            {
+                return this.Redirect($"/Blogs/Details/{id}");
+            }
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await this.commentService.AddCommentToPostAsync(userId, name, message, id);
             return this.Redirect($"/Blogs/Details/{id}");
