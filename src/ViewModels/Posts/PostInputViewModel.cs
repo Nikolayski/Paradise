@@ -6,18 +6,22 @@ namespace ViewModels.Posts
 {
   public  class PostInputViewModel
     {
+        private const string TitleErrorMessage = "Too short description characters length!";
+        private const string DescriptionErrorMessage = "Too short description characters length!";
+        private const string UrlErrorMessage = "Invalid url";
+
         [Required]
-        [MinLength(4,ErrorMessage = "Too short description characters length!")]
+        [MinLength(4,ErrorMessage = TitleErrorMessage)]
         [Display(Name = "Title")]
         public string Title { get; set; }
 
         [Required]
-        [MinLength(20, ErrorMessage = "Too short description characters length!")]
+        [MinLength(20, ErrorMessage = DescriptionErrorMessage)]
         [Display(Name = "Description")]
         public string Description { get; set; }
 
         [Required]
-        [MinLength(13,ErrorMessage ="Invalid url")]
+        [MinLength(10,ErrorMessage = UrlErrorMessage)]
         [Display(Name = "Image Url")]
         public string ImageUrl { get; set; }
 

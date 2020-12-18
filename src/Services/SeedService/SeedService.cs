@@ -38,10 +38,10 @@ namespace Services.SeedService
                     EmailConfirmed = false
                 };
                 userManager.CreateAsync(user, "Dadada1122_").GetAwaiter().GetResult();
-                await this.db.SaveChangesAsync();
                 await userManager.AddToRoleAsync(user, roleName);
+                await this.db.SaveChangesAsync();
             }
-
+        
             var images = new List<Image>
             {
                 {new Image

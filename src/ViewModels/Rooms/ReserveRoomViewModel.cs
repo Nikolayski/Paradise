@@ -3,8 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ViewModels.Rooms
 {
-    public  class ReserveRoomViewModel
+    public class ReserveRoomViewModel
     {
+        private const string PhoneNumberErrorMessage = "Phone Number should have 9 digits.";
+
         public string RoomId { get; set; }
 
         public DateTime CheckIn { get; set; }
@@ -12,7 +14,7 @@ namespace ViewModels.Rooms
         public DateTime CheckOut { get; set; }
 
         [Required]
-        [RegularExpression(@"^\d{1,}$")]
+        [RegularExpression(@"^\d{1,}$", ErrorMessage = PhoneNumberErrorMessage)]
         public string PhoneNumber { get; set; }
 
     }

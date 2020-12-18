@@ -72,7 +72,6 @@ namespace Web
                 if (!dbContext.Products.Any())
                 {
                     new SeedService(dbContext, serviceScope.ServiceProvider).AddProductsAsync().GetAwaiter().GetResult();
-
                 }
             }
 
