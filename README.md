@@ -10,8 +10,6 @@ Home Page
 
 
 Rooms Page
-![alt text](https://www.linkpicture.com/q/room_1.jpg)
+![alt text](C:\Users\Huko\Desktop\213.jpg)
 
 
-Restaurant Page
-![alt text](https://www.linkpicture.com/q/Restaurant.jpg)
