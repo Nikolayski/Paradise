@@ -12,7 +12,7 @@ Home Page
 Rooms Page
 ![alt text](C:\Users\Huko\Desktop\213.jpg)
 
-<img align="left" width="100" height="100" src="C:\Users\Huko\Desktop\213.jpg">
+<img align="left" width="100" height="100" src="../213.jpg">
 
 
 
